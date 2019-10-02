@@ -42,11 +42,25 @@ const salamander = new Salamander();
 const siren = new Siren();
 
 
-export default function get_Race_From_String_From_Elemental_Class(race){
+export function get_Race_From_String_From_Elemental_Class(race){
 	if(race === "Salamander"){
         return salamander;
     }
     if(race === "Siren"){
         return siren;
     }
+}
+
+export function get_The_levelUp_Guide_For_Elementals(race){
+
+	if(race === "Salamander"){
+		let levelUp_Guide = {might:0, projection:20, vitality:50, inteligence:5,
+					charisma:5 , willpower:5 , agility:5 , fortitude:5 , intimidation:5};
+		return levelUp_Guide;
+	}
+	if(race === "Siren"){
+		let levelUp_Guide = {might:0, projection:10, vitality:20, inteligence:0,
+			charisma:0 , willpower:0 , agility:0 , fortitude:0 , intimidation:0};
+		return levelUp_Guide;
+	}
 }

@@ -1,13 +1,27 @@
-import get_Race_From_String_From_Elemental_Class from "./Playable Characters/Elementals.js"
+import {get_Race_From_String_From_Elemental_Class,
+    get_The_levelUp_Guide_For_Elementals} from "./Playable Characters/Elementals.js"
+import {get_Race_From_String_From_Zombie_Class,
+    get_The_levelUp_Guide_For_Zombies} from "./Non-Playable Characters/Zombie.js"
 
 
 let census = {
     "Salamander"	:get_Race_From_String_From_Elemental_Class("Salamander"),
-    "Siren"         :get_Race_From_String_From_Elemental_Class("Siren")
+    "Siren"         :get_Race_From_String_From_Elemental_Class("Siren"),
+    "Rotting Zombie":get_Race_From_String_From_Zombie_Class("Rotting Zombie")
+}
+
+let levelUp_Guides = {
+    "Salamander"    :get_The_levelUp_Guide_For_Elementals("Salamander"),
+    "Siren"         :get_The_levelUp_Guide_For_Elementals("Siren"),
+    "Rotting Zombie":get_The_levelUp_Guide_For_Zombies("Rotting Zombie")
 }
 
 
-export default function census_LookUp(string){
+export function census_LookUp(string){
 	return census[string];
+}
+
+export function get_The_LevelUp_Guide(string){
+    return levelUp_Guides[string];
 }
 
