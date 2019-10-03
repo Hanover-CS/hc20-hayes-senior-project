@@ -6,7 +6,7 @@ export default class Character{
 	constructor(name, raceAsString, level = 1, experiance = 0){
 		this.name		= name;
 		this.level		= level;
-		this.attributes = this.raceAsObject = census_LookUp(raceAsString).get_All_Attributes(level);
+		this.attributes = this.raceAsObject = census_LookUp(raceAsString).get_All_Attributes();
 		this.experiance = experiance;
 		this.level_Up_Guide = get_The_LevelUp_Guide(raceAsString);
 	}
