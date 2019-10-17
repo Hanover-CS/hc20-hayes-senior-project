@@ -2,13 +2,18 @@
 <html>
 <head>
 <script>
+
+  
   function toggleSideBar(){
     document.getElementById("sidebar").classList.toggle('active');
   }
+  function toggleDropDown(){
+    document.getElementById("selection").classList.toggle('active');
+  }
 </script>
+<script type="module" src="../Controllers/CharacterCreate.js"></script>
 
 <link rel="stylesheet" type="text/css" href="../CSSFiles/HTMLCharacterCreate.css" />
-<!-- <img id="background" src="../th.jpg"> -->
 
 
 <body>
@@ -20,8 +25,24 @@
             <li><a href="./HTMLHomePage.html">Home</a></li>
             <li><a href="">Shop</a></li>
             <li><a href="">Save</a></li>
-    
         </ul> 
     </div>
+    <table id="mainTable" >
+        <tr>
+          <th>
+            <div>
+              <input id="name" type="text" name="Name" value="What is your name"><br>
+                <ul>
+                  <select id = "characterList">
+                    <option value = "None">Select your character</option>
+                    <option value = "Salamander">Salamander</option>
+                    <option value = "Siren">Siren</option>
+                  </select><br>
+                  <input id="submitButton" type="submit" value="Submit">
+                </ul>	   
+            </div>   
+          </th>
+        </tr>
+    </table>
 </body>
 </html> 

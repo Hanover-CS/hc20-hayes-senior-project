@@ -56,7 +56,7 @@
     display: block;
     width: 30px;
     height: 30px;
-    background: #f4f5f5;
+    background: gray;
     margin: 3px 0px;
   }
   #sidebar .toggle-btn span:hover {
@@ -69,8 +69,56 @@
 
   body {
     background-image: url('../th.jpg');
-    /* background-repeat: no-repeat; */
     background-attachment: fixed;
-    background-position: center top;
   }
+
+  * {
+    box-sizing: border-box;
+  }
+
+/* ------------------------------------------------- */
+  
+#mainTable{
+  color: #0f0f0f;
+  padding-left: 39.5%;
+  padding-top: 20%;
+}
+#button{
+  border: 1px solid black;
+  width: fit-content;
+  height: 1.5em
+}
+#characterList{
+  background: #0f0f0f;
+  color: gray;
+  margin: 10px;
+}
+#characterList:hover{
+  background: #0f0f0f;
+  color: rgb(138, 16, 16);
+  margin: 10px;
+}
+#characterList ul li {
+  color:rgb(71, 71, 179);
+}
+#name{
+  color:  gray;
+  background-color: #0f0f0f;
+  border: solid gray 1px;
+}
+#name:hover{
+  color:  rgb(138, 16, 16);
+  background-color: #0f0f0f;
+  border: solid gray 1px;
+}
+#submitButton{
+  color: gray;
+  background-color: #0f0f0f;
+  border: solid gray 1px;
+}
+#submitButton:hover{
+  color: rgb(138, 16, 16);
+}
+
+/* --------------------------------------------------- */
   
