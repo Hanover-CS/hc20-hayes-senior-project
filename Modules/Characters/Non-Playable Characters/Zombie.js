@@ -7,7 +7,7 @@ class Zombie {
 			vitality:50,
 			fortitude:2,
 			agility:5,
-			inteligence:0,
+			intelligence:0,
 			charisma:0,
 			willpower:0,
 			intimidation:2,
@@ -38,7 +38,7 @@ export function get_Race_From_String_From_Zombie_Class(race){
 export function get_The_levelUp_Guide_For_Zombies(race){
 
 	if(race === "Rotting Zombie"){
-		let levelUp_Guide = {might:1, projection:0, vitality:10, inteligence:0,
+		let levelUp_Guide = {might:1, projection:0, vitality:10, intelligence:0,
 					charisma:0 , willpower:0 , agility:0 , fortitude:0 , intimidation:0};
 		return levelUp_Guide;
     }
