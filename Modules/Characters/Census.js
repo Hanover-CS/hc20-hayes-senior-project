@@ -1,15 +1,22 @@
 import {get_Race_From_String_From_Elemental_Class,
-    get_The_levelUp_Guide_For_Elementals} from "./Playable Characters/Elementals.js"
+        get_The_levelUp_Guide_For_Elementals}       from "./Playable Characters/Elementals.js"
 import {get_Race_From_String_From_Zombie_Class,
-    get_The_levelUp_Guide_For_Zombies} from "./Non-Playable Characters/Zombie.js"
+    get_The_levelUp_Guide_For_Zombies}              from "./Non-Playable Characters/Zombie.js"
+import {get_Race_From_String_From_FatZombie_Class}  from "./Non-Playable Characters/Bosses/Floor10Bosses/FatZombie.js"
 
 
 let census = {
+    // Elemental Class
     "Salamander"	:get_Race_From_String_From_Elemental_Class("Salamander"),
     "Siren"         :get_Race_From_String_From_Elemental_Class("Siren"),
     "Sylph"         :get_Race_From_String_From_Elemental_Class("Sylph"),
     "Golom"         :get_Race_From_String_From_Elemental_Class("Golom"),
-    "Rotting Zombie":get_Race_From_String_From_Zombie_Class("Rotting Zombie")
+
+    // Zombie Class
+    "Rotting Zombie":get_Race_From_String_From_Zombie_Class("Rotting Zombie"),
+
+    // Floor 10 Bosses
+    "Fat Zombie"    :get_Race_From_String_From_FatZombie_Class("Fat Zombie")
 }
 
 let levelUp_Guides = {

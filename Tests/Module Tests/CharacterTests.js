@@ -7,13 +7,27 @@ let assert = chai.assert;
 
 let list_Of_Playable_Characters = ["Salamander", "Siren", "Sylph", "Golom"];
 let list_Of_NonPlayable_Characters = ["Rotting Zombie"];
+let list_Of_Bosses = ["Fat Zombie"];
 
 describe("Character Module", function(){
     
     character_Builder_And_Tester(list_Of_Playable_Characters);
     character_Builder_And_Tester(list_Of_NonPlayable_Characters);
+    bossBuilder(list_Of_Bosses);
 })
 
+function bossBuilder(list_Of_Bosses){
+    for(let boss in list_Of_Bosses){
+        let name_Of_Boss = list_Of_Bosses[boss]
+        let bigBoss = new Character(name_Of_Boss, name_Of_Boss);
+        let comparasonBoss = census_LookUp(name_Of_Boss);
+
+        it("Can create a " + name_Of_Boss, function(){
+            assert(bigBoss.get_Name() === list_Of_Bosses[boss]);
+            assert(bigBoss.attribute_Comparer(comparasonBoss) === true);
+        })
+    }
+}
 
 function character_Builder_And_Tester(list_Of_Characters) {
     for (let character in list_Of_Characters) {

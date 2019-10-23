@@ -17,10 +17,10 @@ export default class Tower{
         }
     }
     
-    // isBossWave(floor, wave){
-    //     if(floor % 10 == 0 && wave == 3){return true;}
-    //     else {return false}
-    // }
+    isBossWave(floor, wave){
+        if(floor%10 == 0 && wave == 3){return true;}
+        else {return false}
+    }
     
     isAtTop(floor, wave){
         if(floor === 100 && wave === 3){return true;}
@@ -28,27 +28,19 @@ export default class Tower{
     }
     
     towerReset(){
-        this.getWave() = 1;
-        this.getFloor() = 1;
+        this.waveReset();
+        this.floorReset();
     }
 
-    waveReset(){
-        this.wave = 1;
-    }
+    waveReset(){this.wave = 1;}
 
-    nextFloor(){
-        this.floor += 1;
-    }
+    floorReset(){this.floor = 1;}
+
+    nextFloor(){this.floor += 1;}
     
-    nextWave(){
-        this.wave += 1;
-    }
+    nextWave(){this.wave += 1;}
 
-    getFloor(){
-        return this.floor;
-    }
+    getFloor(){return this.floor;}
 
-    getWave(){
-        return this.wave;
-    }
+    getWave(){return this.wave;}
 }
