@@ -49,7 +49,6 @@ function level_Incrementer(char) {
     let previous_Fortitude      = char.get_All_Attributes().fortitude
     let previous_Agility        = char.get_All_Attributes().agility
     let previous_Intelligence    = char.get_All_Attributes().intelligence
-    let previous_Charisma       = char.get_All_Attributes().charisma
     let previous_Willpower      = char.get_All_Attributes().willpower
     let previous_Intimidation   = char.get_All_Attributes().intimidation
     let guide = get_The_LevelUp_Guide(char.get_Name());
@@ -63,7 +62,6 @@ function level_Incrementer(char) {
         assert(char.get_All_Attributes().fortitude      == previous_Fortitude + guide.fortitude * (i+1));
         assert(char.get_All_Attributes().agility        == previous_Agility + guide.agility * (i+1));
         assert(char.get_All_Attributes().intelligence    == previous_Intelligence + guide.intelligence * (i+1));
-        assert(char.get_All_Attributes().charisma       == previous_Charisma + guide.charisma * (i+1));
         assert(char.get_All_Attributes().willpower      == previous_Willpower + guide.willpower * (i+1));
         assert(char.get_All_Attributes().intimidation   == previous_Intimidation + guide.intimidation * (i+1));
     }

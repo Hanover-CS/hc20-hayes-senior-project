@@ -48,7 +48,6 @@ export default class Character{
 		   this.get_All_Attributes().fortitude 		=== object.get_All_Attributes().fortitude &&
 		   this.get_All_Attributes().agility 		=== object.get_All_Attributes().agility &&
 		   this.get_All_Attributes().intelligence 	=== object.get_All_Attributes().intelligence &&
-		   this.get_All_Attributes().charisma 		=== object.get_All_Attributes().charisma &&
 		   this.get_All_Attributes().willpower 		=== object.get_All_Attributes().willpower &&
 		   this.get_All_Attributes().intimidation 	=== object.get_All_Attributes().intimidation){
 			return true;

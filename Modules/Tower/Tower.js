@@ -5,14 +5,13 @@ export default class Tower{
     }
 
     getNextArea(){
-        // let floor = this.getFloor();
         let wave = this.getWave();
-
+ 
         if(wave < 3){
-            
             this.nextWave();
         }
         else{
+
             this.nextFloor();
             this.waveReset();
         }
@@ -28,11 +27,10 @@ export default class Tower{
         else{return false;}
     }
     
-    // towerReset(){
-    //     this.getWave() = 1;
-    //     this.getFloor() = 1;
-    
-    // }
+    towerReset(){
+        this.getWave() = 1;
+        this.getFloor() = 1;
+    }
 
     waveReset(){
         this.wave = 1;

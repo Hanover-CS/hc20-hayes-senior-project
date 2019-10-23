@@ -33,3 +33,5 @@ export function isDead(character){
 export function addExperience(character, enemy){
     character.add_Experience(enemy.get_Experience());
 }
+
+export function isCritical()

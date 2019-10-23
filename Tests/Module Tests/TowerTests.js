@@ -7,32 +7,38 @@ describe("Tower", function(){
         chai.assert(tower.getWave() == 1);
     })
 
+    
     it("getNextArea", function(){
         chai.assert(tower.getWave() == 1);
-        chai.assert(tower.getFloor() == 1)
+        chai.assert(tower.getFloor() == 1);
+        climbToTopOfTower(tower);
         
-        for(let floor = 0; floor <= 100; floor++){
-            chai.assert(tower.getFloor() == floor + 1);
-            for(let wave = 1; wave <= 3; wave ++){
-                chai.assert(tower.getWave() == (wave)); 
+        
+        
+    })
+    it("isAtTop", function(){
+        chai.assert(tower.isAtTop(tower.getFloor(), tower.getWave()) == true);
+    })
+    
+    // it("towerReset", function(){
+        
+    //     chai.assert(tower.getFloor() == 100);
+    //     chai.assert(tower.getWave() == 3);
+    // })
+})
+
+function climbToTopOfTower(tower) {
+    for(let floor = 1; floor <= 100; floor++){
+        chai.assert(tower.getFloor() == floor);
+        for(let wave = 1; wave <= 3; wave ++){
+            chai.assert(tower.getWave() == (wave)); 
+            
+            if (wave == 3 && floor == 100) {
+                break;
+            }
+            else{
                 tower.getNextArea();
             }
-        } 
-    })
-
-    it("isAtTop", function(){
-        let counterForFloors = -1;
-        let counterForWaves = 0
-        
-        for(let floor = 0; floor <= 100; floor++){
-            for(let wave = 1; wave <= 3; wave ++){
-                chai.assert(tower.isAtTop(counterForFloors, counterForWaves) == false);
-
-                if(counterForWaves == 3 && counterForFloors < 100){counterForWaves = 1;}
-                else {counterForWaves+=1;}
-            }
-            counterForFloors += 1;
-        } 
-        chai.assert(tower.isAtTop(counterForFloors, counterForWaves) == true);
-    })
-})
+        }
+    } 
+}
