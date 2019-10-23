@@ -1,4 +1,5 @@
-import {attack, isDead, addExperience} from "../../Modules/Combat/BasicCombatFunctions.js";
+import {attack, isDead, addExperience,
+        isCritical} from "../../Modules/Combat/BasicCombatFunctions.js";
 import Character from "../../Modules/Characters/CharacterClass.js";
 
 let assert = chai.assert;
@@ -79,5 +80,19 @@ describe("Combat Module Basic Combat Tests: addExperience Function", function(){
         addExperience(character, enemy);
         assert(character.get_Experience() == 100);
 
+    })
+})
+
+describe("Combat Module Basic Combat Tests: isCrit Function", function(){
+    it("Given a 0 Crit Rate, it Cannot Crit", function(){
+        for(let i = 0; i < 100; i++){
+            chai.assert(isCritical(0) == false);
+        }
+    })
+
+    it("Given a 100% Crit Rate, Crits every time", function(){
+        for(let i = 0; i < 100; i++){
+            chai.assert(isCritical(100) == true);
+        }
     })
 })

@@ -34,4 +34,11 @@ export function addExperience(character, enemy){
     character.add_Experience(enemy.get_Experience());
 }
 
-export function isCritical()
+export function isCritical(intimidation){
+    let randomNumberBetween0And1 = Math.random()
+    let num = intimidation / 100;
+    if((randomNumberBetween0And1 + num) > 1){
+        return true;
+    }
+    else {return false;}
+}
