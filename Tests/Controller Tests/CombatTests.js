@@ -1,5 +1,5 @@
 import {attack, isDead, addExperience,
-        isCritical} from "../../Modules/Combat/BasicCombatFunctions.js";
+        isCritical, calculateCritDamage} from "../../Modules/Combat/BasicCombatFunctions.js";
 import Character from "../../Modules/Characters/CharacterClass.js";
 
 let assert = chai.assert;
@@ -12,7 +12,7 @@ describe("Combat Module Basic Combat Tests: attack Function", function(){
         
         assert(defender.get_All_Attributes().vitality == 50);
         attack(attacker, defender);
-        assert(defender.get_All_Attributes().vitality == 25);
+        assert(defender.get_All_Attributes().vitality == 0);
     })
 
     it("Attacters attack is equal to the defenders defence", function(){
@@ -94,5 +94,23 @@ describe("Combat Module Basic Combat Tests: isCrit Function", function(){
         for(let i = 0; i < 100; i++){
             chai.assert(isCritical(100) == true);
         }
+    })
+})
+
+describe("Combat Module Basic Combat Tests: calculateCritDamage Function", function(){
+    it("Given a miltiplier of 0%, Crit Damage == Damage", function(){
+        chai.assert(calculateCritDamage(100, 0) == 100);
+    })
+
+    it("Given a miltiplier of 100%, Crit Damage == X2 Damage", function(){
+        chai.assert(calculateCritDamage(43, 10) == 86);
+    })
+
+    it("Given a miltiplier of 50%, Crit Damage == X1.5 Damage", function(){
+        chai.assert(calculateCritDamage(13, 5) == 20);
+    })
+
+    it("Given a miltiplier of 30%, Crit Damage == X1.3 Damage", function(){
+        chai.assert(calculateCritDamage(13, 3) == 17);
     })
 })

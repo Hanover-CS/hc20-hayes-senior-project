@@ -5,30 +5,38 @@ import {census_LookUp, get_The_LevelUp_Guide} from "../../Modules/Characters/Cen
 let assert = chai.assert;
 
 
-let list_Of_Playable_Characters = ["Salamander", "Siren"];
+let list_Of_Playable_Characters = ["Salamander", "Siren", "Sylph", "Golom"];
 let list_Of_NonPlayable_Characters = ["Rotting Zombie"];
 
-describe("Characters Module", function(){
+describe("Character Module", function(){
     
     character_Builder_And_Tester(list_Of_Playable_Characters);
     character_Builder_And_Tester(list_Of_NonPlayable_Characters);
-    
 })
 
 
 function character_Builder_And_Tester(list_Of_Characters) {
     for (let character in list_Of_Characters) {
         let name_Of_Character = list_Of_Characters[character];
+        let char = new Character(name_Of_Character, name_Of_Character);
+        let character_For_Comparason = census_LookUp(name_Of_Character);
+        let pts = character_For_Comparason.attributes.intelligence / 5
+
         it("Can create a " + name_Of_Character, function () {
 
-            let char = new Character(name_Of_Character, name_Of_Character);
-            let character_For_Comparason = census_LookUp(name_Of_Character);
 
             assert(char.get_Name() === list_Of_Characters[character]);
             experience_Incrementor(char);
             assert(char.attribute_Comparer(character_For_Comparason) === true);
+            assert(char.get_Level_Up_Points() == pts)
             level_Incrementer(char);
         });
+
+        it("get_Level_Up_Points Function", function(){
+            let num = char.get_All_Attributes().intelligence / 5;
+            let lvlUpPts = Math.floor(num);
+            assert(char.get_Level_Up_Points() == lvlUpPts);
+        })
     }
 }
 
@@ -48,11 +56,11 @@ function level_Incrementer(char) {
     let previous_Vitality       = char.get_All_Attributes().vitality
     let previous_Fortitude      = char.get_All_Attributes().fortitude
     let previous_Agility        = char.get_All_Attributes().agility
-    let previous_Intelligence    = char.get_All_Attributes().intelligence
+    let previous_Intelligence   = char.get_All_Attributes().intelligence
     let previous_Willpower      = char.get_All_Attributes().willpower
     let previous_Intimidation   = char.get_All_Attributes().intimidation
     let guide = get_The_LevelUp_Guide(char.get_Name());
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 9; i++) {
 
         char.level_Up();
         assert(char.get_Level() === i + 2);

@@ -20,6 +20,10 @@ export default class Character{
 
 	get_Experience(){return this.experience;}
 
+	get_Level_Up_Points(){
+		let num = Math.floor(this.attributes.intelligence / 5);
+		return (Math.floor(num))}
+
 
 	// Mutators
 	level_Up(){
@@ -36,9 +40,7 @@ export default class Character{
 
 	}
 
-	add_Experience(number){
-		return this.experience += number;
-	}
+	add_Experience(number){return this.experience += number;}
 
 
 	attribute_Comparer(object){

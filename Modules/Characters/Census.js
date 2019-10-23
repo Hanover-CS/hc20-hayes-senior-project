@@ -7,12 +7,16 @@ import {get_Race_From_String_From_Zombie_Class,
 let census = {
     "Salamander"	:get_Race_From_String_From_Elemental_Class("Salamander"),
     "Siren"         :get_Race_From_String_From_Elemental_Class("Siren"),
+    "Sylph"         :get_Race_From_String_From_Elemental_Class("Sylph"),
+    "Golom"         :get_Race_From_String_From_Elemental_Class("Golom"),
     "Rotting Zombie":get_Race_From_String_From_Zombie_Class("Rotting Zombie")
 }
 
 let levelUp_Guides = {
     "Salamander"    :get_The_levelUp_Guide_For_Elementals("Salamander"),
     "Siren"         :get_The_levelUp_Guide_For_Elementals("Siren"),
+    "Sylph"         :get_The_levelUp_Guide_For_Elementals("Sylph"),
+    "Golom"         :get_The_levelUp_Guide_For_Elementals("Golom"),
     "Rotting Zombie":get_The_levelUp_Guide_For_Zombies("Rotting Zombie")
 }
 

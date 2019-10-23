@@ -36,9 +36,15 @@ export function addExperience(character, enemy){
 
 export function isCritical(intimidation){
     let randomNumberBetween0And1 = Math.random()
-    let num = intimidation / 100;
-    if((randomNumberBetween0And1 + num) > 1){
+    let percentage = intimidation / 100;
+    if((randomNumberBetween0And1 + percentage) > 1){
         return true;
     }
     else {return false;}
+}
+
+export function calculateCritDamage(damage, wisdom){
+    let bonusDamage = damage * (wisdom / 10);
+    let bonusDamageRounded = Math.round(bonusDamage);
+    return (damage + bonusDamageRounded);
 }
