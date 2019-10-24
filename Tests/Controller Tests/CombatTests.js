@@ -1,5 +1,7 @@
 import {attack, isDead, addExperience,
-        isCritical, calculateCritDamage} from "../../Modules/Combat/BasicCombatFunctions.js";
+        isCritical, calculateCritDamage,
+        establishTurnOrder, howManyTurns,
+        scaleEnemy, generateEnemy} from "../../Modules/Combat/BasicCombatFunctions.js";
 import Character from "../../Modules/Characters/CharacterClass.js";
 
 let assert = chai.assert;
@@ -112,5 +114,76 @@ describe("Combat Module Basic Combat Tests: calculateCritDamage Function", funct
 
     it("Given a miltiplier of 30%, Crit Damage == X1.3 Damage", function(){
         chai.assert(calculateCritDamage(13, 3) == 17);
+    })
+})
+
+describe("Combat Module Basic Combat Tests: establishTurnOrder Function", function(){
+
+    let char1 = new Character("Salamander", "Salamander");
+    let char2 = new Character("Zombie", "Rotting Zombie");
+    let char3 = new Character("Siren", "Siren");
+    let char4 = new Character("Sylph", "Sylph");
+    let unsortedList = [char1, char2, char3, char4];
+    it("Sorts an unsorted list of 4 characters", function(){
+        let sortedList = establishTurnOrder(unsortedList);
+        chai.assert(sortedList[0] == char4);
+        chai.assert(sortedList[1] == char3);
+        chai.assert(sortedList[2] == char1);
+        chai.assert(sortedList[3] == char2);
+    })
+})
+
+describe("Combat Module Basic Combat Tests: howManyTurns", function(){
+    it("Given 80 agility, returns 1", function(){
+        chai.assert(howManyTurns(80) == 1);
+    })
+
+    it("Given 100 agility, returns 1", function(){
+        chai.assert(howManyTurns(100) == 1);
+    })
+
+    it("Given 160 agility, returns 2", function(){
+        chai.assert(howManyTurns(160) == 2);
+    })
+
+    it("Given 500 agility, returns 2", function(){
+        chai.assert(howManyTurns(500) == 6);
+    })
+})
+
+describe("Combat Module Basic Combat Tests: scaleEnemy", function(){
+    it("Takes a lvl 1 enemy, 1st floor, 1st wave, returns enemy lvl 1", function(){
+        let enemy = new Character("Zombie", "Rotting Zombie");
+        scaleEnemy(enemy, 1, 1);
+        chai.assert(enemy.get_Level() == 1);
+    })
+
+    it("Takes a lvl 1 enemy, 1st floor, 3rd wave, returns enemy lvl 3", function(){
+        let enemy = new Character("Zombie", "Rotting Zombie");
+        scaleEnemy(enemy, 1, 3);
+        chai.assert(enemy.get_Level() == 3);
+    })
+
+    it("Takes a lvl 1 enemy, 1st floor, 3rd wave, returns enemy lvl 2", function(){
+        let enemy = new Character("Zombie", "Rotting Zombie");
+        scaleEnemy(enemy, 2, 1);
+        chai.assert(enemy.get_Level() == 2);
+    })
+
+    it("Takes a lvl 1 enemy, 100th floor, 2rd wave, returns enemy lvl 101", function(){
+        let enemy = new Character("Zombie", "Rotting Zombie");
+        scaleEnemy(enemy, 100, 2);
+        console.log(enemy.get_Level())
+        chai.assert(enemy.get_Level() == 101);
+    })
+})
+
+// needs good tests
+describe("Combat Module Basic Combat Tests: generateEnemy", function(){
+    it("generates a random enemy", function(){
+        for(let i = 0; i < 10; i++){
+            let enemy = generateEnemy(3, 2);
+            console.log(enemy);
+        }
     })
 })
