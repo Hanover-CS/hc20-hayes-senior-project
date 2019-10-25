@@ -5,39 +5,37 @@ export function attack(attacker, defender){
 
     let attackersMight = attacker.get_All_Attributes().might;
     let attackersProjection = attacker.get_All_Attributes().projection;
-    let defendersVitality = defender.get_All_Attributes().vitality;
     let defendersFortitude = defender.get_All_Attributes().fortitude;
 
     if (attackersMight >= attackersProjection){
-        if(isAttackLessThanFortitude(attackersMight, defendersFortitude)){return;}
-        else {getNewVitality(attackersMight, defendersVitality, defendersFortitude);}
+        if(attackersMight < defendersFortitude){return;}
+        else {followTroughWithTheAttack(attacker, defender, attackersMight);}
     }
 
     else {
-        if(isAttackLessThanFortitude(attackersProjection, defendersFortitude)){return;}
-        else {getNewVitality(attackersProjection, defendersVitality, defendersFortitude);}
+        if(attackersProjection < defendersFortitude){return;}
+        else {followTroughWithTheAttack(attacker, defender, attackersProjection);}
     }
 
-    function isAttackLessThanFortitude(attackersAttack, defendersFortitude) {
-        return attackersAttack <= defendersFortitude;
-    }
+    
+}
 
-    function getNewVitality(attackersAttackPower, defendersVitality, defendersFortitude) {
-        let difference = Math.abs(attackersAttackPower - defendersFortitude);
-        defender.get_All_Attributes().vitality = (defendersVitality - difference);
+function followTroughWithTheAttack(attacker, defender, mightOrProjection){
+    let intimidation = attacker.get_All_Attributes().intimidation;
+    let willpower = attacker.get_All_Attributes().willpower;
+    let damage = mightOrProjection;
+
+    if(isCritical(intimidation)){
+        let totalDamage = calculateCritDamage(damage, willpower);
+        applyDamage(totalDamage, defender);
+        if(isDead(defender)){addExperience(attacker, defender);}
+    }else{
+        applyDamage(damage, defender);
+        if(isDead(defender)){addExperience(attacker, defender);}
     }
 }
 
-export function isDead(character){
-    if (character.get_All_Attributes().vitality <= 0){return true;}
-    else {return false}
-}
-
-export function addExperience(character, enemy){
-    character.add_Experience(enemy.get_Experience());
-}
-
-export function isCritical(intimidation){
+function isCritical(intimidation){
     let randomNumberBetween0And1 = Math.random()
     let percentage = intimidation / 100;
     if((randomNumberBetween0And1 + percentage) > 1){
@@ -46,11 +44,31 @@ export function isCritical(intimidation){
     else {return false;}
 }
 
-export function calculateCritDamage(damage, wisdom){
-    let bonusDamage = damage * (wisdom / 10);
+function calculateCritDamage(damage, willpower){
+    let bonusDamage = damage * (willpower / 10);
     let bonusDamageRounded = Math.round(bonusDamage);
     return (damage + bonusDamageRounded);
 }
+
+function applyDamage(totalDamage, defender){
+    let defendersFortitude = defender.get_All_Attributes().fortitude;
+    let defendersVitality = defender.get_All_Attributes().vitality;
+    let difference = Math.abs(totalDamage - defendersFortitude);
+
+    defender.get_All_Attributes().vitality = (defendersVitality - difference);
+}
+
+function isDead(character){
+    if (character.get_All_Attributes().vitality <= 0){return true;}
+    else {return false}
+}
+
+function addExperience(character, enemy){
+    character.add_Experience(enemy.get_Experience());
+}
+
+
+
 
 export function establishTurnOrder(listOfCharacters){
     for(let j = 0; j < listOfCharacters.length; j++){

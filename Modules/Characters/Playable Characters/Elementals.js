@@ -8,7 +8,7 @@ class Elemental {
 			fortitude:15,       // Armor
 			agility:100,        // Speed
 			intelligence:20,    	// Level-Up Pts
-			willpower:15,       	// Crit Damage
+			willpower:10,       	// Crit Damage
 			intimidation:15,    	// Crit Chance
 		}
 	}
@@ -23,7 +23,7 @@ class Salamander extends Elemental{
 		super();
 		this.attributes.projection 		= 50;
 		this.attributes.intelligence	= 30;
-		this.attributes.willpower		= 20;
+		this.attributes.willpower		= 5;
 		this.attributes.intimidation	= 5;
 	}
 }
@@ -33,6 +33,7 @@ class Siren extends Elemental{
 		this.attributes.projection 		= 35;
 		this.attributes.vitality		= 400;
 		this.attributes.intelligence	= 30;
+		this.attributes.willpower		= 5;
 	}
 }
 class Sylph extends Elemental{
@@ -43,7 +44,6 @@ class Sylph extends Elemental{
 		this.attributes.agility			= 120;
 		this.attributes.vitality		= 250;
 		this.attributes.intimidation 	= 20;
-		this.attributes.willpower		= 20;
 	}
 }
 
@@ -54,6 +54,7 @@ class Golom extends Elemental{
 		this.attributes.fortitude 		= 20;
 		this.attributes.agility			= 80;
 		this.attributes.vitality		= 400;
+		this.attributes.willpower		= 5;
 	}
 }
 
