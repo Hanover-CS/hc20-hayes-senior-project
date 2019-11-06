@@ -2,11 +2,11 @@
 class Skeleton {
 	constructor(){
 		this.attributes = {
-			might:5,
+			might:55,
 			projection:0,
-			vitality:50,
+			vitality:55,
 			fortitude:2,
-			agility:5,
+			agility:125,
 			intelligence:0,
 			willpower:0,
 			intimidation:2,

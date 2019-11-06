@@ -1,0 +1,77 @@
+#decendButton{
+    width: fit-content;
+    position: fixed;
+    left: 900px;
+    top: 550px;
+    padding: 3px;
+
+    background-color: #151719;
+    color: gray;
+    border-style: groove;
+}
+
+#decendButton:hover{
+    cursor: pointer;
+    color: rgb(138, 16, 16);
+}
+#textField{
+    position: fixed;
+    width: 500px;
+    height: 200px;
+    top: 300px;
+    left: 525px;
+    background-color: #151719;
+    color: gray;
+    border-style: groove;
+    overflow-y: scroll;
+}
+#displayBattleReport{
+    font-size: x-large;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#ascendFromBattleScreen{
+    position: fixed;
+    width: fit-content;
+    left: 720px; 
+    top: 550px;
+    padding: 3px;
+    background-color: #151719;
+    color: gray;
+    border-style: groove;
+}
+
+#ascendFromBattleScreen:hover{
+    cursor: pointer;
+    color: rgb(138, 16, 16);
+}
+
+#attackButton{
+    position: fixed;
+    left: 525px;
+    top: 550px;
+    padding: 3px;
+    background-color: #151719;
+    color: gray;
+    border-style: groove;
+}
+
+#attackButton:hover{
+    cursor: pointer;
+    color: rgb(138, 16, 16);
+}
+
+#towerDisplay{
+    position: fixed;
+    left: 700px;
+    bottom: 600px;
+    width: fit-content;
+    height: fit-content;
+    padding: 3px;
+    border-style: groove;
+    background-color: #151719;
+    color: gray;
+    ;
+}
+
+

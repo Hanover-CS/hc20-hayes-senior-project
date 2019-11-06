@@ -83,8 +83,8 @@ export function get_Race_From_String_From_Elemental_Class(race){
 export function get_The_levelUp_Guide_For_Elementals(race){
 
 	if(race === "Salamander"){
-		let levelUp_Guide = {might:0, projection:20, vitality:50, intelligence:5,
-			willpower:5 , agility:5 , fortitude:5 , intimidation:5};
+		let levelUp_Guide = {might:0, projection:20, vitality:50, intelligence:0,
+			willpower:0 , agility:5 , fortitude:5 , intimidation:0};
 		return levelUp_Guide;
 	}
 	if(race === "Siren"){

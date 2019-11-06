@@ -4,7 +4,7 @@
     font-family: fantasy;
     font-size: xx-large;
   }
-  #sidebar{
+  .sidebar{
     position: fixed;
     width: 200px;
     height: 400px;
@@ -13,15 +13,15 @@
     transition-duration: 2s;
   }
   
-  #sidebar.active{
+  .sidebar.active{
     left: 0px;
   }
   
-  #sidebar ul li {
+  .sidebar ul li {
     border-bottom: 1px solid rgba(100, 100, 100, 0.3);
   }
 
-  #sidebar ul li a{
+  .sidebar .sideMenu{
     padding: 20px 30px;
     color: gray;
     text-decoration: none;
@@ -29,42 +29,36 @@
     font-size: 1em;
   }
  
-  #sidebar ul li{
+  .sidebar .sideMenu:hover{
+    color: rgb(138, 16, 16);
+    cursor: pointer;
+  }
+
+  .sidebar ul li{
     padding: 20px 5px;
     border-bottom: 1px solid rgba(100, 100, 100, 0.3);
   }
 
-  #sidebar ul li a:hover{
-    padding: 20px 15px;
-    color: rgb(138, 16, 16);
-    list-style :none;
-    font-size: 1em
-  }
   
-  #sidebar .toggle-btn {
+  .sidebar .toggle-btn {
     position: absolute;
     left: 230px;
     top: 20px;
   }
-  #sidebar .toggle-btn:hover{
-    position: absolute;
-    left: 230px;
-    top: 20px;
+  .sidebar .toggle-btn:hover{
+    cursor: pointer;
   }
   
-  #sidebar .toggle-btn span {
+  .sidebar .toggle-btn span {
     display: block;
     width: 30px;
     height: 30px;
     background: gray;
     margin: 3px 0px;
   }
-  #sidebar .toggle-btn span:hover {
-    display: block;
-    width: 30px;
-    height: 30px;
+  .sidebar .toggle-btn span:hover {
     background: rgb(138, 16, 16);
-    margin: 3px 0px;
+    cursor: pointer;
   }
 
   body {
@@ -82,26 +76,18 @@
   color: #0f0f0f;
   padding-left: 39.5%;
   padding-top: 20%;
-  /* margin: 0 auto; */
 }
-#button{
-  border: 1px solid black;
-  width: fit-content;
-  height: 1.5em
-}
+
 #characterList{
   background: #0f0f0f;
   color: gray;
   margin: 10px;
 }
 #characterList:hover{
-  background: #0f0f0f;
   color: rgb(138, 16, 16);
-  margin: 10px;
+  cursor: pointer;
 }
-#characterList ul li {
-  color:rgb(71, 71, 179);
-}
+
 #name{
   color:  gray;
   background-color: #0f0f0f;
@@ -109,8 +95,7 @@
 }
 #name:hover{
   color:  rgb(138, 16, 16);
-  background-color: #0f0f0f;
-  border: solid gray 1px;
+  cursor: pointer;
 }
 #submitButton{
   color: gray;
@@ -119,6 +104,11 @@
 }
 #submitButton:hover{
   color: rgb(138, 16, 16);
+  cursor: pointer;
+}
+
+#submitButton:active{
+  transform: translateY(4px);
 }
 
 /* --------------------------------------------------- */

@@ -141,10 +141,10 @@ describe("Combat Module Basic Combat Tests: scaleEnemy", function(){
 })
 
 // needs good tests
-describe("Combat Module Basic Combat Tests: generateEnemy", function(){
-    it("generates a random enemy", function(){
-        for(let i = 0; i < 10; i++){
-            let enemy = generateEnemy(3, 2);
-        }
-    })
+// describe("Combat Module Basic Combat Tests: generateEnemy", function(){
+//     it("generates a random enemy", function(){
+//         for(let i = 0; i < 10; i++){
+//             let enemy = generateEnemy(3, 2);
+//         }
+//     })
 })

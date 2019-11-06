@@ -1,59 +1,70 @@
-* {
-  margin: 0px;
-  padding: 0px;
-  font-family: fantasy;
-  font-size: xx-large;
+.displayCharacterDiv {
+  height: 550px;
+  width: 350px;
+  background-color:#151719;
+  position: relative;
+  left: 1100px;
+  top: 100px;
+  border-style: groove;
+  border-color: gray;
 }
-#sidebar{
+
+.displayEnemyDiv {
+  height: 550px;
+  width: 350px;
+  background-color:#151719;
   position: fixed;
-  width: 200px;
-  height: 400px;
-  background: #151719;
-  left: -200px;
-  transition-duration: 2s;
+  left: 90px;
+  top: 100px;
+  border-style: groove;
+  border-color: gray;
 }
 
-#sidebar.active{
-  
+/* -------------------------------------------------------------- */
 
-  left: 0px;
-}
-
-#sidebar ul li {
+/* Character Template Formatting */
+#displayCharacterTemplateBody{
   color: gray;
-  list-style :none;
-  padding: 20px 10px;
-  border-bottom: 1px solid rgba(100, 100, 100, 0.3)
-}
-#sidebar ul li:hover {
-  color: rgb(138, 16, 16);
-  list-style :none;
-  padding: 20px 10px;
-  border-bottom: 1px solid rgba(100, 100, 100, 0.3)
+  position: relative;
+  left: 10px;
 }
 
-#sidebar .toggle-btn {
-  position: absolute;
-  left: 230px;
-  top: 20px;
-}
-#sidebar .toggle-btn:hover{
-  position: absolute;
-  left: 230px;
-  top: 20px;
+#displayCharacterTemplateCharacterName{
+  color: red;
+  font-weight: bold;
+  font-style: italic;
+  font-family: cursive;
+  font-size: 50px;
+  text-align: center;
 }
 
-#sidebar .toggle-btn span {
-  display: block;
-  width: 30px;
-  height: 30px;
-  background: #151719;
-  margin: 3px 0px;
+/* Enemy Template Formatting */
+#displayEnemyTemplateBody{
+  color: gray;
+  position: relative;
+  left: 10px;
 }
-#sidebar .toggle-btn span:hover {
-  display: block;
-  width: 30px;
-  height: 30px;
-  background: rgb(138, 16, 16);
-  margin: 3px 0px;
+
+#displayEnemyTemplateCharacterName{
+  color: red;
+  font-weight: bold;
+  font-style: italic;
+  font-family: cursive;
+  font-size: 50px;
+  text-align: center;
+}
+
+#goToNextRoundOfCombat{
+  background-color: #151719;
+  color: gray;
+  position: relative;
+  left: 100px;
+  top: 50px;
+  padding: 3px;
+  border-style: groove;
+
+}
+#goToNextRoundOfCombat:hover{
+  color:rgb(138, 16, 16);
+  cursor: pointer;
 }

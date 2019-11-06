@@ -2,9 +2,9 @@
 class Zombie {
 	constructor(){
 		this.attributes = {
-			might:5,
+			might:105,
 			projection:0,
-			vitality:50,
+			vitality:55,
 			fortitude:2,
 			agility:5,
 			intelligence:0,

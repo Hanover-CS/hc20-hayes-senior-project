@@ -7,6 +7,7 @@ export default class Character{
 		this.name		= name;
 		this.level		= 1;
 		this.attributes = this.raceAsObject = census_LookUp(raceAsString).get_All_Attributes();
+		this.tempHp 	= this.get_All_Attributes().vitality;
 		this.experience = 0;
 		this.level_Up_Guide = get_The_LevelUp_Guide(raceAsString);
 	}
@@ -22,8 +23,12 @@ export default class Character{
 
 	get_Level_Up_Points(){
 		let num = Math.floor(this.attributes.intelligence / 5);
-		return (Math.floor(num))}
+		return (Math.floor(num))
+	}
 
+	get_TempHp(){
+		return this.tempHp;
+	}
 
 	// Mutators
 	level_Up(){
@@ -37,6 +42,8 @@ export default class Character{
 		this.get_All_Attributes().charisma 		+= this.level_Up_Guide.charisma;
 		this.get_All_Attributes().willpower 	+= this.level_Up_Guide.willpower;
 		this.get_All_Attributes().intimidation 	+= this.level_Up_Guide.intimidation;
+
+		this.tempHp += this.level_Up_Guide.vitality;
 
 	}
 

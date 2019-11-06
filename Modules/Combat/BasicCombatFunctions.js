@@ -1,5 +1,3 @@
-import {census_LookUp} from "../Characters/Census.js"
-
 
 export function attack(attacker, defender){
 
@@ -58,17 +56,16 @@ function applyDamage(totalDamage, defender){
     defender.get_All_Attributes().vitality = (defendersVitality - difference);
 }
 
-function isDead(character){
-    if (character.get_All_Attributes().vitality <= 0){return true;}
-    else {return false}
-}
-
 function addExperience(character, enemy){
     character.add_Experience(enemy.get_Experience());
 }
 
 
 
+export function isDead(character){
+    if (character.get_All_Attributes().vitality <= 0){return true;}
+    else {return false}
+}
 
 export function establishTurnOrder(listOfCharacters){
     for(let j = 0; j < listOfCharacters.length; j++){
@@ -95,7 +92,9 @@ export function scaleEnemy(enemy, floor, wave){
 
     for (let i = 0; i < (floor + wave) - 2; i++) {
         enemy.level_Up();
+        enemy.add_Experience(10);
     }
+    enemy.add_Experience(10);
 }
 
 export function generateEnemy(floor, wave){
@@ -106,82 +105,82 @@ export function generateEnemy(floor, wave){
     }
     if(floor > 0 && floor <= 10){
         if (randomNumber <= .5){
-            return census_LookUp("Rotting Zombie");
+            return "Rotting Zombie";
         }
         else {
-            return census_LookUp("Skeleton");
+            return "Skeleton";
         }
     }
     else if(floor > 10 && floor <= 20){
         if (randomNumber <= .5){
-            return census_LookUp("Rotting Zombie");
+            return "Rotting Zombie";
         }
         else {
-            return census_LookUp("Skeleton");
+            return "Skeleton";
         }
     }
     else if(floor > 20 && floor <= 30){
         if (randomNumber <= .5){
-            return census_LookUp("Rotting Zombie");
+            return "Rotting Zombie";
         }
         else {
-            return census_LookUp("Skeleton");
+            return "Skeleton";
         }
     }
     else if(floor > 30 && floor <= 40){
         if (randomNumber <= .5){
-            return census_LookUp("Rotting Zombie");
+            return "Rotting Zombie";
         }
         else {
-            return census_LookUp("Skeleton");
+            return "Skeleton";
         }
     }
     else if(floor > 40 && floor <= 50){
         if (randomNumber <= .5){
-            return census_LookUp("Rotting Zombie");
+            return "Rotting Zombie";
         }
         else {
-            return census_LookUp("Skeleton");
+            return "Skeleton";
         }
     }
     else if(floor > 50 && floor <= 60){
         if (randomNumber <= .5){
-            return census_LookUp("Rotting Zombie");
+            return "Rotting Zombie";
         }
         else {
-            return census_LookUp("Skeleton");
+            return "Skeleton";
         }
     }
     else if(floor > 60 && floor <= 70){
         if (randomNumber <= .5){
-            return census_LookUp("Rotting Zombie");
+            return "Rotting Zombie";
         }
         else {
-            return census_LookUp("Skeleton");
+            return "Skeleton";
         }
     }
     else if(floor > 70 && floor <= 80){
         if (randomNumber <= .5){
-            return census_LookUp("Rotting Zombie");
+            return "Rotting Zombie";
         }
         else {
-            return census_LookUp("Skeleton");
+            return "Skeleton";
         }
     }
     else if(floor > 80 && floor <= 90){
         if (randomNumber <= .5){
-            return census_LookUp("Rotting Zombie");
+            return "Rotting Zombie";
         }
         else {
-            return census_LookUp("Skeleton");
+            return "Skeleton";
         }
     }
     else if(floor > 90 && floor <= 100){
         if (randomNumber <= .5){
-            return census_LookUp("Rotting Zombie");
+            return "Rotting Zombie";
         }
         else {
-            return census_LookUp("Skeleton");
+            return "Skeleton";
         }
     }
 }
