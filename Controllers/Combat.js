@@ -1,4 +1,3 @@
-import {generateEnemy, scaleEnemy, establishTurnOrder} from "../Modules/Combat/BasicCombatFunctions.js"
 import Character from "../Modules/Characters/CharacterClass.js"
 import {BasicCombat} from "../Modules/Combat/BasicCombatFunctions.js"
 
@@ -14,7 +13,6 @@ export default class Mechanics{
 
     // Player Related Functions
     createCharacter(name, race){
-        console.log("asd")
         let character = new Character(name, race);
         listOfCharacter.push(character);
     }
@@ -56,10 +54,9 @@ export default class Mechanics{
     }
 
     createEnemy(towerFloor, towerWave){
-        console.log(towerFloor, towerWave)
-        let enemiesName = generateEnemy(towerFloor, towerWave);
+        let enemiesName = basicCombat.generateEnemy(towerFloor, towerWave);
         let enemy = new Character(enemiesName, enemiesName)
-        scaleEnemy(enemy, towerFloor, towerWave);
+        basicCombat.scaleEnemy(enemy, towerFloor, towerWave);
         listOfEnemies.push(enemy);
     }
 
@@ -86,6 +83,6 @@ export default class Mechanics{
 
     getTurnOrder(){
         allCombatents = [listOfEnemies[0], listOfCharacter[0]];
-        establishTurnOrder(allCombatents);
+        basicCombat.establishTurnOrder(allCombatents);
     }
 }
