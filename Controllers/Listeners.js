@@ -50,4 +50,3 @@ attackButton.onclick = function(){
 levelUpButton.onclick = function(){
     display.levelUpButton();
 }
-

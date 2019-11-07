@@ -1,9 +1,11 @@
 import TowerController from "./TowerController.js"
 import Mechanics from "./Combat.js"
+import ShopController from "./ShopController.js"
 
 
 let tower = new TowerController;
 let mechanics = new Mechanics;
+let shop = new ShopController;
 
 export default class Display{
     constructor(){}
@@ -18,6 +20,8 @@ export default class Display{
     goToShopFromHomePage(){
         let pageToBeHidden = document.getElementById("homePage");
         let pageToBeShown = document.getElementById("shopPage");
+        displayCurrency();
+
         displayNewPage(pageToBeHidden, pageToBeShown);
     }
     
@@ -36,22 +40,23 @@ export default class Display{
         showTheHomeScreenAscendButton();
     }
 
-    goToBattleScreenFromHomePage(){ // NO
+    goToBattleScreenFromHomePage(){
         let pageToBeHidden = document.getElementById("homePage");
         let pageToBeShown = document.getElementById("battleScreen");
         
-        mechanics.deleteEnemy(); // NO
+        mechanics.deleteEnemy();
         displayTower();
-        mechanics.createEnemy(); // NO
-        mechanics.getTurnOrder(); // NO
-        if(mechanics.isAIsTurn()){AIAttacks();} // NO
+        let info = tower.getTowerInfo();
+        mechanics.createEnemy(info.floor, info.wave); /////////////////This needs to be refactored
+        mechanics.getTurnOrder();
+        if(mechanics.isAIsTurn()){AIAttacks();}
         showEnemy(getPlayerCharacterInformation(mechanics.getEnemy()));
         showTheAttackButton();
         hideTheAscendButtonInTheBattleScreen();
         displayNewPage(pageToBeHidden, pageToBeShown);
     }
 
-    ascendButton(){ // NO
+    ascendButton(){
         clearTextArea();
         if(tower.isAtTop()){
             displayEndOfGameMessage();
@@ -59,7 +64,9 @@ export default class Display{
             tower.nextFloor();
         }
         displayTower();
-        mechanics.createEnemy();
+        let info = tower.getTowerInfo();
+        console.log(info)
+        mechanics.createEnemy(info.floor, info.wave);
         mechanics.getTurnOrder();
         if(mechanics.isAIsTurn()){AIAttacks();}
         showEnemy(getPlayerCharacterInformation(mechanics.getEnemy()));
@@ -67,19 +74,20 @@ export default class Display{
         hideTheAscendButtonInTheBattleScreen();
     }
 
-    levelUpButton(){ // NO
+    levelUpButton(){
         if(mechanics.isCharacterAbleToLevelUp()){
             mechanics.levelUpCharacter(); 
+            displayCurrency();
             showCharacter(getPlayerCharacterInformation(mechanics.getCharacter()));
         }
     }
 
-    goToHomePageFromBattleScreen(){ // NO
+    goToHomePageFromBattleScreen(){
         let pageToBeHidden = document.getElementById("battleScreen");
         let pageToBeShown = document.getElementById("homePage");
         cleanAndResetBattlePage();
         if(isPlayerDead()){
-            mechanics.deletePlayerCharacter(); // NO
+            mechanics.deletePlayerCharacter();
             displayNewCharacterRequiredMessage();
             hideTheAscendButtonInTheHomePage();
         }
@@ -89,21 +97,21 @@ export default class Display{
         displayNewPage(pageToBeHidden, pageToBeShown);
     }
 
-    attackButton(){ // NO
-        let enemiesHpBeforeCombat = mechanics.getEnemy().get_All_Attributes().vitality; // NO
-        mechanics.attackFunction(); // NO
-        let enemiesHpAfterCombat = mechanics.getEnemy().get_All_Attributes().vitality; // NO
+    attackButton(){
+        let enemiesHpBeforeCombat = mechanics.getEnemy().get_All_Attributes().vitality;
+        mechanics.attackFunction();
+        let enemiesHpAfterCombat = mechanics.getEnemy().get_All_Attributes().vitality;
         displayTheBattleReportForWhatHappenedToTheEnemyThisRound(enemiesHpBeforeCombat, enemiesHpAfterCombat);
 
-        if(isEnemyDead(mechanics.getEnemy())){ // NO
+        if(isEnemyDead(mechanics.getEnemy())){
             giveEnemyDefeatedMessage(mechanics.getEnemy());
-            mechanics.deleteEnemy(); // NO
+            mechanics.deleteEnemy();
             showCharacter(getPlayerCharacterInformation(mechanics.getCharacter()));
             showTheAscendButton();
             hideTheAttackButton();
-        } else {AIAttacks();} // NO
+        } else {AIAttacks();} 
     
-        if(isPlayerDead()){ // NO
+        if(isPlayerDead()){
             givePlayerDefeatedMessage(mechanics.getCharacter());
             showEnemy(getPlayerCharacterInformation(mechanics.getEnemy()));
             hideTheAttackButton();
@@ -258,7 +266,7 @@ function createTheRequestedCharacter() { // NO
     mechanics.createCharacter(requestedName, requestedCharacter); // NO
 }
 
-function getPlayerCharacterInformation(character) { // WHOLE THING NO
+function getPlayerCharacterInformation(character) {
     let playerCharactersStats = {
         name: character.get_Name(),
         level: character.get_Level(),
@@ -286,4 +294,14 @@ function putTheReportIntoTheTextBox(battleStatistics){
     let template = Handlebars.compile(source);
     let html = template(battleStatistics);
     document.getElementById("textField").innerHTML += html;
+}
+
+function displayCurrency(){
+    let source = document.getElementById("displayCurrency").innerHTML;
+    let template = Handlebars.compile(source);
+    console.log(mechanics.getCharacter().get_Experience())
+    let numberOfDrouges = {drouges: shop.getDrougets(), experience: mechanics.getCharacter().get_Experience(),
+        neededExperienceForNextLevel: mechanics.experienceNeededToLevelUp()};
+    let html = template(numberOfDrouges);
+    document.getElementById("currancy").innerHTML = html;
 }

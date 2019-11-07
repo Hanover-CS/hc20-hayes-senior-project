@@ -31,12 +31,17 @@ export default class Mechanics{
     }
     
     isCharacterAbleToLevelUp(){
-        if(listOfCharacter[0].get_Experience() >= 100){
-            listOfCharacter[0].add_Experience(-100);
+        if(listOfCharacter[0].get_Experience() >= this.experienceNeededToLevelUp()){
+            listOfCharacter[0].add_Experience(-this.experienceNeededToLevelUp());
             return true;
         }else{
             return false;
         }
+    }
+
+    experienceNeededToLevelUp(){
+        let level = listOfCharacter[0].get_Level();
+        return (100 * (level)) * level;
     }
 
     deletePlayerCharacter(){
@@ -52,9 +57,8 @@ export default class Mechanics{
         return listOfEnemies[0];
     }
 
-    createEnemy(){
-        let towerFloor = tower.getFloor();
-        let towerWave = tower.getWave();
+    createEnemy(towerFloor, towerWave){
+        console.log(towerFloor, towerWave)
         let enemiesName = generateEnemy(towerFloor, towerWave);
         let enemy = new Character(enemiesName, enemiesName)
         scaleEnemy(enemy, towerFloor, towerWave);

@@ -7,9 +7,9 @@ class Elemental {
 			vitality:350,       // Health Points
 			fortitude:15,       // Armor
 			agility:100,        // Speed
-			intelligence:20,    	// Level-Up Pts
-			willpower:10,       	// Crit Damage
-			intimidation:15,    	// Crit Chance
+			intelligence:20,    // Level-Up Pts
+			willpower:10,       // Crit Damage
+			intimidation:15,    // Crit Chance
 		}
 	}
 	get_All_Attributes(){

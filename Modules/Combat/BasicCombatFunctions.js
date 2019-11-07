@@ -89,12 +89,11 @@ export function howManyTurns(agility){
 }
 
 export function scaleEnemy(enemy, floor, wave){
-
     for (let i = 0; i < (floor + wave) - 2; i++) {
         enemy.level_Up();
-        enemy.add_Experience(10);
     }
-    enemy.add_Experience(10);
+    let num = generateExperience(floor, wave);
+    enemy.add_Experience(num);
 }
 
 export function generateEnemy(floor, wave){
@@ -183,4 +182,15 @@ export function generateEnemy(floor, wave){
             return "Skeleton";
         }
     }
+}
+
+function generateExperience(floor, wave){
+    let counter = 0;
+    for (let i = 0; i < floor; i++){
+        for(let j = 0; j < wave; j ++){
+            counter += (i+j) * 5;
+        }
+    }
+    counter += 10;
+    return counter;
 }
