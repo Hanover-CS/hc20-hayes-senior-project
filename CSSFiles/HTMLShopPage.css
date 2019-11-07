@@ -26,3 +26,13 @@
 #levelUpButton:active{
   transform: translateY(4px);
 }
+
+#currancy {
+  padding: 5px;
+    border: 5px;
+    background-color: #151719;
+    position: fixed;
+    top: 110px;
+    left: 320px;
+    color: gray;
+}
