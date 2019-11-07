@@ -10,6 +10,7 @@ export default class Character{
 		this.tempHp 	= this.get_All_Attributes().vitality;
 		this.experience = 0;
 		this.level_Up_Guide = get_The_LevelUp_Guide(raceAsString);
+		this.level_Up_Points = 0;
 	}
 
 	// Accessors
@@ -28,6 +29,10 @@ export default class Character{
 
 	get_TempHp(){
 		return this.tempHp;
+	}
+
+	get_Level_Up_Points(){
+		return this.level_Up_Points;
 	}
 
 	// Mutators
@@ -63,5 +68,9 @@ export default class Character{
 		}else{
 			return false;
 		}
+	}
+
+	add_Level_Up_Points(intelligence){
+		return intelligence / 2;
 	}
 }
