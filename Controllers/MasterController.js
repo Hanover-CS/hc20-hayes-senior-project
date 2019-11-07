@@ -1,5 +1,5 @@
 import TowerController from "./TowerController.js"
-import Mechanics from "./Combat.js"
+import Mechanics from "./CombatController.js"
 import ShopController from "./ShopController.js"
 
 

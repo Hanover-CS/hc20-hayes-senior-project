@@ -1,6 +1,6 @@
 import Combat from "./Combat.js"
 
-export class BasicCombat extends Combat{
+export default class BasicCombat extends Combat{
     constructor(){
         super();
     }
@@ -148,7 +148,7 @@ function generateExperience(floor, wave){
 }
 
 // This Function Is Unused
-export function howManyTurns(agility){
+function howManyTurns(agility){
     let numberOfTurns = Math.floor(agility / 80);
     return numberOfTurns;
 }

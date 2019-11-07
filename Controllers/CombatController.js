@@ -1,5 +1,5 @@
 import Character from "../Modules/Characters/CharacterClass.js"
-import {BasicCombat} from "../Modules/Combat/BasicCombatFunctions.js"
+import BasicCombat from "../Modules/Combat/BasicCombatFunctions.js"
 
 let basicCombat = new BasicCombat;
 
