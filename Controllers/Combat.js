@@ -1,10 +1,8 @@
-import {attack, generateEnemy, scaleEnemy, establishTurnOrder} from "../Modules/Combat/BasicCombatFunctions.js"
-import Tower from "../Modules/Tower/Tower.js" //
+import {generateEnemy, scaleEnemy, establishTurnOrder} from "../Modules/Combat/BasicCombatFunctions.js"
 import Character from "../Modules/Characters/CharacterClass.js"
+import {BasicCombat} from "../Modules/Combat/BasicCombatFunctions.js"
 
-
-let tower = new Tower(); // 
-
+let basicCombat = new BasicCombat;
 
 let listOfCharacter = [];
 let listOfEnemies = [];
@@ -78,12 +76,12 @@ export default class Mechanics{
     }
 
     AIsTurn(){
-        attack(listOfEnemies[0], listOfCharacter[0]);
+        basicCombat.attack(listOfEnemies[0], listOfCharacter[0]);
     }
 
     // Random Functions
     attackFunction(){
-        attack(listOfCharacter[0], listOfEnemies[0]);
+        basicCombat.attack(listOfCharacter[0], listOfEnemies[0]);
     }
 
     getTurnOrder(){
