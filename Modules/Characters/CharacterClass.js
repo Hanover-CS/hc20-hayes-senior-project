@@ -50,6 +50,8 @@ export default class Character{
 
 		this.tempHp += this.level_Up_Guide.vitality;
 
+		this.add_Level_Up_Points(intelligence);
+
 	}
 
 	add_Experience(number){return this.experience += number;}
@@ -71,6 +73,6 @@ export default class Character{
 	}
 
 	add_Level_Up_Points(intelligence){
-		return intelligence / 2;
+		this.level_Up_Points = intelligence / 2;
 	}
 }
