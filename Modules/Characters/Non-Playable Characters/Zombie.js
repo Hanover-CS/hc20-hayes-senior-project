@@ -1,5 +1,5 @@
 
-class Zombie {
+export default class Zombie {
 	constructor(){
 		this.attributes = {
 			might:105,
@@ -16,6 +16,8 @@ class Zombie {
 		let copy_Of_Attributes = Object.assign({}, this.attributes)
 		return copy_Of_Attributes;
 	}
+
+	getZombie(){return rotting_Zombie;}
 }
 
 class Rotting extends Zombie{
@@ -23,22 +25,17 @@ class Rotting extends Zombie{
         super();
 		this.attributes.fortitude 	= 0;	// Defence
 	}
+	levelUpGuide(){
+			let levelUp_Guide = {might:1, 
+				projection:0, 
+				vitality:10, 
+				intelligence:0,
+				willpower:0, 
+				agility:0, 
+				fortitude:0, 
+				intimidation:0};
+			return levelUp_Guide;
+		}
 }
 
 const rotting_Zombie = new Rotting();
-
-export function get_Race_From_String_From_Zombie_Class(race){
-
-	if(race === "Rotting Zombie"){
-		return rotting_Zombie;
-	}
-}
-
-export function get_The_levelUp_Guide_For_Zombies(race){
-
-	if(race === "Rotting Zombie"){
-		let levelUp_Guide = {might:1, projection:0, vitality:10, intelligence:0,
-			willpower:0 , agility:0 , fortitude:0 , intimidation:0};
-		return levelUp_Guide;
-    }
-}
