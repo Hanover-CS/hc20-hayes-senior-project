@@ -1,5 +1,5 @@
 
-class Elemental {
+export default class Elemental {
 	constructor(){
 		this.attributes = {
 			might:0,            // Physical Attack
@@ -12,9 +12,17 @@ class Elemental {
 			intimidation:15,    // Crit Chance
 		}
 	}
+
 	get_All_Attributes(){
 		let copy_Of_Attributes = Object.assign({}, this.attributes)
 			return copy_Of_Attributes;
+	}
+
+	getElemental(race){
+		if(race === "Salamander")return salamander;
+		if(race === "Siren")return siren;
+		if(race === "Sylph")return sylph;
+		if(race === "Golom")return golom;
 	}
 }
 
@@ -26,7 +34,34 @@ class Salamander extends Elemental{
 		this.attributes.willpower		= 5;
 		this.attributes.intimidation	= 5;
 	}
+	
+	levelUp_Guide() {
+		let levelUp_Guide= {
+			might:0,
+			projection:20, 
+			vitality:50, 
+			intelligence:0,
+			willpower:0, 
+			agility:5, 
+			fortitude:5, 
+			intimidation:0};
+		return levelUp_Guide;
+	}
+
+	allocation_Guide(){ 
+		let allocation_Guide = {
+			might:10, 
+			projection:10, 
+			vitality:10, 
+			intelligence:10,
+			willpower:10, 
+			agility:10, 
+			fortitude:10, 
+			intimidation:10};
+		return allocation_Guide;
+	}
 }
+
 class Siren extends Elemental{
 	constructor(){
 		super();
@@ -35,7 +70,34 @@ class Siren extends Elemental{
 		this.attributes.intelligence	= 30;
 		this.attributes.willpower		= 5;
 	}
+
+	levelUp_Guide(){
+		let levelUp_Guide = {
+			might:0, 
+			projection:10, 
+			vitality:20, 
+			intelligence:1,
+			willpower:0,
+			 agility:0, 
+			 fortitude:0, 
+			 intimidation:0};
+		return levelUp_Guide;
+	}
+
+	allocation_Guide(){ 
+		let levelUp_Guide = {
+			might:10, 
+			projection:10, 
+			vitality:10, 
+			intelligence:10,
+			willpower:10, 
+			agility:10, 
+			fortitude:10, 
+			intimidation:10};
+		return levelUp_Guide;
 }
+}
+
 class Sylph extends Elemental{
 	constructor(){
 		super();
@@ -44,6 +106,32 @@ class Sylph extends Elemental{
 		this.attributes.agility			= 120;
 		this.attributes.vitality		= 250;
 		this.attributes.intimidation 	= 20;
+	}
+
+	levelUp_Guide(){
+		let levelUp_Guide = {
+			might:0, 
+			projection:10, 
+			vitality:20, 
+			intelligence:0,
+			willpower:0, 
+			agility:0, 
+			fortitude:0, 
+			intimidation:0};
+		return levelUp_Guide;
+	}
+	
+	allocation_Guide(){ 
+		let levelUp_Guide = {
+			might:10, 
+			projection:10, 
+			vitality:10, 
+			intelligence:10,
+			willpower:10, 
+			agility:10, 
+			fortitude:10, 
+			intimidation:10};
+		return levelUp_Guide;
 	}
 }
 
@@ -56,6 +144,30 @@ class Golom extends Elemental{
 		this.attributes.vitality		= 400;
 		this.attributes.willpower		= 5;
 	}
+
+	levelUp_Guide(){
+		let levelUp_Guide = {might:0, 
+			projection:10, 
+			vitality:20, 
+			intelligence:0,
+			willpower:0, 
+			agility:0, 
+			fortitude:0, 
+			intimidation:0};
+		return levelUp_Guide;
+	}
+
+	allocation_Guide(){ 
+		let levelUp_Guide = {might:10, 
+			projection:10, 
+			vitality:10, 
+			intelligence:10,
+			willpower:10, 
+			agility:10, 
+			fortitude:10, 
+			intimidation:10};
+		return levelUp_Guide;
+}
 }
 
 const salamander = new Salamander();
@@ -63,43 +175,3 @@ const siren = new Siren();
 const sylph = new Sylph();
 const golom = new Golom();
 
-
-export function get_Race_From_String_From_Elemental_Class(race){
-	if(race === "Salamander"){
-        return salamander;
-    }
-    if(race === "Siren"){
-        return siren;
-	}
-	if(race === "Sylph"){
-        return sylph;
-	}
-	if(race === "Golom"){
-        return golom;
-    }
-}
-
-//!!FIX LEVEL-UP GUIDES!!//
-export function get_The_levelUp_Guide_For_Elementals(race){
-
-	if(race === "Salamander"){
-		let levelUp_Guide = {might:0, projection:20, vitality:50, intelligence:0,
-			willpower:0 , agility:5 , fortitude:5 , intimidation:0};
-		return levelUp_Guide;
-	}
-	if(race === "Siren"){
-		let levelUp_Guide = {might:0, projection:10, vitality:20, intelligence:1,
-			willpower:0 , agility:0 , fortitude:0 , intimidation:0};
-		return levelUp_Guide;
-	}
-	if(race === "Sylph"){
-		let levelUp_Guide = {might:0, projection:10, vitality:20, intelligence:0,
-			willpower:0 , agility:0 , fortitude:0 , intimidation:0};
-		return levelUp_Guide;
-	}
-	if(race === "Golom"){
-		let levelUp_Guide = {might:0, projection:10, vitality:20, intelligence:0,
-			willpower:0 , agility:0 , fortitude:0 , intimidation:0};
-		return levelUp_Guide;
-	}
-}
