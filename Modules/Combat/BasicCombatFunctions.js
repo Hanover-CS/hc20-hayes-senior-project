@@ -133,6 +133,11 @@ export default class BasicCombat extends Combat{
             }
         }
     }
+    // This Function Is Unused
+    howManyTurns(agility){
+        let numberOfTurns = Math.floor(agility / 80);
+        return numberOfTurns;
+    }
 }
 
 
@@ -147,8 +152,3 @@ function generateExperience(floor, wave){
     return counter;
 }
 
-// This Function Is Unused
-function howManyTurns(agility){
-    let numberOfTurns = Math.floor(agility / 80);
-    return numberOfTurns;
-}

@@ -1,9 +1,8 @@
-import {attack,
-        establishTurnOrder, howManyTurns,
-        scaleEnemy, generateEnemy} from "../../Modules/Combat/BasicCombatFunctions.js";
+import BasicCombat from "../../Modules/Combat/BasicCombatFunctions.js";
 import Character from "../../Modules/Characters/CharacterClass.js";
 
 let assert = chai.assert;
+let basicAttack = new BasicCombat;
 
 
 describe("Combat Module", function(){
@@ -15,7 +14,7 @@ describe("Combat Module", function(){
         defender.get_All_Attributes().vitality = 50;
         defender.add_Experience(50);
 
-        attack(attacker, defender);
+        basicAttack.attack(attacker, defender);
         assert(defender.get_All_Attributes().vitality == 0);
         assert(attacker.get_Experience() == 50);
     })
@@ -24,11 +23,12 @@ describe("Combat Module", function(){
         let attacker = new Character("Attacker", "Sylph");
         let defender = new Character("Defender", "Rotting Zombie");
         attacker.get_All_Attributes().might = 50;
+        attacker.get_All_Attributes().intimidation = 0;
         defender.get_All_Attributes().vitality = 50;
         defender.get_All_Attributes().fortitude = 50;
         defender.add_Experience(50);
 
-        attack(attacker, defender);
+        basicAttack.attack(attacker, defender);
         assert(defender.get_All_Attributes().vitality == 50);
         assert(attacker.get_Experience() == 0);
     })
@@ -37,13 +37,14 @@ describe("Combat Module", function(){
         let attacker = new Character("Attacker", "Salamander");
         let defender = new Character("Defender", "Rotting Zombie");
         attacker.get_All_Attributes().projection = 50;
+        attacker.get_All_Attributes().intimidation = 0;
         defender.get_All_Attributes().vitality = 100;
         defender.add_Experience(33);
 
-        attack(attacker, defender);
+        basicAttack.attack(attacker, defender);
         assert(defender.get_All_Attributes().vitality == 50);
         assert(attacker.get_Experience() == 0);
-        attack(attacker, defender);
+        basicAttack.attack(attacker, defender);
         assert(defender.get_All_Attributes().vitality == 0);
         assert(attacker.get_Experience() == 33);
     })
@@ -56,7 +57,7 @@ describe("Combat Module", function(){
         defender.get_All_Attributes().vitality = 100;
         defender.add_Experience(33);
 
-        attack(attacker, defender);
+        basicAttack.attack(attacker, defender);
         assert(defender.get_All_Attributes().vitality == 0);
         assert(attacker.get_Experience() == 33);
     })
@@ -71,9 +72,9 @@ describe("Combat Module", function(){
         defender.get_All_Attributes().fortitude = 50;
         defender.add_Experience(33);
 
-        attack(attacker, defender);
+        basicAttack.attack(attacker, defender);
         assert(defender.get_All_Attributes().vitality == 50);
-        attack(attacker, defender);
+        basicAttack.attack(attacker, defender);
         assert(defender.get_All_Attributes().vitality == 0);
         assert(attacker.get_Experience() == 33);
     })
@@ -88,7 +89,7 @@ describe("Combat Module Basic Combat Tests: establishTurnOrder Function", functi
     let char4 = new Character("Sylph", "Sylph");
     let unsortedList = [char1, char2, char3, char4];
     it("Sorts an unsorted list of 4 characters", function(){
-        let sortedList = establishTurnOrder(unsortedList);
+        let sortedList = basicAttack.establishTurnOrder(unsortedList);
         chai.assert(sortedList[0] == char4);
         chai.assert(sortedList[1] == char3);
         chai.assert(sortedList[2] == char1);
@@ -98,44 +99,44 @@ describe("Combat Module Basic Combat Tests: establishTurnOrder Function", functi
 
 describe("Combat Module Basic Combat Tests: howManyTurns", function(){
     it("Given 80 agility, returns 1", function(){
-        chai.assert(howManyTurns(80) == 1);
+        chai.assert(basicAttack.howManyTurns(80) == 1);
     })
 
     it("Given 100 agility, returns 1", function(){
-        chai.assert(howManyTurns(100) == 1);
+        chai.assert(basicAttack.howManyTurns(100) == 1);
     })
 
     it("Given 160 agility, returns 2", function(){
-        chai.assert(howManyTurns(160) == 2);
+        chai.assert(basicAttack.howManyTurns(160) == 2);
     })
 
     it("Given 500 agility, returns 2", function(){
-        chai.assert(howManyTurns(500) == 6);
+        chai.assert(basicAttack.howManyTurns(500) == 6);
     })
 })
 
 describe("Combat Module Basic Combat Tests: scaleEnemy", function(){
     it("Takes a lvl 1 enemy, 1st floor, 1st wave, returns enemy lvl 1", function(){
         let enemy = new Character("Zombie", "Rotting Zombie");
-        scaleEnemy(enemy, 1, 1);
+        basicAttack.scaleEnemy(enemy, 1, 1);
         chai.assert(enemy.get_Level() == 1);
     })
 
     it("Takes a lvl 1 enemy, 1st floor, 3rd wave, returns enemy lvl 3", function(){
         let enemy = new Character("Zombie", "Rotting Zombie");
-        scaleEnemy(enemy, 1, 3);
+        basicAttack.scaleEnemy(enemy, 1, 3);
         chai.assert(enemy.get_Level() == 3);
     })
 
     it("Takes a lvl 1 enemy, 1st floor, 3rd wave, returns enemy lvl 2", function(){
         let enemy = new Character("Zombie", "Rotting Zombie");
-        scaleEnemy(enemy, 2, 1);
+        basicAttack.scaleEnemy(enemy, 2, 1);
         chai.assert(enemy.get_Level() == 2);
     })
 
     it("Takes a lvl 1 enemy, 100th floor, 2rd wave, returns enemy lvl 101", function(){
         let enemy = new Character("Zombie", "Rotting Zombie");
-        scaleEnemy(enemy, 100, 2);
+        basicAttack.scaleEnemy(enemy, 100, 2);
         chai.assert(enemy.get_Level() == 101);
     })
 })
@@ -147,4 +148,4 @@ describe("Combat Module Basic Combat Tests: scaleEnemy", function(){
 //             let enemy = generateEnemy(3, 2);
 //         }
 //     })
-})
+// })
