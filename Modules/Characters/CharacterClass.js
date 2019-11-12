@@ -1,15 +1,18 @@
 //CharacterClass.js
 
-import {census_LookUp, get_The_LevelUp_Guide} from "./Census.js"
+import { Census } from "./Census.js";
+
+let census = new Census;
 
 export default class Character{
 	constructor(name, raceAsString){
 		this.name		= name;
 		this.level		= 1;
-		this.attributes = this.raceAsObject = census_LookUp(raceAsString).get_All_Attributes();
+		this.attributes = this.raceAsObject = census.lookUp(raceAsString).get_All_Attributes();
 		this.tempHp 	= this.get_All_Attributes().vitality;
 		this.experience = 0;
-		this.level_Up_Guide = get_The_LevelUp_Guide(raceAsString);
+		this.level_Up_Guide = census.levelUpGuide(raceAsString);
+		this.allocationGuide = census.allocation_Guide(raceAsString);
 		this.level_Up_Points = 0;
 	}
 
@@ -21,11 +24,6 @@ export default class Character{
 	get_All_Attributes(){return this.attributes;}
 
 	get_Experience(){return this.experience;}
-
-	get_Level_Up_Points(){
-		let num = Math.floor(this.attributes.intelligence / 5);
-		return (Math.floor(num))
-	}
 
 	get_TempHp(){
 		return this.tempHp;
@@ -50,7 +48,7 @@ export default class Character{
 
 		this.tempHp += this.level_Up_Guide.vitality;
 
-		this.add_Level_Up_Points(intelligence);
+		this.add_Level_Up_Points(this.get_All_Attributes().intelligence);
 
 	}
 
@@ -74,5 +72,40 @@ export default class Character{
 
 	add_Level_Up_Points(intelligence){
 		this.level_Up_Points = intelligence / 2;
+	}
+
+	apply_Level_Up_Points(stat){
+		if (stat == "vitality"){
+			console.log(this.allocationGuide.vitality)
+			this.get_All_Attributes().vitality += this.allocationGuide.vitality;
+		}
+
+		if (stat == "might"){
+			this.get_All_Attributes().might += this.allocationGuide.might;
+		}
+
+		if (stat == "projection"){
+			this.get_All_Attributes().projection += this.allocationGuide.projection;
+		}
+
+		if (stat == "intelligence"){
+			this.get_All_Attributes().intelligence += this.allocationGuide.intelligence;
+		}
+
+		if (stat == "willpower"){
+			this.get_All_Attributes().willpower += this.allocationGuide.willpower;
+		}
+
+		if (stat == "agility"){
+			this.get_All_Attributes().agility += this.allocationGuide.agility;
+		}
+
+		if (stat == "fortitude"){
+			this.get_All_Attributes().fortitude += this.allocationGuide.fortitude;
+		}
+
+		if (stat == "intimidation"){
+			this.get_All_Attributes().intimidation += this.allocationGuide.intimidation;
+		}
 	}
 }
