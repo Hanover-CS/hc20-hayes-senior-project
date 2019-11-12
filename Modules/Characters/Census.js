@@ -1,44 +1,53 @@
-import {get_Race_From_String_From_Elemental_Class,
-        get_The_levelUp_Guide_For_Elementals}       from "./Playable Characters/Elementals.js"
-import {get_Race_From_String_From_Zombie_Class,
-    get_The_levelUp_Guide_For_Zombies}              from "./Non-Playable Characters/Zombie.js"
-import {get_Race_From_String_From_Skeleton_Class,
-        get_The_levelUp_Guide_For_Skeletons}    from "./Non-Playable Characters/Skeleton.js"
-import {get_Race_From_String_From_FatZombie_Class}  from "./Non-Playable Characters/Bosses/Floor10Bosses/FatZombie.js"
 
+import FatZombie from "./Non-Playable Characters/Bosses/Floor10Bosses/FatZombie.js";
+import Skeleton from "./Non-Playable Characters/Skeleton.js";
+import Zombie from "./Non-Playable Characters/Zombie.js";
+import Elemental from "./Playable Characters/Elementals.js";
+
+let elemental = new Elemental;
+let skeleton = new Skeleton;
+let zombie = new Zombie;
+let fatZombie = new FatZombie;
+
+export class Census {
+    constructor() { }
+
+    lookUp(string) { return census[string]; }
+    levelUpGuide(string) { return levelUp_Guides[string]; }
+    allocation_Guide(string) { return allocation_Guides[string]; }
+}
 
 let census = {
     // Elemental Class
-    "Salamander"	:get_Race_From_String_From_Elemental_Class("Salamander"),
-    "Siren"         :get_Race_From_String_From_Elemental_Class("Siren"),
-    "Sylph"         :get_Race_From_String_From_Elemental_Class("Sylph"),
-    "Golom"         :get_Race_From_String_From_Elemental_Class("Golom"),
+    "Salamander": elemental.getElemental("Salamander"),
+    "Siren": elemental.getElemental("Siren"),
+    "Sylph": elemental.getElemental("Sylph"),
+    "Golom": elemental.getElemental("Golom"),
 
     // Zombie Class
-    "Rotting Zombie":get_Race_From_String_From_Zombie_Class("Rotting Zombie"),
+    "Rotting Zombie": zombie.getZombie(),
 
     // Skeleton Class
-    "Skeleton"      :get_Race_From_String_From_Skeleton_Class("Skeleton"),
+    "Skeleton": skeleton.getSkeleton(),
 
     // Floor 10 Bosses
-    "Fat Zombie"    :get_Race_From_String_From_FatZombie_Class("Fat Zombie")
+    "Fat Zombie": fatZombie.getFatZombie("Fat Zombie")
 }
 
 let levelUp_Guides = {
-    "Salamander"    :get_The_levelUp_Guide_For_Elementals("Salamander"),
-    "Siren"         :get_The_levelUp_Guide_For_Elementals("Siren"),
-    "Sylph"         :get_The_levelUp_Guide_For_Elementals("Sylph"),
-    "Golom"         :get_The_levelUp_Guide_For_Elementals("Golom"),
-    "Rotting Zombie":get_The_levelUp_Guide_For_Zombies("Rotting Zombie"),
-    "Skeleton"      :get_The_levelUp_Guide_For_Skeletons("Skeleton")
+    "Salamander": elemental.getElemental("Salamander").levelUp_Guide(),
+    "Siren": elemental.getElemental("Siren").levelUp_Guide(),
+    "Sylph": elemental.getElemental("Sylph").levelUp_Guide(),
+    "Golom": elemental.getElemental("Golom").levelUp_Guide(),
+    "Rotting Zombie": zombie.getZombie().levelUpGuide(),
+    "Skeleton": skeleton.levelUpGuide()
 }
 
-
-export function census_LookUp(string){
-	return census[string];
+let allocation_Guides = {
+    "Salamander": elemental.getElemental("Salamander").allocation_Guide(),
+    "Siren": elemental.getElemental("Siren").allocation_Guide(),
+    "Sylph": elemental.getElemental("Sylph").allocation_Guide(),
+    "Golom": elemental.getElemental("Golom").allocation_Guide()
 }
 
-export function get_The_LevelUp_Guide(string){
-    return levelUp_Guides[string];
-}
 
