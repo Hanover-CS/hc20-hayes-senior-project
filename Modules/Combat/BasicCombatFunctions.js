@@ -148,7 +148,7 @@ function generateExperience(floor, wave){
             counter += (i+j) * 5;
         }
     }
-    counter += 10;
+    counter += 100;
     return counter;
 }
 
