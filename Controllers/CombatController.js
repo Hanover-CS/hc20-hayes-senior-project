@@ -12,6 +12,14 @@ export default class Mechanics{
     constructor(){}
 
     // Player Related Functions
+    apply_Level_Up_Points(string){
+        listOfCharacter[0].apply_Level_Up_Points(string);
+    }
+
+    isNotAbleToSpendAnotherPoint(){
+       if(listOfCharacter[0].get_Level_Up_Points() <= 0){return true;}
+    }
+
     createCharacter(name, race){
         let character = new Character(name, race);
         listOfCharacter.push(character);
