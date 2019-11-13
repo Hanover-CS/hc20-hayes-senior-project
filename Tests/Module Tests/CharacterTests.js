@@ -1,4 +1,4 @@
-import {Census} from "../../Modules/Characters/Census.js";
+import Census from "../../Modules/Characters/Census.js";
 import Character from "../../Modules/Characters/CharacterClass.js";
 
 
