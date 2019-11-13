@@ -3,16 +3,25 @@ export default class Shop{
         this.drougets = 0;
     }
 
-    canBuy(itemPrice){
-        if(isBuyable(itemPrice)){return true;} 
+    getDrougets(){
+        return this.drougets;
+    }
+
+    addDrougets(amount){
+        this.drougets += amount;
+    }
+
+    canBuy(item){
+        if(item.getPrice() <= this.getDrougets()){return true;} 
         else {return false;}
     }
     
     getDrougets(){
         return this.drougets;
     }
-}
 
-function isBuyable(itemPrice) {
-    return this.getDrougets() > itemPrice;
+    buy(item){
+        let x = item.getPrice();
+        this.drougets += -x;
+    }
 }
