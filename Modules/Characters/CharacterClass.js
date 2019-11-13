@@ -1,6 +1,6 @@
 //CharacterClass.js
 
-import { Census } from "./Census.js";
+import Census from "./Census.js";
 
 let census = new Census;
 
@@ -107,5 +107,7 @@ export default class Character{
 		if (stat == "intimidation"){
 			this.get_All_Attributes().intimidation += this.allocationGuide.intimidation;
 		}
+
+		this.level_Up_Points += -1;
 	}
 }
