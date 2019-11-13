@@ -20,7 +20,7 @@ export default class Display{
     goToShopFromHomePage(){
         let pageToBeHidden = document.getElementById("homePage");
         let pageToBeShown = document.getElementById("shopPage");
-        displayCurrency();
+        displayExperience();
 
         displayNewPage(pageToBeHidden, pageToBeShown);
     }
@@ -77,8 +77,12 @@ export default class Display{
     levelUpButton(){
         if(mechanics.isCharacterAbleToLevelUp()){
             mechanics.levelUpCharacter(); 
-            displayCurrency();
+            displayExperience();
+            showAttributeDisplay();
+            showButtonDisplay();
             showCharacter(getPlayerCharacterInformation(mechanics.getCharacter()));
+        } else {
+            giveErrorMessage("Insufficient Experiance Points");
         }
     }
 
@@ -117,6 +121,121 @@ export default class Display{
             hideTheAttackButton();
         }
     }
+
+    buyTab(){
+        let tabToBeHidden = document.getElementById("buy");
+        let firstTabToBeShown = document.getElementById("levelUp");
+        let secondTabToBeShown = document.getElementById("sell");
+        switchTab(tabToBeHidden, firstTabToBeShown, secondTabToBeShown);
+        let buyMenu = document.getElementById("buyMenu");
+        let sellMenu = document.getElementById("sellMenu");
+        let levelUpMenu = document.getElementById("levelUpMenu");
+        buyMenu.style.display = "block";
+        sellMenu.style.display = "none";
+        levelUpMenu.style.display = "none";
+        displayCurrency("currency1");
+
+    }
+
+    levelUpTab(){
+        let tabToBeHidden = document.getElementById("levelUp");
+        let firstTabToBeShown = document.getElementById("buy");
+        let secondTabToBeShown = document.getElementById("sell");
+        switchTab(tabToBeHidden, firstTabToBeShown, secondTabToBeShown);
+        let buyMenu = document.getElementById("buyMenu");
+        let sellMenu = document.getElementById("sellMenu");
+        let levelUpMenu = document.getElementById("levelUpMenu");
+        buyMenu.style.display = "none";
+        sellMenu.style.display = "none";
+        levelUpMenu.style.display = "block";
+        displayExperience();
+    }
+
+    sellTab(){
+        let tabToBeHidden = document.getElementById("sell");
+        let firstTabToBeShown = document.getElementById("levelUp");
+        let secondTabToBeShown = document.getElementById("buy");
+        switchTab(tabToBeHidden, firstTabToBeShown, secondTabToBeShown);
+        let buyMenu = document.getElementById("buyMenu");
+        let sellMenu = document.getElementById("sellMenu");
+        let levelUpMenu = document.getElementById("levelUpMenu");
+        buyMenu.style.display = "none";
+        sellMenu.style.display = "block";
+        levelUpMenu.style.display = "none";
+        displayCurrency("currency2");
+    }
+
+    addOneToVitality(){
+        mechanics.apply_Level_Up_Points(document.getElementById("addOneToVitality").value);
+        displayCharactersStats(getPlayerCharacterInformation(mechanics.getCharacter()));
+        ifOutOfPoints_HideWindow();
+    }
+
+    addOneToProjection(){
+        mechanics.apply_Level_Up_Points("projection");
+        displayCharactersStats(getPlayerCharacterInformation(mechanics.getCharacter()));
+        ifOutOfPoints_HideWindow();
+    }
+
+    addOneToFortitude(){
+        mechanics.apply_Level_Up_Points("fortitude");
+        displayCharactersStats(getPlayerCharacterInformation(mechanics.getCharacter()));
+        ifOutOfPoints_HideWindow();
+    }
+
+    addOneToAgility(){
+        mechanics.apply_Level_Up_Points("agility");
+        displayCharactersStats(getPlayerCharacterInformation(mechanics.getCharacter()));
+        ifOutOfPoints_HideWindow();
+    }
+
+    addOneToIntelligence(){
+        mechanics.apply_Level_Up_Points("intelligence");
+        displayCharactersStats(getPlayerCharacterInformation(mechanics.getCharacter()));
+        ifOutOfPoints_HideWindow();
+    }
+
+    addOneToWillpower(){
+        mechanics.apply_Level_Up_Points("willpower");
+        displayCharactersStats(getPlayerCharacterInformation(mechanics.getCharacter()));
+        ifOutOfPoints_HideWindow();
+    }
+
+    addOneToIntmidation(){
+        mechanics.apply_Level_Up_Points("intimidation");
+        displayCharactersStats(getPlayerCharacterInformation(mechanics.getCharacter()));
+        ifOutOfPoints_HideWindow();
+    }
+}
+
+function ifOutOfPoints_HideWindow() {
+    if (mechanics.isNotAbleToSpendAnotherPoint()) {
+        hideAttributeWindow();
+        hideButtonDisplay();
+    }
+}
+
+function showButtonDisplay(){
+    document.getElementById("buttonDisplay").style.display = "block";
+}
+
+function hideButtonDisplay(){
+    document.getElementById("buttonDisplay").style.display = "none";
+}
+
+function showAttributeDisplay(){
+    document.getElementById("attributeDisplay").style.display = "block";
+    displayCharactersStats(getPlayerCharacterInformation(mechanics.getCharacter()));
+}
+
+function hideAttributeWindow(){
+    document.getElementById("attributeDisplay").style.display = "none";
+}
+
+function giveErrorMessage(string){
+    if (string == "Insufficient Experiance Points"){
+        alert("Insufficient Experiance Points");
+    }
 }
 
 // Display Functions
@@ -139,6 +258,12 @@ function displayTower(){
 function displayNewPage(pageToBeHidden, pageToBeShown) {
     pageToBeHidden.style.display = "none";
     pageToBeShown.style.display = "block";
+}
+
+function switchTab(tabToBeHidden, firstTabToHide, secondTabToHide){
+    tabToBeHidden.style.display = "none";
+    firstTabToHide.style.display = "block";
+    secondTabToHide.style.display = "block";
 }
 
 function displayTheBattleReportForWhatHappenedToTheCharacterThisRound(charactersHpBeforeCombat, charactersHpAfterCombat) { // NO
@@ -277,7 +402,8 @@ function getPlayerCharacterInformation(character) {
         intelligence: character.get_All_Attributes().intelligence,
         willpower: character.get_All_Attributes().willpower,
         intimidation: character.get_All_Attributes().intimidation,
-        experiance: character.get_Experience()};
+        experiance: character.get_Experience(),
+        levelUpPoints: character.get_Level_Up_Points()};
         return playerCharactersStats;
 }
 
@@ -296,12 +422,28 @@ function putTheReportIntoTheTextBox(battleStatistics){
     document.getElementById("textField").innerHTML += html;
 }
 
-function displayCurrency(){
-    let source = document.getElementById("displayCurrency").innerHTML;
+function displayExperience(){
+    let source = document.getElementById("displayExperience").innerHTML;
     let template = Handlebars.compile(source);
     console.log(mechanics.getCharacter().get_Experience())
-    let numberOfDrouges = {drouges: shop.getDrougets(), experience: mechanics.getCharacter().get_Experience(),
+    let numberOfDrouges = {experience: mechanics.getCharacter().get_Experience(),
         neededExperienceForNextLevel: mechanics.experienceNeededToLevelUp()};
     let html = template(numberOfDrouges);
-    document.getElementById("currancy").innerHTML = html;
+    document.getElementById("experience").innerHTML = html;
 }
+
+function displayCurrency(string){
+    let source = document.getElementById("displayCurrency").innerHTML;
+    let template = Handlebars.compile(source);
+    console.log(shop.getDrougets())
+    let numberOfDrouges = {drougets: shop.getDrougets()};
+    let html = template(numberOfDrouges);
+    document.getElementById(string).innerHTML = html;
+} 
+
+function displayCharactersStats(character){
+    let source = document.getElementById("displayCharacterStatsTemplate").innerHTML;
+    let template = Handlebars.compile(source);
+    let html = template(character);
+    document.getElementById("attributeDisplay").innerHTML = html;
+} 
