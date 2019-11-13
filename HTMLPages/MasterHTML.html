@@ -84,10 +84,31 @@
           </ul> 
       </div>
       <div id="shapPageDiv">
-        <button id="levelUpButton" type="levelUp" value="Level Up">Level Up</button>
+        <button id="buy" >Buy</button>
+        <button id="sell">Sell</button>
+        <button id="levelUp" style="display: none;">Level Up</button>
+
+        <div id="levelUpMenu" >
+          <button id="levelUpButton" type="levelUp" value="Level Up">Level Up</button>
+          <div id="experience"></div>
+          <div id="attributeDisplay" style="display: none;"></div>
+          <div id="buttonDisplay" style="display: none;">
+            <button class="levelUpPointButtons" id="addOneToVitality" value="vitality">Vitality +1</button>
+            <button class="levelUpPointButtons" id="addOneToProjection">Projection +1</button>
+            <button class="levelUpPointButtons" id="addOneToFortitude">Fortitude +1</button>
+            <button class="levelUpPointButtons" id="addOneToAgility">Agility +1</button>
+            <button class="levelUpPointButtons" id="addOneToIntelligence">Intelligence +1</button>
+            <button class="levelUpPointButtons" id="addOneToWillpower">Willpower +1</button>
+            <button class="levelUpPointButtons" id="addOneToIntmidation">Intmidation +1</button>
+          </div>
+        </div>
+        <div id="buyMenu" style="display: none;">
+          <div class="currency" id="currency1"></div>
+        </div>
+        <div id="sellMenu" style="display: none;">
+            <div class="currency" id="currency2"></div>
+          </div>
       </div>
-      <div id="currancy"></div>
-      <div id="experience"></div>
     </div>
 
     <div id="battleScreen" style="display: none">
@@ -118,6 +139,21 @@
           Willpower: {{willpower}}<br>
           Intimidation: {{intimidation}}<br>
           Experiance: {{experiance}}
+        </div>
+      </div>
+    </script>
+
+    <script id="displayCharacterStatsTemplate" type="text/x-handlebars-template">
+      <div>
+          <h1 id="displayLevelUpPoints">Level-Up Points: {{levelUpPoints}}</h1>
+        <div id="displayCharacterStatsBody">
+          Vitality: {{hp}}<br>
+          Projection: {{projection}}<br>
+          Agility: {{agility}}<br>
+          Fortitude: {{fortitude}}<br>
+          Intelligence: {{intelligence}}<br>
+          Willpower: {{willpower}}<br>
+          Intimidation: {{intimidation}}
         </div>
       </div>
     </script>
@@ -167,10 +203,15 @@
       </div>
     </script>
 
-    <script id="displayCurrency" type="text/x-handlebars-template">
+    <script id="displayExperience" type="text/x-handlebars-template">
       <div>
         <p>Experience {{experience}} / {{neededExperienceForNextLevel}}</p>
-        <p>Drougets {{drouges}}</p>
+      </div>
+    </script>
+
+    <script id="displayCurrency" type="text/x-handlebars-template">
+      <div>
+        <p>Drougets: {{drougets}}</p>
       </div>
     </script>
 
