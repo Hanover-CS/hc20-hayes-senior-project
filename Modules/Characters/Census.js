@@ -9,7 +9,7 @@ let skeleton = new Skeleton;
 let zombie = new Zombie;
 let fatZombie = new FatZombie;
 
-export class Census {
+export default class Census {
     constructor() { }
 
     lookUp(string) { return census[string]; }
