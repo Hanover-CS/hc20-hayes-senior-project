@@ -27,7 +27,7 @@
   transform: translateY(4px);
 }
 
-#currancy {
+.currency {
   padding: 5px;
     border: 5px;
     background-color: #151719;
@@ -35,4 +35,94 @@
     top: 110px;
     left: 320px;
     color: gray;
+}
+#experience {
+  padding: 5px;
+  border: 5px;
+  background-color: #151719;
+  position: fixed;
+  top: 110px;
+  left: 320px;
+  color: gray;
+}
+
+#levelUp {
+  padding: 5px;
+  border: 5px;
+  background: none;
+  position: fixed;
+  top: 40px;
+  left: 727px;
+  color: gray;
+}
+
+#sell {
+  padding: 5px;
+  border: 5px;
+  background: none;
+  position: fixed;
+  top: 40px;
+  left: 640px;
+  color: gray;
+}
+
+#buy {
+  padding: 5px;
+  border: 5px;
+  background: none;
+  position: fixed;
+  top: 40px;
+  left: 870px;
+  color: gray;
+}
+
+#attributeDisplay{
+  height: 325px;
+  width: 350px;
+  background-color:#151719;
+  position: relative;
+  left: 50px;
+  top: 10px;
+  border-style: groove;
+  border-color: gray;
+}
+
+#displayCharacterStatsBody{
+  color: gray;
+  position: relative;
+  left: 10px;
+}
+
+#displayLevelUpPoints {
+  color: gray;
+  position: relative;
+  left: 10px;
+}
+
+#buttonDisplay{
+  height: 150px;
+  width: 350px;
+  background-color:#151719;
+  position: relative;
+  left: 50px;
+  top: 5px;
+  border-style: groove;
+  border-color: gray;
+}
+
+.levelUpPointButtons {
+  padding: 5px;
+  border: 5px;
+  border-style: groove;
+  border-color: gray;
+  background-color: #151719;
+  position: relative;
+  left: 5px;
+  color: gray;
+  font-size: large;
+}
+
+.levelUpPointButtons:hover {
+  color: rgb(138, 16, 16);
+  cursor: pointer;
 }
