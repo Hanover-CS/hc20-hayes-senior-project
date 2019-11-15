@@ -26,7 +26,7 @@
 #levelUpButton:active{
   transform: translateY(4px);
 }
-
+/* --------------------------------------------- */
 .currency {
   padding: 5px;
     border: 5px;
@@ -77,12 +77,12 @@
 }
 
 #attributeDisplay{
-  height: 325px;
+  height: 380px;
   width: 350px;
   background-color:#151719;
   position: relative;
   left: 50px;
-  top: 10px;
+  top: 60px;
   border-style: groove;
   border-color: gray;
 }
@@ -120,9 +120,112 @@
   left: 5px;
   color: gray;
   font-size: large;
+  list-style-type: none;
+  
 }
 
 .levelUpPointButtons:hover {
   color: rgb(138, 16, 16);
   cursor: pointer;
+}
+/* -------------------------------- */
+
+#buyableOption{
+  height: 450px;
+  width: 350px;
+  background-color:#151719;
+  position: relative;
+  left: 50px;
+  top: 60px;
+  border-style: groove;
+  border-color: gray;
+}
+
+#buyableOption ul{
+  list-style-type: none;
+  color: gray;
+  text-align: center;
+  overflow-y: scroll;
+}
+
+#buyableOption ul :hover{
+  color: rgb(138, 16, 16);
+}
+
+#buyableOption ul li{
+  border-style: groove;
+  border-color: gray;
+}
+
+/* ---------------------- */
+
+#bagInShop{
+  height: 450px;
+  width: 350px;
+  background-color:#151719;
+  position: fixed;
+  left: 850px;
+  top: 165px;
+  border-style: groove;
+  border-color: gray;
+}
+
+#nameOfBag{
+  color: gray;
+  text-align: center;
+}
+
+#bagInShop li{
+  list-style-type: none;
+  border-style: groove;
+  border-color: gray;
+  color: gray;
+  font-size: xx-large;
+}
+#bagInShop{
+  overflow-y: scroll;
+  text-align: center;
+}
+
+#bagInShop li:hover{
+  color: rgb(138, 16, 16);
+}
+
+/* --------------------------------- */
+
+#itemDescription{
+  height: 450px;
+  width: 350px;
+  background-color:#151719;
+  position: fixed;
+  left: 850px;
+  top: 165px;
+  border-style: groove;
+  border-color: gray;
+  list-style-type: none;
+  color: gray;
+}
+
+/* ---------------- */
+#closeItemDescription{
+  height: 20px;
+  width: 20px;
+  bottom: 370px;
+  left: 860px;
+  background-color:gray;
+  position: relative;
+  font-size: medium;
+}
+
+#description{
+  font-size: X-large;
+}
+
+#price{
+  font-size: large;
+  color: rgb(49, 68, 121);}
+
+#nameOfItem{
+  text-align: center;
+  color: rgb(138, 16, 16);
 }

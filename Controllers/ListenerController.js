@@ -16,85 +16,71 @@ let buyTab = document.getElementById("buy");
 let levelUpTab = document.getElementById("levelUp");
 let sellTab = document.getElementById("sell");
 
-let addOneToVitality = document.getElementById("addOneToVitality");
-let addOneToProjection = document.getElementById("addOneToProjection");
-let addOneToFortitude = document.getElementById("addOneToFortitude");
-let addOneToAgility = document.getElementById("addOneToAgility");
-let addOneToIntelligence = document.getElementById("addOneToIntelligence");
-let addOneToWillpower = document.getElementById("addOneToWillpower");
-let addOneToIntmidation = document.getElementById("addOneToIntmidation");
+let closeItemDescription = document.getElementById("closeItemDescription");
+
+$("#buyableOption").on("click", "li", function () {
+    display.requestToBuyItem($(this).text());
+})
+
+$("#bagInShop").on("click", "li", function () {
+    display.showItemDescription($(this).text());
+})
+
+$("#buttonDisplay").on("click", "button", function () {
+    display.allocateLevelUpPoint($(this).val());
+})
 
 
 // LISTENERS //
-addOneToVitality.onclick = function(){
-    display.addOneToVitality();
-}
-addOneToProjection.onclick = function(){
-    display.addOneToProjection();
-}
-addOneToFortitude.onclick = function(){
-    display.addOneToFortitude();
-}
-addOneToAgility.onclick = function(){
-    display.addOneToAgility();
-}
-addOneToIntelligence.onclick = function(){
-    display.addOneToIntelligence();
-}
-addOneToWillpower.onclick = function(){
-    display.addOneToWillpower();
-}
-addOneToIntmidation.onclick = function(){
-    display.addOneToIntmidation();
+
+closeItemDescription.onclick = function () {
+    display.closeDescription();
 }
 
-
-
-
-sellTab.onclick = function(){
+sellTab.onclick = function () {
     display.sellTab();
 }
 
-buyTab.onclick = function(){
+buyTab.onclick = function () {
     display.buyTab();
 }
 
-levelUpTab.onclick = function(){
+levelUpTab.onclick = function () {
     display.levelUpTab();
 }
 
-createANewCharacterButton.onclick = function(){
+createANewCharacterButton.onclick = function () {
     display.goToHomePageFromCharacterCreationMenu();
 }
 
-goToCreateCharacterPageFromHomePage.onclick = function(){
+goToCreateCharacterPageFromHomePage.onclick = function () {
     display.goToCreateCharacterPageFromHomePage();
 }
 
-goToShopFromHomePage.onclick = function(){
+goToShopFromHomePage.onclick = function () {
     display.goToShopFromHomePage();
 }
 
-goToHomePageFromShop.onclick = function(){
+goToHomePageFromShop.onclick = function () {
     display.goToHomePageFromShop();
 }
 
-ascend.onclick = function(){
+ascend.onclick = function () {
     display.goToBattleScreenFromHomePage();
 }
 
-decendButton.onclick = function(){
+decendButton.onclick = function () {
     display.goToHomePageFromBattleScreen();
 }
 
-ascendButton.onclick = function(){
+ascendButton.onclick = function () {
     display.ascendButton();
 }
 
-attackButton.onclick = function(){
+attackButton.onclick = function () {
     display.attackButton();
 }
 
-levelUpButton.onclick = function(){
+levelUpButton.onclick = function () {
     display.levelUpButton();
 }

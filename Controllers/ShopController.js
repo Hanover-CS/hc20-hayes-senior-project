@@ -1,16 +1,24 @@
 import Shop from "../Modules/Shop/Shop.js"
 
+let shop = new Shop;
 
 export default class ShopController{
     constructor(){
-        this.shop = new Shop;
     }
 
     canBuy(item){
-        return this.canBuy(item);
+        return shop.canBuy(item);
     }
 
     getDrougets(){
-        return this.shop.getDrougets();
+        return shop.getDrougets();
+    }
+
+    buyItem(item){
+        return shop.buy(item)
+    }
+
+    addDrougets(int){
+        return shop.addDrougets(int);
     }
 }

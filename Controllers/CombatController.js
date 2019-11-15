@@ -3,9 +3,9 @@ import BasicCombat from "../Modules/Combat/BasicCombatFunctions.js"
 
 let basicCombat = new BasicCombat;
 
-let listOfCharacter = [];
 let listOfEnemies = [];
 let allCombatents = [];
+let playerCharacter
 
 
 export default class Mechanics{
@@ -13,30 +13,30 @@ export default class Mechanics{
 
     // Player Related Functions
     apply_Level_Up_Points(string){
-        listOfCharacter[0].apply_Level_Up_Points(string);
+        playerCharacter.apply_Level_Up_Points(string);
     }
 
     isNotAbleToSpendAnotherPoint(){
-       if(listOfCharacter[0].get_Level_Up_Points() <= 0){return true;}
+       if(playerCharacter.get_Level_Up_Points() <= 0){return true;}
     }
 
     createCharacter(name, race){
         let character = new Character(name, race);
-        listOfCharacter.push(character);
+        playerCharacter = character;
     }
 
     getCharacter(){
-        return listOfCharacter[0];
+        return playerCharacter;
     }
 
     playerCharacterReset(){
-        let hp = listOfCharacter[0].get_TempHp();
-        listOfCharacter[0].get_All_Attributes().vitality = hp;
+        let hp = playerCharacter.get_TempHp();
+        playerCharacter.get_All_Attributes().vitality = hp;
     }
     
     isCharacterAbleToLevelUp(){
-        if(listOfCharacter[0].get_Experience() >= this.experienceNeededToLevelUp()){
-            listOfCharacter[0].add_Experience(-this.experienceNeededToLevelUp());
+        if(playerCharacter.get_Experience() >= this.experienceNeededToLevelUp()){
+            playerCharacter.add_Experience(-this.experienceNeededToLevelUp());
             return true;
         }else{
             return false;
@@ -44,16 +44,16 @@ export default class Mechanics{
     }
 
     experienceNeededToLevelUp(){
-        let level = listOfCharacter[0].get_Level();
+        let level = playerCharacter.get_Level();
         return (100 * (level)) * level;
     }
 
     deletePlayerCharacter(){
-        listOfCharacter.pop();
+        playerCharacter = null;
     }
 
     levelUpCharacter(){
-        listOfCharacter[0].level_Up();
+        playerCharacter.level_Up();
     }
 
     // Enemy Related Functions
@@ -81,16 +81,16 @@ export default class Mechanics{
     }
 
     AIsTurn(){
-        basicCombat.attack(listOfEnemies[0], listOfCharacter[0]);
+        basicCombat.attack(listOfEnemies[0], playerCharacter);
     }
 
     // Random Functions
     attackFunction(){
-        basicCombat.attack(listOfCharacter[0], listOfEnemies[0]);
+        basicCombat.attack(playerCharacter, listOfEnemies[0]);
     }
 
     getTurnOrder(){
-        allCombatents = [listOfEnemies[0], listOfCharacter[0]];
+        allCombatents = [listOfEnemies[0], playerCharacter];
         basicCombat.establishTurnOrder(allCombatents);
     }
 }

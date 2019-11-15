@@ -1,132 +1,146 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<script>
+  <script>
 
-  
-  function toggleSideBar1(){
-    document.getElementById("sidebarForCharacterCreate").classList.toggle('active');
-  }
 
-  function toggleSideBar2(){
-    document.getElementById("sidebarForHomePage").classList.toggle('active');
-  }
+    function toggleSideBar1() {
+      document.getElementById("sidebarForCharacterCreate").classList.toggle('active');
+    }
 
-  function toggleSideBar3(){
-    document.getElementById("sidebarForShop").classList.toggle('active');
-  }
+    function toggleSideBar2() {
+      document.getElementById("sidebarForHomePage").classList.toggle('active');
+    }
 
-  function toggleSideBar4(){
-    document.getElementById("sidebarForProgressPage").classList.toggle('active');
-  }
- 
-  function toggleDropDown(){
-    document.getElementById("selection").classList.toggle('active');
-  }
-</script>
-<script type="text/javascript" src="../Modules/handlebars-v4.4.3.js"></script>
+    function toggleSideBar3() {
+      document.getElementById("sidebarForShop").classList.toggle('active');
+    }
 
-<script type="module" src="../Controllers/ListenerController.js"></script>
-<script type="module" src="../Controllers/MasterController.js"></script>
-<script type="module" src="../Controllers/CombatController.js"></script>
+    function toggleSideBar4() {
+      document.getElementById("sidebarForProgressPage").classList.toggle('active');
+    }
 
-<link rel="stylesheet" type="text/css" href="../CSSFiles/HTMLCharacterCreate.css" />
-<link rel="stylesheet" type="text/css" href="../CSSFiles/HTMLHomePage.css" />
-<link rel="stylesheet" type="text/css" href="../CSSFiles/HTMLShopPage.css" />
-<link rel="stylesheet" type="text/css" href="../CSSFiles/HTMLCombatPage.css"/>
+    function toggleDropDown() {
+      document.getElementById("selection").classList.toggle('active');
+    }
+  </script>
+  <script type="text/javascript" src="../Modules/handlebars-v4.4.3.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+
+  <script type="module" src="../Controllers/ListenerController.js"></script>
+  <script type="module" src="../Controllers/MasterController.js"></script>
+  <script type="module" src="../Controllers/CombatController.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="../CSSFiles/HTMLCharacterCreate.css" />
+  <link rel="stylesheet" type="text/css" href="../CSSFiles/HTMLHomePage.css" />
+  <link rel="stylesheet" type="text/css" href="../CSSFiles/HTMLShopPage.css" />
+  <link rel="stylesheet" type="text/css" href="../CSSFiles/HTMLCombatPage.css" />
 
 
 <body>
-    <div id="characterCreatePage">
-      <div id="mainTable">
-        <table>
-          <tr>
-            <th>
-              <div>
-                <input id="name" type="text" placeholder="What is your name"><br>
-                <ul>
-                  <select id = "characterList">
-                    <option>Select your character</option>
-                    <option>Salamander</option>
-                    <option>Siren</option>
-                  </select><br>
-                  <input id="submitButton" type="submit" value="Submit">
-                </ul>
-              </div>
-            </th>
-          </tr>
-        </table>
-      </div>
+  <div id="characterCreatePage">
+    <div id="mainTable">
+      <table>
+        <tr>
+          <th>
+            <div>
+              <input id="name" type="text" placeholder="What is your name"><br>
+              <ul>
+                <select id="characterList">
+                  <option>Select your character</option>
+                  <option>Salamander</option>
+                  <option>Siren</option>
+                </select><br>
+                <input id="submitButton" type="submit" value="Submit">
+              </ul>
+            </div>
+          </th>
+        </tr>
+      </table>
     </div>
+  </div>
 
-    <div id="homePage" style="display:none">
-      <div class="sidebar" id="sidebarForHomePage" onclick="toggleSideBar2()">
-        <div class="toggle-btn">
-          <span></span>
+  <div id="homePage" style="display:none">
+    <div class="sidebar" id="sidebarForHomePage" onclick="toggleSideBar2()">
+      <div class="toggle-btn">
+        <span></span>
+      </div>
+      <ul>
+        <li class="sideMenu" id="createCharacter">Create Character</li>
+        <li class="sideMenu" id="shop">Shop</li>
+        <!-- <li class="sideMenu" id="save">Save Game</li> NEEDS IMPLIMENTED -->
+      </ul>
+    </div>
+    <div class="displayCharacterDiv" id="displayCharacterDivForHome"></div>
+    <div id="beginCombat">
+      <button id="goToNextRoundOfCombat">Ascend</button>
+    </div>
+  </div>
+
+  <div id="shopPage" style="display:none">
+    <div class="sidebar" id="sidebarForShop" onclick="toggleSideBar3()">
+      <div class="toggle-btn"><span></span></div>
+      <ul>
+        <li class="sideMenu" id="homeP">Home</li>
+      </ul>
+    </div>
+    <div id="shapPageDiv">
+      <button id="buy">Buy</button>
+      <button id="sell">Sell</button>
+      <button id="levelUp" style="display: none;">Level Up</button>
+
+      <div id="levelUpMenu">
+        <button id="levelUpButton" type="levelUp">Level Up</button>
+        <div id="experience"></div>
+        <div id="attributeDisplay" style="display: none;"></div>
+        <div id="buttonDisplay" style="display: none;">
+            <button class="levelUpPointButtons" value="vitality">Vitality +1</button>
+            <button class="levelUpPointButtons" value="projection">Projection +1</button>
+            <button class="levelUpPointButtons" value="fortitude">Fortitude +1</button>
+            <button class="levelUpPointButtons" value="agility">Agility +1</button>
+            <button class="levelUpPointButtons" value="intelligence">Intelligence +1</button>
+            <button class="levelUpPointButtons" value="willpower">Willpower +1</button>
+            <button class="levelUpPointButtons" value="intmidation">Intmidation +1</button>
         </div>
+      </div>
+      <div id="buyMenu" style="display: none;">
+        <div class="currency" id="currency1"></div>
+        <div id="buyableOption">
           <ul>
-            <li class="sideMenu" id="createCharacter">Create Character</li>
-            <li class="sideMenu" id="shop">Shop</li>
-            <!-- <li class="sideMenu" id="save">Save Game</li> NEEDS IMPLIMENTED -->
-          </ul> 
+            <li id="Rayashk">Rayashk</li>
+            <li id="Worlds End">Worlds End</li>
+          </ul>
         </div>
-        <div class="displayCharacterDiv" id="displayCharacterDivForHome"></div>
-        <div id="beginCombat">
-          <button id="goToNextRoundOfCombat">Ascend</button>
+        <div id="bagInShop">
+          <p id="nameOfBag">Bag</p>
         </div>
-    </div>
-
-    <div id="shopPage" style="display:none">
-      <div class="sidebar" id="sidebarForShop" onclick="toggleSideBar3()">
-        <div class="toggle-btn"><span></span></div>
-          <ul>
-            <li class="sideMenu" id="homeP">Home</li>
-          </ul> 
+        <div id="itemDescription" style="display: none;"></div>
+        <div id="closeItemDescription" style="display: none;"></div>
       </div>
-      <div id="shapPageDiv">
-        <button id="buy" >Buy</button>
-        <button id="sell">Sell</button>
-        <button id="levelUp" style="display: none;">Level Up</button>
-
-        <div id="levelUpMenu" >
-          <button id="levelUpButton" type="levelUp" value="Level Up">Level Up</button>
-          <div id="experience"></div>
-          <div id="attributeDisplay" style="display: none;"></div>
-          <div id="buttonDisplay" style="display: none;">
-            <button class="levelUpPointButtons" id="addOneToVitality" value="vitality">Vitality +1</button>
-            <button class="levelUpPointButtons" id="addOneToProjection">Projection +1</button>
-            <button class="levelUpPointButtons" id="addOneToFortitude">Fortitude +1</button>
-            <button class="levelUpPointButtons" id="addOneToAgility">Agility +1</button>
-            <button class="levelUpPointButtons" id="addOneToIntelligence">Intelligence +1</button>
-            <button class="levelUpPointButtons" id="addOneToWillpower">Willpower +1</button>
-            <button class="levelUpPointButtons" id="addOneToIntmidation">Intmidation +1</button>
-          </div>
-        </div>
-        <div id="buyMenu" style="display: none;">
-          <div class="currency" id="currency1"></div>
-        </div>
-        <div id="sellMenu" style="display: none;">
-            <div class="currency" id="currency2"></div>
-          </div>
+      <div id="sellMenu" style="display: none;">
+        <div class="currency" id="currency2"></div>
       </div>
     </div>
+  </div>
 
-    <div id="battleScreen" style="display: none">
-      <div class="displayCharacterDiv" id="displayCharacterDivForBattleScreen"></div>
-      <div class="displayEnemyDiv" id="displayEnemyDivForBattleScreen"></div>
-      <div id="textField"></div>
-      <div id="towerDisplay"></div>
-      <button id="attackButton">Attack</button>
-      <button id="decendButton">Descend</button>
-      <button id="ascendFromBattleScreen" style="display: none;">Ascend</button>
-    </div>
+  <div id="battleScreen" style="display: none">
+    <div class="displayCharacterDiv" id="displayCharacterDivForBattleScreen"></div>
+    <div class="displayEnemyDiv" id="displayEnemyDivForBattleScreen"></div>
+    <div id="textField"></div>
+    <div id="towerDisplay"></div>
+    <button id="attackButton">Attack</button>
+    <button id="decendButton">Descend</button>
+    <button id="ascendFromBattleScreen" style="display: none;">Ascend</button>
+  </div>
 
 
 
 
-<!-- TEMPLATES -->
+  <!-- TEMPLATES -->
 
-    <script id="displayCharacterTemplate" type="text/x-handlebars-template">
+  <script id="displayCharacterTemplate" type="text/x-handlebars-template">
       <div>
         <h1 id="displayCharacterTemplateCharacterName">{{name}}</h1>
         <div id="displayCharacterTemplateBody">
@@ -143,7 +157,7 @@
       </div>
     </script>
 
-    <script id="displayCharacterStatsTemplate" type="text/x-handlebars-template">
+  <script id="displayCharacterStatsTemplate" type="text/x-handlebars-template">
       <div>
           <h1 id="displayLevelUpPoints">Level-Up Points: {{levelUpPoints}}</h1>
         <div id="displayCharacterStatsBody">
@@ -158,7 +172,7 @@
       </div>
     </script>
 
-    <script id="displayEnemyTemplate" type="text/x-handlebars-template">
+  <script id="displayEnemyTemplate" type="text/x-handlebars-template">
       <div>
         <h1 id="displayEnemyTemplateCharacterName">{{name}}</h1>
         <div id="displayEnemyTemplateBody">
@@ -169,51 +183,66 @@
       </div>
     </script>
 
-    <script id="enemyWasDefeated" type="text/x-handlebars-template">
+  <script id="enemyWasDefeated" type="text/x-handlebars-template">
       <div><h1 class="defeatedMessages" id="displayEnemyTemplateCharacterName">{{name}} is dead</h1></div>
     </script>
 
-    <script id="playerWasDefeated" type="text/x-handlebars-template">
+  <script id="playerWasDefeated" type="text/x-handlebars-template">
       <div>
         <h1 class="defeatedMessages" id="displayCharacterTemplateCharacterName">{{name}} is dead</h1>
       </div>
     </script>
 
-    <script id="needNewCharacterMessage" type="text/x-handlebars-template">
+  <script id="needNewCharacterMessage" type="text/x-handlebars-template">
       <div>
         <h1 class="defeatedMessages" id="displayCharacterTemplateCharacterName">You'r character was killed.</h1>
       </div>
     </script>
 
-    <script id="battleReportTemplate" type="text/x-handlebars-template">
+  <script id="battleReportTemplate" type="text/x-handlebars-template">
       <div>
         <h1 id="displayBattleReport">{{nameOfAttacker}} attacked {{nameOfDefender}} and delt {{damage}} damage</h1>
       </div>
     </script>
 
-    <script id="battleReportReset" type="text/x-handlebars-template">
+  <script id="battleReportReset" type="text/x-handlebars-template">
       <div>
         <h1></h1>
       </div>
     </script>
 
-    <script id="displayTowerTemplate" type="text/x-handlebars-template">
+  <script id="displayTowerTemplate" type="text/x-handlebars-template">
       <div>
         <h1>Floor: {{floor}} Wave: {{wave}} </h1>
       </div>
     </script>
 
-    <script id="displayExperience" type="text/x-handlebars-template">
+  <script id="displayExperience" type="text/x-handlebars-template">
       <div>
         <p>Experience {{experience}} / {{neededExperienceForNextLevel}}</p>
       </div>
     </script>
 
-    <script id="displayCurrency" type="text/x-handlebars-template">
+  <script id="displayCurrency" type="text/x-handlebars-template">
       <div>
         <p>Drougets: {{drougets}}</p>
       </div>
     </script>
 
+  <script id="displayItemInBag" type="text/x-handlebars-template">
+      <div>
+          <li>{{name}}</li>
+      </div>
+    </script>
+
+  <script id="displayItemDescription" type="text/x-handlebars-template">
+      <div>
+        <h1 id="nameOfItem">{{name}}</h1>
+          <li id="description">{{description}}</li>
+          <li id="price"> Sell Price {{price}}</li>
+      </div>
+    </script>
+
 </body>
-</html> 
+
+</html>
