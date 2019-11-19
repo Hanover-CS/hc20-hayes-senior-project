@@ -1,10 +1,11 @@
 
 
 export default class Item{
-    constructor(name, price, description){
+    constructor(name, price, description, area){
         this.name = name;
         this.price =  price;
         this.description = description;
+        this.area = area;
     }
 
     getName(){
@@ -17,5 +18,9 @@ export default class Item{
 
     getDescription(){
         return this.description;
+    }
+
+    equippableTo(){
+        return this.area;
     }
 }
