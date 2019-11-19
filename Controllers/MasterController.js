@@ -23,7 +23,6 @@ export default class Display{
         let pageToBeHidden = document.getElementById("homePage");
         let pageToBeShown = document.getElementById("shopPage");
         displayExperience();
-
         displayNewPage(pageToBeHidden, pageToBeShown);
     }
     
@@ -32,7 +31,8 @@ export default class Display{
         let pageToBeShown = document.getElementById("homePage");
         this.closeDescription();
         this.levelUpTab();
-        showCharacter();
+        showCharacter(getPlayerCharacterInformation(mechanics.getCharacter()));
+        displayBagInHome();
         displayNewPage(pageToBeHidden, pageToBeShown);
     }
     
@@ -195,9 +195,18 @@ export default class Display{
         displayItemDescription(string);
     }
 
+    showItemDescriptionInHome(string){
+        displayItemDescriptionInHome(string);
+    }
+
     closeDescription(){
         document.getElementById("itemDescription").style.display = "none"
         document.getElementById("closeItemDescription").style.display = "none"
+    }
+
+    closeDescriptionInHome(){
+        document.getElementById("itemDescriptionInHome").style.display = "none"
+        document.getElementById("closeItemDescriptionInHome").style.display = "none"
     }
 }
 
@@ -210,6 +219,17 @@ function displayItemDescription(string){
     document.getElementById("itemDescription").style.display = "block"
     document.getElementById("closeItemDescription").style.display = "block"
 }
+
+function displayItemDescriptionInHome(string){
+    let item = itemController.getItem(string);
+    let source = document.getElementById("displayItemDescription").innerHTML;
+    let template = Handlebars.compile(source);
+    let html = template(item);
+    document.getElementById("itemDescriptionInHome").innerHTML = html;
+    document.getElementById("itemDescriptionInHome").style.display = "block"
+    document.getElementById("closeItemDescriptionInHome").style.display = "block"
+}
+
 function hideLevelUpButton(){
     document.getElementById("levelUpButton").style.display = "none"
 }
@@ -223,6 +243,17 @@ function displayBag(item){
     let template = Handlebars.compile(source);
     let html = template(item);
     document.getElementById("bagInShop").innerHTML += html;
+}
+
+function displayBagInHome(){
+    let items = itemController.getAllItemsInBag();
+    let source = document.getElementById("displayItemInBag").innerHTML;
+    let template = Handlebars.compile(source);
+    let html;
+    for(let item in items){
+        html = template(items[item]);
+        document.getElementById("possesedItems").innerHTML += html;
+    }
 }
 
 function ifOutOfPoints_HideWindow() {
@@ -381,6 +412,7 @@ function showCharacter(character) {
     let source = document.getElementById("displayCharacterTemplate").innerHTML;
     let template = Handlebars.compile(source);
     let html = template(character);
+    console.log("hello")
     document.getElementById("displayCharacterDivForHome").innerHTML = html;
     document.getElementById("displayCharacterDivForBattleScreen").innerHTML = html;
 }

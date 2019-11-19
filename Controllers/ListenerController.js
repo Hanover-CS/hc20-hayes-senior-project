@@ -26,6 +26,10 @@ $("#bagInShop").on("click", "li", function () {
     display.showItemDescription($(this).text());
 })
 
+$("#possesedItems").on("click", "li", function(){
+    display.showItemDescriptionInHome($(this).text());
+})
+
 $("#buttonDisplay").on("click", "button", function () {
     display.allocateLevelUpPoint($(this).val());
 })
@@ -35,6 +39,10 @@ $("#buttonDisplay").on("click", "button", function () {
 
 closeItemDescription.onclick = function () {
     display.closeDescription();
+}
+
+closeItemDescriptionInHome.onclick = function () {
+    display.closeDescriptionInHome();
 }
 
 sellTab.onclick = function () {
