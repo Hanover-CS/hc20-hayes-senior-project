@@ -1,4 +1,4 @@
-export default class EquippedGear{
+export default class Equipment{
     constructor(){
         this.weapon = null;
         this.head = null;
@@ -8,7 +8,6 @@ export default class EquippedGear{
         this.legs = null;
         this.feet = null;
     }
-
     equip(item){
         let equipTo = item.equippableTo();
         if(equipTo == "Weapon") {this.weapon = item;}
@@ -44,4 +43,42 @@ export default class EquippedGear{
     getLegs(){return this.legs;}
 
     getFeet(){return this.feet;}
+
+    getStats(){
+        let listOfBonusStats = {projection: 0, might: 0};
+        if(this.getWeapon() != null){
+            let dict = this.getWeapon().getStats()
+            listOfBonusStats.projection = dict.projection;
+            // listOfBonusStats.might = dict.might;
+
+        }
+        return listOfBonusStats;
+    }
+
+    getEquippedGear(){
+        let list = [];
+        if(this.weapon != null){
+            list.push(this.weapon);
+        }
+        if(this.head != null){
+            list.push(this.head);
+        }
+        if(this.torso != null){
+            list.push(this.torso);
+        }
+        if(this.waist != null){
+            list.push(this.waist);
+        }
+        if(this.legs != null){
+            list.push(this.legs);
+        }
+        if(this.feet != null){
+            list.push(this.feet);
+        }
+        if(this.hands != null){
+            list.push(this.hands);
+        }
+
+        return list;
+    }
 }
