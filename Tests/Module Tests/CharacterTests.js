@@ -1,5 +1,6 @@
 import Census from "../../Modules/Characters/Census.js";
 import Character from "../../Modules/Characters/CharacterClass.js";
+import ItemCatalog from "../../Modules/Item/ItemCatalogClass.js";
 
 
 let census = new Census;
@@ -18,6 +19,8 @@ describe("Character Module", function () {
     bossBuilder(list_Of_Bosses);
     methodTest();
     applyLevelUpPoints();
+    UnalteredStats();
+    equipmetTests();
 })
 
 function methodTest() {
@@ -87,7 +90,6 @@ function character_Builder_And_Tester(list_Of_Characters) {
         let name_Of_Character = list_Of_Characters[character];
         let char = new Character(name_Of_Character, name_Of_Character);
         let character_For_Comparason = census.lookUp(name_Of_Character);
-        // let pts = character_For_Comparason.attributes.intelligence / 2
 
         it("Can create a " + name_Of_Character, function () {
             assert(char.get_Name() === list_Of_Characters[character]);
@@ -132,4 +134,38 @@ function level_Incrementer(char) {
         assert(char.get_All_Attributes().willpower == previous_Willpower + guide.willpower * (i + 1));
         assert(char.get_All_Attributes().intimidation == previous_Intimidation + guide.intimidation * (i + 1));
     }
+}
+
+function UnalteredStats(){
+    it("Initiates unaltered stats to the correct values", function(){
+        let char = new Character("Salamander", "Salamander");
+        assert(char.getUnalteredVitality() == char.get_All_Attributes().vitality);
+        assert(char.getUnalteredProjection() == char.get_All_Attributes().projection);
+        assert(char.getUnalteredMight() == char.get_All_Attributes().might);
+        assert(char.getUnalteredFortitude() == char.get_All_Attributes().fortitude);
+    })
+
+    it("levelUp changes unaltered stats to the correct values", function(){
+        let char = new Character("Salamander", "Salamander");
+        char.level_Up();
+        assert(char.getUnalteredVitality() == char.get_All_Attributes().vitality);
+        assert(char.getUnalteredProjection() == char.get_All_Attributes().projection);
+        assert(char.getUnalteredMight() == char.get_All_Attributes().might);
+        assert(char.getUnalteredFortitude() == char.get_All_Attributes().fortitude);
+    })
+}
+
+function equipmetTests(){
+    let char = new Character("Salamander", "Salamander");
+    let catalog = new ItemCatalog;
+    let item = catalog.getItem("Worlds End");
+    it("Character can equip an item", function(){
+        char.equip(item);
+        assert(char.get_All_Attributes().projection == char.getUnalteredProjection() + item.getStats().projection);
+    })
+
+    it("Character can unequip an item", function(){
+        char.unequip(item);
+        assert(char.get_All_Attributes().projection == char.getUnalteredProjection() + 0);
+    })
 }
