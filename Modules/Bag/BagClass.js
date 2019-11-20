@@ -5,11 +5,21 @@ export default class Bag{
 
     addItem(item){
         this.listOfItems.push(item);
-        console.log(this.listOfItems);
     }
 
     getAllItems(){
         return this.listOfItems;
+    }
+
+    removeItem(item){
+        let index = 0;
+        for (let items in this.listOfItems){
+            if (item.getName() === this.listOfItems[items].getName()){
+                this.listOfItems.splice(index, 1);
+                return
+            }
+            index++;
+        }
     }
 
 }

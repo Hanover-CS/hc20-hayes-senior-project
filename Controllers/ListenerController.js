@@ -28,11 +28,18 @@ $("#bagInShop").on("click", "li", function () {
 
 $("#possesedItems").on("click", "li", function(){
     display.showItemDescriptionInHome($(this).text());
+    let item = $(this).text()
+    $("#itemDescriptionInHome").on("click", "button", function () {
+        if(item != 0){display.equip(item)}
+        item = 0;
+    })
 })
 
-$("#buttonDisplay").on("click", "button", function () {
-    display.allocateLevelUpPoint($(this).val());
+$("#equippedItemsInHome").on("click", "li", function(){
+    console.log($(this).text())
+    display.showEquippedItemDescription($(this).text());
 })
+
 
 
 // LISTENERS //

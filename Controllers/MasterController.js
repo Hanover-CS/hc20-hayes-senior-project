@@ -197,6 +197,7 @@ export default class Display{
 
     showItemDescriptionInHome(string){
         displayItemDescriptionInHome(string);
+        document.getElementById("equippedItemsInHome").style.display = "none"
     }
 
     closeDescription(){
@@ -207,7 +208,50 @@ export default class Display{
     closeDescriptionInHome(){
         document.getElementById("itemDescriptionInHome").style.display = "none"
         document.getElementById("closeItemDescriptionInHome").style.display = "none"
+        document.getElementById("equippedItemsInHome").style.display = "block"
     }
+
+    equip(string){
+        let item = itemController.getItem(string);
+        mechanics.equip(item);
+        itemController.removeItemFromBag(item);
+        showCharacter(getPlayerCharacterInformation(mechanics.getCharacter()));
+        document.getElementById("equip").style.display = "none";
+        displayBagInHome();
+        hideItemDescriptionInHome();
+        displayEquippedGear();
+    }
+
+    showEquippedItemDescription(string){
+        displayEquippedItemDescription(string)
+    }
+}
+
+function displayEquippedGear(){
+    document.getElementById("equippedItemsInHome").style.display = "block"
+    let source = document.getElementById("displayItemInBag").innerHTML;
+    let template = Handlebars.compile(source);
+    let list = mechanics.getEquippedGear();
+    console.log(list)
+    for(let item in list){
+        let html = template(list[item]);
+        document.getElementById("equippedItemsInHome").innerHTML += html;
+    }
+}
+
+function displayEquippedItemDescription(string){
+    let listOfGear = mechanics.getEquippedGear();
+    let source = document.getElementById("displayItemDescription").innerHTML;
+    let template = Handlebars.compile(source);
+    for (let itemInList in listOfGear){
+        if (string == listOfGear[itemInList].getName()){
+            let html = template(listOfGear[itemInList]);
+            document.getElementById("itemDescription").innerHTML = html;
+        }
+    }
+    document.getElementById("equippedItemsInHome").style.display = "none"
+    document.getElementById("itemDescriptionInHome").style.display = "block"
+    document.getElementById("closeItemDescriptionInHome").style.display = "block"
 }
 
 function displayItemDescription(string){
@@ -230,6 +274,11 @@ function displayItemDescriptionInHome(string){
     document.getElementById("closeItemDescriptionInHome").style.display = "block"
 }
 
+function hideItemDescriptionInHome(){
+    document.getElementById("itemDescriptionInHome").style.display = "none"
+    document.getElementById("closeItemDescriptionInHome").style.display = "none"
+}
+
 function hideLevelUpButton(){
     document.getElementById("levelUpButton").style.display = "none"
 }
@@ -250,9 +299,13 @@ function displayBagInHome(){
     let source = document.getElementById("displayItemInBag").innerHTML;
     let template = Handlebars.compile(source);
     let html;
-    for(let item in items){
-        html = template(items[item]);
-        document.getElementById("possesedItems").innerHTML += html;
+    html = template();
+    document.getElementById("possesedItems").innerHTML = html;
+    if(items.length > 0){
+        for(let item in items){
+            html = template(items[item]);
+            document.getElementById("possesedItems").innerHTML += html;
+        }
     }
 }
 
@@ -412,7 +465,6 @@ function showCharacter(character) {
     let source = document.getElementById("displayCharacterTemplate").innerHTML;
     let template = Handlebars.compile(source);
     let html = template(character);
-    console.log("hello")
     document.getElementById("displayCharacterDivForHome").innerHTML = html;
     document.getElementById("displayCharacterDivForBattleScreen").innerHTML = html;
 }

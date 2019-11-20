@@ -30,7 +30,7 @@ export default class Mechanics{
     }
 
     playerCharacterReset(){
-        let hp = playerCharacter.get_TempHp();
+        let hp = playerCharacter.getUnalteredVitality();
         playerCharacter.get_All_Attributes().vitality = hp;
     }
     
@@ -54,6 +54,18 @@ export default class Mechanics{
 
     levelUpCharacter(){
         playerCharacter.level_Up();
+    }
+
+    equip(item){
+        playerCharacter.equip(item);
+    }
+
+    unequip(item){
+        playerCharacter.unequip(item);
+    }
+
+    getEquippedGear(){
+        return playerCharacter.getEquippedGear();
     }
 
     // Enemy Related Functions
