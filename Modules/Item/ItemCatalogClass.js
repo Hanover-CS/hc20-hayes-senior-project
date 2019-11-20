@@ -9,8 +9,8 @@ export default class ItemCatalog{
 }
 
 let catalog = {
-    "Rayashk" : new Item("Rayashk", 350, "Ledgendary Sword", "Weapon"),
-    "Worlds End" : new Item("Worlds End", 1000, "Mythic Sword", "Weapon"),
+    "Rayashk" : new Item("Rayashk", 350, "Ledgendary Sword", "Weapon", {projection: 10}),
+    "Worlds End" : new Item("Worlds End", 1000, "Mythic Sword", "Weapon", {projection: 10}),
 
     // Legendary Gear Set - Fire
     "Legendary Fire head" : new Item("Legendary Fire head", 1000, "description", "Head"),

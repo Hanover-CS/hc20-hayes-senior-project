@@ -19,4 +19,8 @@ export default class ItemController{
         let x = bag.getAllItems();
         return x;
     }
+
+    removeItemFromBag(item){
+        bag.removeItem(item);
+    }
 }
