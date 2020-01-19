@@ -2,8 +2,7 @@
 export default class Zombie {
 	constructor(){
 		this.attributes = {
-			might:105,
-			projection:0,
+			attack:0,
 			vitality:55,
 			fortitude:2,
 			agility:5,
@@ -26,8 +25,8 @@ class Rotting extends Zombie{
 		this.attributes.fortitude 	= 0;	// Defence
 	}
 	levelUpGuide(){
-			let levelUp_Guide = {might:1, 
-				projection:0, 
+			let levelUp_Guide = { 
+				attack:10, 
 				vitality:10, 
 				intelligence:0,
 				willpower:0, 

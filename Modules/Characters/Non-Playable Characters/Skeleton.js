@@ -2,8 +2,7 @@
 export default class Skeleton {
 	constructor() {
 		this.attributes = {
-			might: 55,
-			projection: 0,
+			attack: 10,
 			vitality: 55,
 			fortitude: 2,
 			agility: 125,
@@ -22,8 +21,7 @@ export default class Skeleton {
 
 	levelUpGuide() {
 		let levelUp_Guide = {
-			might: 1,
-			projection: 0,
+			attack: 10,
 			vitality: 10,
 			intelligence: 0,
 			willpower: 0,

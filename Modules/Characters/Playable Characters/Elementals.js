@@ -2,8 +2,7 @@
 export default class Elemental {
 	constructor(){
 		this.attributes = {
-			might:0,            // Physical Attack
-			projection:0,       // Magical Attack
+			attack:0,       	// Magical Attack
 			vitality:350,       // Health Points
 			fortitude:15,       // Armor
 			agility:100,        // Speed
@@ -29,7 +28,7 @@ export default class Elemental {
 class Salamander extends Elemental{
 	constructor(){
 		super();
-		this.attributes.projection 		= 50;
+		this.attributes.attack 			= 50;
 		this.attributes.intelligence	= 30;
 		this.attributes.willpower		= 5;
 		this.attributes.intimidation	= 5;
@@ -37,8 +36,7 @@ class Salamander extends Elemental{
 	
 	levelUp_Guide() {
 		let levelUp_Guide= {
-			might:0,
-			projection:20, 
+			attack:20, 
 			vitality:50, 
 			intelligence:0,
 			willpower:0, 
@@ -50,8 +48,7 @@ class Salamander extends Elemental{
 
 	allocation_Guide(){ 
 		let allocation_Guide = {
-			might:10, 
-			projection:10, 
+			attack:10, 
 			vitality:10, 
 			intelligence:10,
 			willpower:10, 
@@ -65,7 +62,7 @@ class Salamander extends Elemental{
 class Siren extends Elemental{
 	constructor(){
 		super();
-		this.attributes.projection 		= 35;
+		this.attributes.attack 		= 35;
 		this.attributes.vitality		= 400;
 		this.attributes.intelligence	= 30;
 		this.attributes.willpower		= 5;
@@ -73,8 +70,7 @@ class Siren extends Elemental{
 
 	levelUp_Guide(){
 		let levelUp_Guide = {
-			might:0, 
-			projection:10, 
+			attack:10, 
 			vitality:20, 
 			intelligence:1,
 			willpower:0,
@@ -86,8 +82,7 @@ class Siren extends Elemental{
 
 	allocation_Guide(){ 
 		let levelUp_Guide = {
-			might:10, 
-			projection:10, 
+			attack:10, 
 			vitality:10, 
 			intelligence:10,
 			willpower:10, 
@@ -101,17 +96,16 @@ class Siren extends Elemental{
 class Sylph extends Elemental{
 	constructor(){
 		super();
-		this.attributes.might			= 45;
 		this.attributes.fortitude		= 10;
 		this.attributes.agility			= 120;
 		this.attributes.vitality		= 250;
 		this.attributes.intimidation 	= 20;
+		this.attributes.attack 		= 35;
 	}
 
 	levelUp_Guide(){
 		let levelUp_Guide = {
-			might:0, 
-			projection:10, 
+			attack:10, 
 			vitality:20, 
 			intelligence:0,
 			willpower:0, 
@@ -123,8 +117,7 @@ class Sylph extends Elemental{
 	
 	allocation_Guide(){ 
 		let levelUp_Guide = {
-			might:10, 
-			projection:10, 
+			attack:10, 
 			vitality:10, 
 			intelligence:10,
 			willpower:10, 
@@ -138,7 +131,7 @@ class Sylph extends Elemental{
 class Golom extends Elemental{
 	constructor(){
 		super();
-		this.attributes.might			= 35;
+		this.attributes.attack			= 35;
 		this.attributes.fortitude 		= 20;
 		this.attributes.agility			= 80;
 		this.attributes.vitality		= 400;
@@ -146,8 +139,8 @@ class Golom extends Elemental{
 	}
 
 	levelUp_Guide(){
-		let levelUp_Guide = {might:0, 
-			projection:10, 
+		let levelUp_Guide = { 
+			attack:10, 
 			vitality:20, 
 			intelligence:0,
 			willpower:0, 
@@ -158,8 +151,8 @@ class Golom extends Elemental{
 	}
 
 	allocation_Guide(){ 
-		let levelUp_Guide = {might:10, 
-			projection:10, 
+		let levelUp_Guide = { 
+			attack:10, 
 			vitality:10, 
 			intelligence:10,
 			willpower:10, 

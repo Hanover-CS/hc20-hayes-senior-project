@@ -16,11 +16,14 @@ export default class ItemController{
     }
 
     getAllItemsInBag(){
-        let x = bag.getAllItems();
-        return x;
+        return bag.getAllItems();
     }
 
     removeItemFromBag(item){
         bag.removeItem(item);
+    }
+
+    getAllCurrentlyBuyableOptions(){
+        return itemCatalog.allBuyableOptions();
     }
 }

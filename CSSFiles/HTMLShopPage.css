@@ -139,22 +139,18 @@
   top: 60px;
   border-style: groove;
   border-color: gray;
-}
-
-#buyableOption ul{
-  list-style-type: none;
-  color: gray;
-  text-align: center;
   overflow-y: scroll;
 }
 
-#buyableOption ul :hover{
+#buyableOption :hover{
   color: rgb(138, 16, 16);
+  cursor: pointer;
 }
 
-#buyableOption ul li{
-  border-style: groove;
-  border-color: gray;
+#buyableOption li{
+  list-style-type: none;
+  color: gray;
+  text-align: center;
 }
 
 /* ---------------------- */
@@ -177,8 +173,6 @@
 
 #bagInShop li{
   list-style-type: none;
-  border-style: groove;
-  border-color: gray;
   color: gray;
   font-size: xx-large;
 }
@@ -189,6 +183,7 @@
 
 #bagInShop li:hover{
   color: rgb(138, 16, 16);
+  cursor: pointer;
 }
 
 /* --------------------------------- */
@@ -217,8 +212,8 @@
   font-size: medium;
 }
 
-#description{
-  font-size: X-large;
+.description{
+  font-size: large;
 }
 
 #price{
@@ -229,3 +224,9 @@
   text-align: center;
   color: rgb(138, 16, 16);
 }
+
+#area{
+  font-size: large;
+}
+
+/* ---------------- */

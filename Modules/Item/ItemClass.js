@@ -15,7 +15,9 @@ export default class Item{
     
     getDescription(){return this.description;}
     
-    equippableTo(){return this.area;}
-    
     getStats(){return this.stats;}
+
+    // getArea(){return this.area;}
+
+    equippableTo(){return this.area;}
 }

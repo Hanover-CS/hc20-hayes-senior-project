@@ -52,6 +52,8 @@
                   <option>Select your character</option>
                   <option>Salamander</option>
                   <option>Siren</option>
+                  <option>Golom</option>
+                  <option>Sylph</option>
                 </select><br>
                 <input id="submitButton" type="submit" value="Submit">
               </ul>
@@ -78,9 +80,13 @@
       <p id="nameOfBag">Bag</p>
       <div id="possesedItems"></div>
     </div>
-    <div id="itemDescriptionInHome" style="display:none" ></div>
+    <div id="itemDescriptionInHome" style="display: none" ></div>
     <div id="closeItemDescriptionInHome" style="display: none;"></div>
+
     <div id="equippedItemsInHome"></div>
+    <div id="equippedItemDescriptionInHome" style="display: none" ></div>
+    <div id="closeEquippedItemDescriptionInHome" style="display: none;"></div>
+
     <div id="beginCombat">
       <button id="goToNextRoundOfCombat">Ascend</button>
     </div>
@@ -104,21 +110,17 @@
         <div id="attributeDisplay" style="display: none;"></div>
         <div id="buttonDisplay" style="display: none;">
           <button class="levelUpPointButtons" value="vitality">Vitality +1</button>
-          <button class="levelUpPointButtons" value="projection">Projection +1</button>
+          <button class="levelUpPointButtons" value="attack">attack +1</button>
           <button class="levelUpPointButtons" value="fortitude">Fortitude +1</button>
           <button class="levelUpPointButtons" value="agility">Agility +1</button>
           <button class="levelUpPointButtons" value="intelligence">Intelligence +1</button>
           <button class="levelUpPointButtons" value="willpower">Willpower +1</button>
-          <button class="levelUpPointButtons" value="intmidation">Intmidation +1</button>
+          <button class="levelUpPointButtons" value="intimidation">intimidation +1</button>
         </div>
       </div>
       <div id="buyMenu" style="display: none;">
         <div class="currency" id="currency1"></div>
         <div id="buyableOption">
-          <ul>
-            <li id="Rayashk">Rayashk</li>
-            <li id="Worlds End">Worlds End</li>
-          </ul>
         </div>
         <div id="bagInShop">
           <p id="nameOfBag">Bag</p>
@@ -153,7 +155,7 @@
         <div id="displayCharacterTemplateBody">
           Level: {{level}}<br>
           Vitality: {{hp}}<br>
-          Projection: {{projection}}<br>
+          Attack: {{attack}}<br>
           Agility: {{agility}}<br>
           Fortitude: {{fortitude}}<br>
           Intelligence: {{intelligence}}<br>
@@ -169,7 +171,7 @@
           <h1 id="displayLevelUpPoints">Level-Up Points: {{levelUpPoints}}</h1>
         <div id="displayCharacterStatsBody">
           Vitality: {{hp}}<br>
-          Projection: {{projection}}<br>
+          Attack: {{attack}}<br>
           Agility: {{agility}}<br>
           Fortitude: {{fortitude}}<br>
           Intelligence: {{intelligence}}<br>
@@ -245,10 +247,44 @@
   <script id="displayItemDescription" type="text/x-handlebars-template">
       <div>
         <h1 id="nameOfItem">{{name}}</h1>
-          <li id="description">{{description}}</li>
-          <li id="price"> Sell Price {{price}}</li>
+        <li id="area">Item Type: {{area}}</li>
+        <li class="description"> Description:</li>
+        <li class="description">&emsp; {{description}}</li>
+        <li id="price"> Sell Price: {{price}}</li>
+      </div>
+      <button id="buyItem">buy</button>
+    </script>
+
+    <script id="displayBagsItemDescription" type="text/x-handlebars-template">
+      <div>
+        <h1 id="nameOfItem">{{name}}</h1>
+        <li id="area">Item Type: {{area}}</li>
+        <li class="description"> Description:</li>
+        <li class="description">&emsp; {{description}}</li>
+        <li id="price"> Sell Price: {{price}}</li>
+      </div>
+    </script>
+
+    <script id="displayItemDescriptionInHome" type="text/x-handlebars-template">
+      <div>
+        <h1 id="nameOfItem">{{name}}</h1>
+        <li id="area">Item Type: {{area}}</li>
+        <li class="description"> Description:</li>
+        <li class="description">&emsp; {{description}}</li>
+        <li id="price"> Sell Price: {{price}}</li>
       </div>
       <button id="equip">Equip</button>
+    </script>
+
+    <script id="displayEquippedItemDescription" type="text/x-handlebars-template">
+      <div>
+        <h1 id="nameOfItem">{{name}}</h1>
+        <li id="area">Item Type: {{area}}</li>
+        <li class="description"> Description:</li>
+        <li class="description">&emsp; {{description}}</li>
+        <li id="price"> Sell Price: {{price}}</li>
+      </div>
+      <button id="unequip">UnEquip</button>
     </script>
 
 </body>

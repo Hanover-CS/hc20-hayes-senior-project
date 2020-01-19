@@ -21,4 +21,8 @@ export default class ShopController{
     addDrougets(int){
         return shop.addDrougets(int);
     }
+
+    sellItem(item){
+        return shop.sell(item)
+    }
 }

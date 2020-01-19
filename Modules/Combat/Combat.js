@@ -2,10 +2,10 @@ export default class Combat{
     constructor(){
 
     }
-    followTroughWithTheAttack(attacker, defender, mightOrProjection){
+    followTroughWithTheAttack(attacker, defender, attack){
         let intimidation = attacker.get_All_Attributes().intimidation;
         let willpower = attacker.get_All_Attributes().willpower;
-        let damage = mightOrProjection;
+        let damage = attack;
     
         if(isCritical(intimidation)){
             let totalDamage = calculateCritDamage(damage, willpower);

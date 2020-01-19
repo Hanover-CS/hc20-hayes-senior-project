@@ -21,6 +21,8 @@ describe("Character Module", function () {
     applyLevelUpPoints();
     UnalteredStats();
     equipmetTests();
+    equipmentTestsAfterLevelUp();
+    equipmentTestsAfterLevelUpPointAllocation();
 })
 
 function methodTest() {
@@ -46,8 +48,7 @@ function applyLevelUpPoints() {
 
     it("applyLevelUpPoints", function () {
         assert(char.get_All_Attributes().vitality == 400);
-        assert(char.get_All_Attributes().might == 0);
-        assert(char.get_All_Attributes().projection == 35);
+        assert(char.get_All_Attributes().attack == 35);
         assert(char.get_All_Attributes().intelligence == 30);
         assert(char.get_All_Attributes().willpower == 5);
         assert(char.get_All_Attributes().agility == 100);
@@ -55,15 +56,13 @@ function applyLevelUpPoints() {
         assert(char.get_All_Attributes().intimidation == 15);
         char.apply_Level_Up_Points("intimidation");
         char.apply_Level_Up_Points("vitality");
-        char.apply_Level_Up_Points("might");
-        char.apply_Level_Up_Points("projection");
+        char.apply_Level_Up_Points("attack");
         char.apply_Level_Up_Points("intelligence");
         char.apply_Level_Up_Points("willpower");
         char.apply_Level_Up_Points("agility");
         char.apply_Level_Up_Points("fortitude");
         assert(char.get_All_Attributes().vitality == 410);
-        assert(char.get_All_Attributes().might == 10);
-        assert(char.get_All_Attributes().projection == 45);
+        assert(char.get_All_Attributes().attack == 45);
         assert(char.get_All_Attributes().intelligence == 40);
         assert(char.get_All_Attributes().willpower == 15);
         assert(char.get_All_Attributes().agility == 110);
@@ -112,8 +111,7 @@ function experience_Incrementor(char) {
 
 function level_Incrementer(char) {
 
-    let previous_Might = char.get_All_Attributes().might
-    let previous_Projection = char.get_All_Attributes().projection
+    let previous_Attack = char.get_All_Attributes().attack
     let previous_Vitality = char.get_All_Attributes().vitality
     let previous_Fortitude = char.get_All_Attributes().fortitude
     let previous_Agility = char.get_All_Attributes().agility
@@ -125,8 +123,7 @@ function level_Incrementer(char) {
 
         char.level_Up();
         assert(char.get_Level() === i + 2);
-        assert(char.get_All_Attributes().might == previous_Might + guide.might * (i + 1));
-        assert(char.get_All_Attributes().projection == previous_Projection + guide.projection * (i + 1));
+        assert(char.get_All_Attributes().attack == previous_Attack + guide.attack * (i + 1));
         assert(char.get_All_Attributes().vitality == previous_Vitality + guide.vitality * (i + 1));
         assert(char.get_All_Attributes().fortitude == previous_Fortitude + guide.fortitude * (i + 1));
         assert(char.get_All_Attributes().agility == previous_Agility + guide.agility * (i + 1));
@@ -140,8 +137,6 @@ function UnalteredStats(){
     it("Initiates unaltered stats to the correct values", function(){
         let char = new Character("Salamander", "Salamander");
         assert(char.getUnalteredVitality() == char.get_All_Attributes().vitality);
-        assert(char.getUnalteredProjection() == char.get_All_Attributes().projection);
-        assert(char.getUnalteredMight() == char.get_All_Attributes().might);
         assert(char.getUnalteredFortitude() == char.get_All_Attributes().fortitude);
     })
 
@@ -149,8 +144,7 @@ function UnalteredStats(){
         let char = new Character("Salamander", "Salamander");
         char.level_Up();
         assert(char.getUnalteredVitality() == char.get_All_Attributes().vitality);
-        assert(char.getUnalteredProjection() == char.get_All_Attributes().projection);
-        assert(char.getUnalteredMight() == char.get_All_Attributes().might);
+        assert(char.getUnalteredAttack() == char.get_All_Attributes().attack);
         assert(char.getUnalteredFortitude() == char.get_All_Attributes().fortitude);
     })
 }
@@ -161,11 +155,39 @@ function equipmetTests(){
     let item = catalog.getItem("Worlds End");
     it("Character can equip an item", function(){
         char.equip(item);
-        assert(char.get_All_Attributes().projection == char.getUnalteredProjection() + item.getStats().projection);
+        assert(char.get_All_Attributes().attack == char.getUnalteredAttack() + item.getStats().attack);
     })
 
     it("Character can unequip an item", function(){
         char.unequip(item);
-        assert(char.get_All_Attributes().projection == char.getUnalteredProjection() + 0);
+        assert(char.get_All_Attributes().attack == char.getUnalteredAttack() + 0);
+    })
+}
+
+function equipmentTestsAfterLevelUp(){
+    let char = new Character("Salamander", "Salamander");
+    let catalog = new ItemCatalog;
+    let item = catalog.getItem("Worlds End");
+    char.level_Up();
+    it("Character is leveled up, a weapon is equipped and stats are augmented accordingly", function(){
+        char.equip(item);
+        assert(char.get_All_Attributes().attack == char.getUnalteredAttack() + item.getStats().attack);
+    })
+}
+
+function equipmentTestsAfterLevelUpPointAllocation(){
+    let char = new Character("Salamander", "Salamander");
+    let catalog = new ItemCatalog;
+    let item = catalog.getItem("Worlds End");
+    char.add_Level_Up_Points(2); // two level-up point
+    char.apply_Level_Up_Points("attack");
+    it("Character has leveled up points allocated, a weapon is equipped and stats are augmented accordingly", function(){
+        char.equip(item);
+        assert(char.get_All_Attributes().attack == char.getUnalteredAttack() + item.getStats().attack);
+    })
+
+    it("Character has leveled up points allocated, a weapon is unequipped and stats are augmented accordingly", function(){
+        char.unequip(item);
+        assert(char.get_All_Attributes().attack == char.getUnalteredAttack());
     })
 }

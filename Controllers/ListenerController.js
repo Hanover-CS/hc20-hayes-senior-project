@@ -18,26 +18,45 @@ let sellTab = document.getElementById("sell");
 
 let closeItemDescription = document.getElementById("closeItemDescription");
 
+$("#buttonDisplay").on("click", "button", function(){
+    display.allocateLevelUpPoint($(this).val());
+})
+
+let itemToBuy;
 $("#buyableOption").on("click", "li", function () {
-    display.requestToBuyItem($(this).text());
-})
-
-$("#bagInShop").on("click", "li", function () {
     display.showItemDescription($(this).text());
+    itemToBuy = $(this).text()
 })
 
+$("#itemDescription").on("click", "button", function () {
+    display.requestToBuyItem(itemToBuy);
+})
+
+let itemToSell;
+$("#bagInShop").on("click", "li", function () {
+    display.showBagsItemDescription($(this).text());
+    itemToBuy = $(this).text()
+})
+
+let possesedItem
 $("#possesedItems").on("click", "li", function(){
     display.showItemDescriptionInHome($(this).text());
-    let item = $(this).text()
-    $("#itemDescriptionInHome").on("click", "button", function () {
-        if(item != 0){display.equip(item)}
-        item = 0;
-    })
+     possesedItem = $(this).text()
 })
 
+$("#itemDescriptionInHome").on("click", "button", function () {
+    if(possesedItem != 0){display.equip(possesedItem)}
+    possesedItem = 0;
+})
+
+let equippedItem
 $("#equippedItemsInHome").on("click", "li", function(){
-    console.log($(this).text())
     display.showEquippedItemDescription($(this).text());
+    equippedItem = $(this).text()
+})
+
+$("#equippedItemDescriptionInHome").on("click", "button", function () {
+    display.unequip(equippedItem)
 })
 
 
@@ -50,6 +69,10 @@ closeItemDescription.onclick = function () {
 
 closeItemDescriptionInHome.onclick = function () {
     display.closeDescriptionInHome();
+}
+
+closeEquippedItemDescriptionInHome.onclick = function () {
+    display.closeEquippedItemDescriptionInHome();
 }
 
 sellTab.onclick = function () {

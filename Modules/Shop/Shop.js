@@ -24,4 +24,9 @@ export default class Shop{
         let x = item.getPrice();
         this.drougets += -x;
     }
+    
+    sell(item){
+        let x = item.getPrice();
+        this.drougets += x;
+    }
 }

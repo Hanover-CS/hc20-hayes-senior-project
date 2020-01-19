@@ -7,19 +7,18 @@ export default class BasicCombat extends Combat{
     
     attack(attacker, defender){
     
-        let attackersMight = attacker.get_All_Attributes().might;
-        let attackersProjection = attacker.get_All_Attributes().projection;
+        let attackersAttack = attacker.get_All_Attributes().attack;
         let defendersFortitude = defender.get_All_Attributes().fortitude;
     
-        if (attackersMight >= attackersProjection){
-            if(attackersMight < defendersFortitude){return;}
-            else {super.followTroughWithTheAttack(attacker, defender, attackersMight);}
-        }
+        // if (attackersMight >= attackersAttack){
+        //     if(attackersMight < defendersFortitude){return;}
+        //     else {super.followTroughWithTheAttack(attacker, defender, attackersMight);}
+        // }
     
-        else {
-            if(attackersProjection < defendersFortitude){return;}
-            else {super.followTroughWithTheAttack(attacker, defender, attackersProjection);}
-        }
+        // else {
+            if(attackersAttack < defendersFortitude){return;}
+            else {super.followTroughWithTheAttack(attacker, defender, attackersAttack);}
+        // }
     }
 
     establishTurnOrder(listOfCharacters){

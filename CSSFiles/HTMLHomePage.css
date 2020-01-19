@@ -127,12 +127,57 @@
   font-size: medium;
 }
 
+#equippedItemDescriptionInHome{
+  height: 450px;
+  width: 350px;
+  background-color:#151719;
+  position: fixed;
+  left: 608px;
+  top: 137px;
+  border-style: groove;
+  border-color: green;
+  list-style-type: none;
+  color: gray;
+}
+
+#closeEquippedItemDescriptionInHome{
+  height: 20px;
+  width: 20px;
+  bottom: 370px;
+  left: 923px;
+  bottom: 398px;
+  background-color:gray;
+  position: relative;
+  font-size: medium;
+}
+
 /* ----------------------------- */
 
 #equip{
   height: fit-content;
   width: fit-content;
   bottom: 370px;
+  left: 750px;
+  bottom: 150px;
+  background-color:gray;
+  position: fixed;
+  font-size: xx-large;
+  color: aqua;
+}
+
+#unequip{
+  height: fit-content;
+  width: fit-content;
+  left: 750px;
+  bottom: 150px;
+  background-color:gray;
+  position: fixed;
+  font-size: xx-large;
+  color: aqua;
+}
+#buyItem{
+  height: fit-content;
+  width: fit-content;
   left: 750px;
   bottom: 150px;
   background-color:gray;

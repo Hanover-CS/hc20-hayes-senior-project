@@ -68,6 +68,10 @@ export default class Mechanics{
         return playerCharacter.getEquippedGear();
     }
 
+    isEquippable(item){
+        return playerCharacter.isEquippable(item);
+    }
+
     // Enemy Related Functions
     getEnemy(){
         return listOfEnemies[0];

@@ -45,13 +45,28 @@ export default class Equipment{
     getFeet(){return this.feet;}
 
     getStats(){
-        let listOfBonusStats = {projection: 0, might: 0};
+        let listOfBonusStats = {attack: 0, vitality: 0, fortitude: 0};
         if(this.getWeapon() != null){
             let dict = this.getWeapon().getStats()
-            listOfBonusStats.projection = dict.projection;
-            // listOfBonusStats.might = dict.might;
-
+            listOfBonusStats.attack += dict.attack;
+            listOfBonusStats.vitality += dict.vitality;
+            listOfBonusStats.fortitude += dict.fortitude;
         }
+
+        if(this.getHead() != null){
+            let dict = this.getHead().getStats()
+            listOfBonusStats.attack += dict.attack;
+            listOfBonusStats.vitality += dict.vitality;
+            listOfBonusStats.fortitude += dict.fortitude;
+        }
+
+        if(this.getTorso() != null){
+            let dict = this.getTorso().getStats()
+            listOfBonusStats.attack += dict.attack;
+            listOfBonusStats.vitality += dict.vitality;
+            listOfBonusStats.fortitude += dict.fortitude;
+        }
+
         return listOfBonusStats;
     }
 
@@ -80,5 +95,18 @@ export default class Equipment{
         }
 
         return list;
+    }
+
+    isEquippable(item){
+        let equipTo = item.equippableTo();
+        if(equipTo == "Weapon"  && this.getWeapon() == null) {return true}
+        if(equipTo == "Head"    && this.getHead()   == null) {return true}
+        if(equipTo == "Hands"   && this.getHands()  == null) {return true}
+        if(equipTo == "Torso"   && this.getTorso()  == null) {return true}
+        if(equipTo == "Waist"   && this.getWaist()  == null) {return true}
+        if(equipTo == "Legs"    && this.getLegs()   == null) {return true}
+        if(equipTo == "Feet"    && this.getFeet()   == null) {return true}
+
+        return false;
     }
 }

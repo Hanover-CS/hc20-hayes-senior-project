@@ -9,7 +9,7 @@ describe("Combat Module", function(){
     it("attack called with an attacker with 50 attack and defender with 50 hp, 0 def non crit", function(){
         let attacker = new Character("Attacker", "Salamander");
         let defender = new Character("Defender", "Rotting Zombie");
-        attacker.get_All_Attributes().projection = 50;
+        attacker.get_All_Attributes().attack = 50;
         attacker.get_All_Attributes().intimidation = 0;
         defender.get_All_Attributes().vitality = 50;
         defender.add_Experience(50);
@@ -22,7 +22,7 @@ describe("Combat Module", function(){
     it("attack called with an attacker with 50 attack and defender with 50 hp, 50 def non crit", function(){
         let attacker = new Character("Attacker", "Sylph");
         let defender = new Character("Defender", "Rotting Zombie");
-        attacker.get_All_Attributes().might = 50;
+        attacker.get_All_Attributes().attack = 50;
         attacker.get_All_Attributes().intimidation = 0;
         defender.get_All_Attributes().vitality = 50;
         defender.get_All_Attributes().fortitude = 50;
@@ -36,7 +36,7 @@ describe("Combat Module", function(){
     it("attack called with an attacker with 50 attack and defender with 100 hp, 0 def none critical strike", function(){
         let attacker = new Character("Attacker", "Salamander");
         let defender = new Character("Defender", "Rotting Zombie");
-        attacker.get_All_Attributes().projection = 50;
+        attacker.get_All_Attributes().attack = 50;
         attacker.get_All_Attributes().intimidation = 0;
         defender.get_All_Attributes().vitality = 100;
         defender.add_Experience(33);
@@ -51,7 +51,7 @@ describe("Combat Module", function(){
     it("attack called with an attacker with 50 attack and defender with 100 hp, 0 def critical strike with X2 damage", function(){
         let attacker = new Character("Attacker", "Salamander");
         let defender = new Character("Defender", "Rotting Zombie");
-        attacker.get_All_Attributes().projection = 50;
+        attacker.get_All_Attributes().attack = 50;
         attacker.get_All_Attributes().intimidation = 100;
         attacker.get_All_Attributes().willpower = 10;
         defender.get_All_Attributes().vitality = 100;
@@ -65,7 +65,7 @@ describe("Combat Module", function(){
     it("attack called with an attacker with 50 attack and defender with 100 hp, 50 def critical strike with X2 damage", function(){
         let attacker = new Character("Attacker", "Golom");
         let defender = new Character("Defender", "Rotting Zombie");
-        attacker.get_All_Attributes().might = 50;
+        attacker.get_All_Attributes().attack = 50;
         attacker.get_All_Attributes().intimidation = 100;
         attacker.get_All_Attributes().willpower = 10;
         defender.get_All_Attributes().vitality = 100;
