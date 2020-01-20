@@ -101,7 +101,7 @@
     </div>
     <div id="shapPageDiv">
       <button id="buy">Buy</button>
-      <button id="sell">Sell</button>
+      <!-- <button id="sell">Sell</button> -->
       <button id="levelUp" style="display: none;">Level Up</button>
 
       <div id="levelUpMenu">
@@ -120,17 +120,23 @@
       </div>
       <div id="buyMenu" style="display: none;">
         <div class="currency" id="currency1"></div>
-        <div id="buyableOption">
+        <div class="buyAndSellMenues" id="buyableOption"></div>
+        <div class="shopBag" id="bagInShop"><p id="nameOfBag">Bag</p></div>
+        <div class="itemDescription" id="itemDescription" style="display: none;"></div>
+        <div class="itemDescription" id="itemDescriptionSellButton" style="display: none;"></div>
+        <div id="closeItemDescription" style="display: none;"></div>
+        <div class="closeItemDescription" id="closeItemDescriptionSellButton" style="display: none;"></div>
+      </div>
+      <!-- <div id="sellMenu" style="display: none;">
+        <div class="currency" id="currency2"></div>
+        <div class="buyAndSellMenues" id="sellableOption">
         </div>
-        <div id="bagInShop">
+        <div class="shopBag" id="bagInShop">
           <p id="nameOfBag">Bag</p>
         </div>
-        <div id="itemDescription" style="display: none;"></div>
-        <div id="closeItemDescription" style="display: none;"></div>
-      </div>
-      <div id="sellMenu" style="display: none;">
-        <div class="currency" id="currency2"></div>
-      </div>
+        <div id="itemDescriptionInSellMenu" style="display: none;"></div>
+        <div id="closeItemDescriptionInSellMenu" style="display: none;"></div>
+      </div> -->
     </div>
   </div>
 
@@ -262,6 +268,7 @@
         <li class="description"> Description:</li>
         <li class="description">&emsp; {{description}}</li>
         <li id="price"> Sell Price: {{price}}</li>
+        <button class="buyItem" id="sellItem">Sell</button>
       </div>
     </script>
 

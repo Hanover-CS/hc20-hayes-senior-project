@@ -53,7 +53,7 @@ export default class Display{
         mechanics.deleteEnemy();
         displayTower();
         let info = tower.getTowerInfo();
-        mechanics.createEnemy(info.floor, info.wave); /////////////////This needs to be refactored
+        mechanics.createEnemy(info.floor, info.wave); //This needs to be refactored
         mechanics.getTurnOrder();
         if(mechanics.isAIsTurn()){AIAttacks();}
         showEnemy(getPlayerCharacterInformation(mechanics.getEnemy()));
@@ -136,10 +136,8 @@ export default class Display{
         let secondTabToBeShown = document.getElementById("sell");
         switchTab(tabToBeHidden, firstTabToBeShown, secondTabToBeShown);
         let buyMenu = document.getElementById("buyMenu");
-        let sellMenu = document.getElementById("sellMenu");
         let levelUpMenu = document.getElementById("levelUpMenu");
         buyMenu.style.display = "block";
-        sellMenu.style.display = "none";
         levelUpMenu.style.display = "none";
         displayCurrency("currency1");
         populateBuyableOptions();
@@ -155,7 +153,6 @@ export default class Display{
         let sellMenu = document.getElementById("sellMenu");
         let levelUpMenu = document.getElementById("levelUpMenu");
         buyMenu.style.display = "none";
-        sellMenu.style.display = "none";
         levelUpMenu.style.display = "block";
         this.closeDescription();
         displayExperience();
@@ -200,11 +197,8 @@ export default class Display{
         displayCurrency("currency1");
         itemController.removeItemFromBag(item);
         displayBag();
-        this.closeDescription();
+        this.closeItemDescriptionSellButton();
     }
-    
-
-    // sellItem
 
     showItemDescription(string){
         displayItemDescription(string);
@@ -236,6 +230,11 @@ export default class Display{
         document.getElementById("equippedItemsInHome").style.display = "block"
     }
 
+    closeItemDescriptionSellButton(){
+        document.getElementById("itemDescriptionSellButton").style.display = "none"
+        document.getElementById("closeItemDescriptionSellButton").style.display = "none"
+    }
+
     equip(string){
         let item = itemController.getItem(string);
         if (mechanics.isEquippable(item)){
@@ -259,7 +258,7 @@ export default class Display{
         showCharacter(getPlayerCharacterInformation(mechanics.getCharacter()));
 
         displayBagInHome();
-        hideItemDescriptionInHome(); //////////////
+        hideItemDescriptionInHome();
         displayEquippedGear();
         displayEquippedGear();
     }
@@ -312,7 +311,6 @@ function displayEquippedGear(){
 
 function displayEquippedItemDescription(string){
     let listOfGear = mechanics.getEquippedGear();
-    console.log("here")
     let source = document.getElementById("displayEquippedItemDescription").innerHTML;
     let template = Handlebars.compile(source);
     for (let itemInList in listOfGear){
@@ -334,6 +332,9 @@ function displayItemDescription(string){
     document.getElementById("itemDescription").innerHTML = html;
     document.getElementById("itemDescription").style.display = "block"
     document.getElementById("closeItemDescription").style.display = "block"
+    document.getElementById("itemDescriptionSellButton").style.display = "none"
+    document.getElementById("closeItemDescriptionSellButton").style.display = "none"
+
 }
 
 function displayBagsItemDescription(string){
@@ -341,9 +342,10 @@ function displayBagsItemDescription(string){
     let source = document.getElementById("displayBagsItemDescription").innerHTML;
     let template = Handlebars.compile(source);
     let html = template(item);
-    document.getElementById("itemDescription").innerHTML = html;
-    document.getElementById("itemDescription").style.display = "block"
-    document.getElementById("closeItemDescription").style.display = "block"
+    document.getElementById("itemDescriptionSellButton").innerHTML = html;
+    document.getElementById("itemDescriptionSellButton").style.display = "block"
+    document.getElementById("itemDescription").style.display = "none"
+    document.getElementById("closeItemDescriptionSellButton").style.display = "block"
 }
 
 function displayItemDescriptionInHome(string){
@@ -360,11 +362,6 @@ function hideItemDescriptionInHome(){
     document.getElementById("equippedItemDescriptionInHome").style.display = "none"
     document.getElementById("closeEquippedItemDescriptionInHome").style.display = "none"
 }
-
-// function hideEquippedItemDescriptionInHome(){
-//     document.getElementById("equippedItemDescriptionInHome").style.display = "none"
-//     document.getElementById("closeEquippedItemDescriptionInHome").style.display = "none"
-// }
 
 function hideLevelUpButton(){
     document.getElementById("levelUpButton").style.display = "none"
@@ -447,17 +444,16 @@ function displayNewPage(pageToBeHidden, pageToBeShown) {
 function switchTab(tabToBeHidden, firstTabToHide, secondTabToHide){
     tabToBeHidden.style.display = "none";
     firstTabToHide.style.display = "block";
-    secondTabToHide.style.display = "block";
 }
 
-function displayTheBattleReportForWhatHappenedToTheCharacterThisRound(charactersHpBeforeCombat, charactersHpAfterCombat) { // NO
-    let theDamage = charactersHpBeforeCombat - charactersHpAfterCombat; // NO
+function displayTheBattleReportForWhatHappenedToTheCharacterThisRound(charactersHpBeforeCombat, charactersHpAfterCombat) {
+    let theDamage = charactersHpBeforeCombat - charactersHpAfterCombat;
     let battleStatistics = { nameOfAttacker: mechanics.getEnemy().get_Name(), nameOfDefender: mechanics.getCharacter().get_Name(), damage: theDamage };
     putTheReportIntoTheTextBox(battleStatistics);
 }
 
-function displayTheBattleReportForWhatHappenedToTheEnemyThisRound(enemiesHpBeforeCombat, enemiesHpAfterCombat) { // NO
-    let theDamage = enemiesHpBeforeCombat - enemiesHpAfterCombat; // NO
+function displayTheBattleReportForWhatHappenedToTheEnemyThisRound(enemiesHpBeforeCombat, enemiesHpAfterCombat) { 
+    let theDamage = enemiesHpBeforeCombat - enemiesHpAfterCombat;
     let battleStatistics = { nameOfAttacker: mechanics.getCharacter().get_Name(), nameOfDefender: mechanics.getEnemy().get_Name(), damage: theDamage };
     putTheReportIntoTheTextBox(battleStatistics);
 }
@@ -588,7 +584,6 @@ function getPlayerCharacterInformation(character) {
         intimidation: character.get_All_Attributes().intimidation,
         experiance: character.get_Experience(),
         levelUpPoints: character.get_Level_Up_Points()};
-        console.log(playerCharactersStats.intimidation)
         return playerCharactersStats;
 }
 
@@ -597,7 +592,7 @@ function isEnemyDead(enemy) {
 }
 
 function isPlayerDead() {
-    return mechanics.getCharacter().get_All_Attributes().vitality <= 0; // NO
+    return mechanics.getCharacter().get_All_Attributes().vitality <= 0;
 }
 
 function putTheReportIntoTheTextBox(battleStatistics){

@@ -14,9 +14,6 @@ let attackButton = document.getElementById("attackButton");
 let levelUpButton = document.getElementById("levelUpButton");
 let buyTab = document.getElementById("buy");
 let levelUpTab = document.getElementById("levelUp");
-let sellTab = document.getElementById("sell");
-
-let closeItemDescription = document.getElementById("closeItemDescription");
 
 $("#buttonDisplay").on("click", "button", function(){
     display.allocateLevelUpPoint($(this).val());
@@ -35,7 +32,12 @@ $("#itemDescription").on("click", "button", function () {
 let itemToSell;
 $("#bagInShop").on("click", "li", function () {
     display.showBagsItemDescription($(this).text());
-    itemToBuy = $(this).text()
+    itemToSell = $(this).text()
+})
+
+$("#itemDescriptionSellButton").on("click", "button", function () {
+    display.requestToSellItem(itemToSell);
+    
 })
 
 let possesedItem
@@ -75,8 +77,8 @@ closeEquippedItemDescriptionInHome.onclick = function () {
     display.closeEquippedItemDescriptionInHome();
 }
 
-sellTab.onclick = function () {
-    display.sellTab();
+closeItemDescriptionSellButton.onclick = function() {
+    display.closeItemDescriptionSellButton();
 }
 
 buyTab.onclick = function () {

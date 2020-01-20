@@ -26,7 +26,7 @@ class Rotting extends Zombie{
 	}
 	levelUpGuide(){
 			let levelUp_Guide = { 
-				attack:10, 
+				attack:100, 
 				vitality:10, 
 				intelligence:0,
 				willpower:0, 

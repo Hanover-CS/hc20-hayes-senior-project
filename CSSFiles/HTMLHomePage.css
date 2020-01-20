@@ -186,6 +186,17 @@
   color: aqua;
 }
 
+.buyItem{
+  height: fit-content;
+  width: fit-content;
+  left: 750px;
+  bottom: 150px;
+  background-color:gray;
+  position: fixed;
+  font-size: xx-large;
+  color: aqua;
+}
+
 /* ----------------------- */
 
 #equippedItemsInHome{

@@ -2,7 +2,7 @@
 export default class Skeleton {
 	constructor() {
 		this.attributes = {
-			attack: 10,
+			attack: 100,
 			vitality: 55,
 			fortitude: 2,
 			agility: 125,
