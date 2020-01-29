@@ -13,10 +13,10 @@ export default class Character{
 		this.level				= 1;
 		this.experience 		= 0;
 		this.level_Up_Points 	= 0;
-		this.unalteredVitality 		= this.get_All_Attributes().vitality;
-		this.unalteredAttack 		= this.get_All_Attributes().attack;
-		this.unalteredFortitude 	= this.get_All_Attributes().fortitude;
-		this.unalteredAgility 		= this.get_All_Attributes().agility;
+		this.unalteredVitality 		= this.attributes.vitality;
+		this.unalteredAttack 		= this.attributes.attack;
+		this.unalteredFortitude 	= this.attributes.fortitude;
+		this.unalteredAgility 		= this.attributes.agility;
 	}
 
 	// Accessors
@@ -61,37 +61,26 @@ export default class Character{
 
 
 	attribute_Comparer(object){
-		if(
-		   this.get_All_Attributes().attack 		=== object.get_All_Attributes().attack &&
-		   this.get_All_Attributes().vitality 		=== object.get_All_Attributes().vitality &&
-		   this.get_All_Attributes().fortitude 		=== object.get_All_Attributes().fortitude &&
-		   this.get_All_Attributes().agility 		=== object.get_All_Attributes().agility &&
-		   this.get_All_Attributes().intelligence 	=== object.get_All_Attributes().intelligence &&
-		   this.get_All_Attributes().willpower 		=== object.get_All_Attributes().willpower &&
-		   this.get_All_Attributes().intimidation 	=== object.get_All_Attributes().intimidation){
-			return true;
-		} else {return false;}
+		let attributeSet1 = this.get_All_Attributes();
+		let attributeSet2 = object.get_All_Attributes();
+		return attributeSet1.attack 		=== attributeSet2.attack &&
+			attributeSet1.vitality 			=== attributeSet2.vitality &&
+		   	attributeSet1.fortitude 		=== attributeSet2.fortitude &&
+		  	attributeSet1.agility 			=== attributeSet2.agility &&
+		   	attributeSet1.intelligence 		=== attributeSet2.intelligence &&
+		   	attributeSet1.willpower 		=== attributeSet2.willpower &&
+		   	attributeSet1.intimidation 		=== attributeSet2.intimidation;
 	}
 
 	add_Level_Up_Points(intelligence){this.level_Up_Points = intelligence / 2;}
 
 	apply_Level_Up_Points(stat){
 		this.level_Up_Points += -1;
+		this.get_All_Attributes()[stat] += this.allocationGuide[stat];
 
-		if (stat == "vitality"){
-			this.get_All_Attributes().vitality += this.allocationGuide.vitality;
-			this.unalteredVitality += this.allocationGuide.vitality;}
-		if (stat == "attack"){
-			this.get_All_Attributes().attack += this.allocationGuide.attack;
-			this.unalteredAttack += this.allocationGuide.attack;}
-		if (stat == "fortitude"){
-			this.get_All_Attributes().fortitude += this.allocationGuide.fortitude;
-			this.unalteredFortitude += this.allocationGuide.fortitude}
-		if (stat == "intelligence")	this.get_All_Attributes().intelligence += this.allocationGuide.intelligence;
-		if (stat == "willpower")	this.get_All_Attributes().willpower += this.allocationGuide.willpower;
-		if (stat == "agility")		this.get_All_Attributes().agility += this.allocationGuide.agility;
-		if (stat == "intimidation")	this.get_All_Attributes().intimidation += this.allocationGuide.intimidation;
-
+		if (stat == "vitality"){this.unalteredVitality += this.allocationGuide.vitality;}
+		else if (stat == "attack"){this.unalteredAttack += this.allocationGuide.attack;}
+		else if (stat == "fortitude"){this.unalteredFortitude += this.allocationGuide.fortitude;}
 	}
 
 	equip(item){
