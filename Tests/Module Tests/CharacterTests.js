@@ -93,7 +93,7 @@ function character_Builder_And_Tester(list_Of_Characters) {
         it("Can create a " + name_Of_Character, function () {
             assert(char.get_Name() === list_Of_Characters[character]);
             experience_Incrementor(char);
-            assert(char.attribute_Comparer(character_For_Comparason) === true);
+            assert(char.attribute_Comparer(character_For_Comparason));
             assert(char.get_Level_Up_Points() == 0)
             level_Incrementer(char);
         });
@@ -133,14 +133,14 @@ function level_Incrementer(char) {
     }
 }
 
-function UnalteredStats(){
-    it("Initiates unaltered stats to the correct values", function(){
+function UnalteredStats() {
+    it("Initiates unaltered stats to the correct values", function () {
         let char = new Character("Salamander", "Salamander");
         assert(char.getUnalteredVitality() == char.get_All_Attributes().vitality);
         assert(char.getUnalteredFortitude() == char.get_All_Attributes().fortitude);
     })
 
-    it("levelUp changes unaltered stats to the correct values", function(){
+    it("levelUp changes unaltered stats to the correct values", function () {
         let char = new Character("Salamander", "Salamander");
         char.level_Up();
         assert(char.getUnalteredVitality() == char.get_All_Attributes().vitality);
@@ -149,44 +149,44 @@ function UnalteredStats(){
     })
 }
 
-function equipmetTests(){
+function equipmetTests() {
     let char = new Character("Salamander", "Salamander");
     let catalog = new ItemCatalog;
     let item = catalog.getItem("Worlds End");
-    it("Character can equip an item", function(){
+    it("Character can equip an item", function () {
         char.equip(item);
         assert(char.get_All_Attributes().attack == char.getUnalteredAttack() + item.getStats().attack);
     })
 
-    it("Character can unequip an item", function(){
+    it("Character can unequip an item", function () {
         char.unequip(item);
         assert(char.get_All_Attributes().attack == char.getUnalteredAttack() + 0);
     })
 }
 
-function equipmentTestsAfterLevelUp(){
+function equipmentTestsAfterLevelUp() {
     let char = new Character("Salamander", "Salamander");
     let catalog = new ItemCatalog;
     let item = catalog.getItem("Worlds End");
     char.level_Up();
-    it("Character is leveled up, a weapon is equipped and stats are augmented accordingly", function(){
+    it("Character is leveled up, a weapon is equipped and stats are augmented accordingly", function () {
         char.equip(item);
         assert(char.get_All_Attributes().attack == char.getUnalteredAttack() + item.getStats().attack);
     })
 }
 
-function equipmentTestsAfterLevelUpPointAllocation(){
+function equipmentTestsAfterLevelUpPointAllocation() {
     let char = new Character("Salamander", "Salamander");
     let catalog = new ItemCatalog;
     let item = catalog.getItem("Worlds End");
     char.add_Level_Up_Points(2); // two level-up point
     char.apply_Level_Up_Points("attack");
-    it("Character has leveled up points allocated, a weapon is equipped and stats are augmented accordingly", function(){
+    it("Character has leveled up points allocated, a weapon is equipped and stats are augmented accordingly", function () {
         char.equip(item);
         assert(char.get_All_Attributes().attack == char.getUnalteredAttack() + item.getStats().attack);
     })
 
-    it("Character has leveled up points allocated, a weapon is unequipped and stats are augmented accordingly", function(){
+    it("Character has leveled up points allocated, a weapon is unequipped and stats are augmented accordingly", function () {
         char.unequip(item);
         assert(char.get_All_Attributes().attack == char.getUnalteredAttack());
     })
