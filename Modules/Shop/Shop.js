@@ -1,31 +1,31 @@
-export default class Shop{
-    constructor(){
+export default class Shop {
+    constructor() {
         this.drougets = 0;
     }
 
-    getDrougets(){
+    getDrougets() {
         return this.drougets;
     }
 
-    addDrougets(amount){
+    addDrougets(amount) {
         this.drougets += amount;
     }
 
-    canBuy(item){
-        if(item.getPrice() <= this.getDrougets()){return true;} 
-        else {return false;}
+    canBuy(item) {
+        if (item.getPrice() <= this.getDrougets()) { return true; }
+        else { return false; }
     }
-    
-    getDrougets(){
+
+    getDrougets() {
         return this.drougets;
     }
 
-    buy(item){
+    buy(item) {
         let x = item.getPrice();
         this.drougets += -x;
     }
-    
-    sell(item){
+
+    sell(item) {
         let x = item.getPrice();
         this.drougets += x;
     }
