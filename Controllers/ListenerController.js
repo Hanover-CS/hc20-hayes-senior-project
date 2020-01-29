@@ -11,7 +11,7 @@ let ascend = document.getElementById("goToNextRoundOfCombat"); // Horible Name
 let decendButton = document.getElementById("decendButton");// Horible Name
 let ascendButton = document.getElementById("ascendFromBattleScreen"); // Horible Name
 let attackButton = document.getElementById("attackButton");
-let levelUpButton = document.getElementById("levelUpButton");
+let levelUpCharacter = document.getElementById("levelUpCharacter");
 let buyTab = document.getElementById("buy");
 let levelUpTab = document.getElementById("levelUp");
 
@@ -121,6 +121,6 @@ attackButton.onclick = function () {
     display.attackButton();
 }
 
-levelUpButton.onclick = function () {
-    display.levelUpButton();
+levelUpCharacter.onclick = function () {
+    display.levelUpCharacter();
 }

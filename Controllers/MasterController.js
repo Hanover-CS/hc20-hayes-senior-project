@@ -9,25 +9,25 @@ let mechanics = new Mechanics;
 let shop = new ShopController;
 let itemController = new ItemController;
 
-export default class Display{
-    constructor(){}
+export default class Display {
+    constructor() { }
 
 
-    goToCreateCharacterPageFromHomePage(){
+    goToCreateCharacterPageFromHomePage() {
         let pageToBeHidden = document.getElementById("homePage");
         let pageToBeShown = document.getElementById("characterCreatePage");
         displayNewPage(pageToBeHidden, pageToBeShown);
     }
-    
-    goToShopFromHomePage(){
+
+    goToShopFromHomePage() {
         let pageToBeHidden = document.getElementById("homePage");
         let pageToBeShown = document.getElementById("shopPage");
         displayExperience();
         displayBag();
         displayNewPage(pageToBeHidden, pageToBeShown);
     }
-    
-    goToHomePageFromShop(){
+
+    goToHomePageFromShop() {
         let pageToBeHidden = document.getElementById("shopPage");
         let pageToBeShown = document.getElementById("homePage");
         this.closeDescription();
@@ -36,7 +36,7 @@ export default class Display{
         displayBagInHome();
         displayNewPage(pageToBeHidden, pageToBeShown);
     }
-    
+
     goToHomePageFromCharacterCreationMenu() {
         let pageToBeHidden = document.getElementById("characterCreatePage");
         let pageToBeShown = document.getElementById("homePage");
@@ -46,25 +46,25 @@ export default class Display{
         showTheHomeScreenAscendButton();
     }
 
-    goToBattleScreenFromHomePage(){
+    goToBattleScreenFromHomePage() {
         let pageToBeHidden = document.getElementById("homePage");
         let pageToBeShown = document.getElementById("battleScreen");
-        
+
         mechanics.deleteEnemy();
         displayTower();
         let info = tower.getTowerInfo();
         mechanics.createEnemy(info.floor, info.wave); //This needs to be refactored
         mechanics.getTurnOrder();
-        if(mechanics.isAIsTurn()){AIAttacks();}
+        if (mechanics.isAIsTurn()) { AIAttacks(); }
         showEnemy(getPlayerCharacterInformation(mechanics.getEnemy()));
         showTheAttackButton();
         hideTheAscendButtonInTheBattleScreen();
         displayNewPage(pageToBeHidden, pageToBeShown);
     }
 
-    ascendButton(){
+    ascendButton() {
         clearTextArea();
-        if(tower.isAtTop()){
+        if (tower.isAtTop()) {
             displayEndOfGameMessage();
         } else {
             tower.nextFloor();
@@ -74,16 +74,16 @@ export default class Display{
         console.log(info)
         mechanics.createEnemy(info.floor, info.wave);
         mechanics.getTurnOrder();
-        if(mechanics.isAIsTurn()){AIAttacks();}
+        if (mechanics.isAIsTurn()) { AIAttacks(); }
         showEnemy(getPlayerCharacterInformation(mechanics.getEnemy()));
         showTheAttackButton();
         hideTheAscendButtonInTheBattleScreen();
     }
 
-    levelUpButton(){
-        if(mechanics.isCharacterAbleToLevelUp()){
-            hideLevelUpButton();
-            mechanics.levelUpCharacter(); 
+    levelUpCharacter() {
+        if (mechanics.isCharacterAbleToLevelUp()) {
+            hideLevelUpCharacterButton();
+            mechanics.levelUpCharacter();
             displayExperience();
             showAttributeDisplay();
             showButtonDisplay();
@@ -93,44 +93,45 @@ export default class Display{
         }
     }
 
-    goToHomePageFromBattleScreen(){
+    goToHomePageFromBattleScreen() {
         let pageToBeHidden = document.getElementById("battleScreen");
         let pageToBeShown = document.getElementById("homePage");
         cleanAndResetBattlePage();
-        if(isPlayerDead()){
+        if (isPlayerDead()) {
             mechanics.deletePlayerCharacter();
             displayNewCharacterRequiredMessage();
             hideTheAscendButtonInTheHomePage();
         }
-        else{mechanics.playerCharacterReset();
+        else {
+            mechanics.playerCharacterReset();
             showCharacter(getPlayerCharacterInformation(mechanics.getCharacter()));
         }
         displayNewPage(pageToBeHidden, pageToBeShown);
     }
 
-    attackButton(){
+    attackButton() {
         let enemiesHpBeforeCombat = mechanics.getEnemy().get_All_Attributes().vitality;
         mechanics.attackFunction();
         let enemiesHpAfterCombat = mechanics.getEnemy().get_All_Attributes().vitality;
         displayTheBattleReportForWhatHappenedToTheEnemyThisRound(enemiesHpBeforeCombat, enemiesHpAfterCombat);
 
-        if(isEnemyDead(mechanics.getEnemy())){
+        if (isEnemyDead(mechanics.getEnemy())) {
             giveEnemyDefeatedMessage(mechanics.getEnemy());
             mechanics.deleteEnemy();
             showCharacter(getPlayerCharacterInformation(mechanics.getCharacter()));
             showTheAscendButton();
             hideTheAttackButton();
             shop.addDrougets(40000);
-        } else {AIAttacks();} 
-    
-        if(isPlayerDead()){
+        } else { AIAttacks(); }
+
+        if (isPlayerDead()) {
             givePlayerDefeatedMessage(mechanics.getCharacter());
             showEnemy(getPlayerCharacterInformation(mechanics.getEnemy()));
             hideTheAttackButton();
         }
     }
 
-    buyTab(){
+    buyTab() {
         let tabToBeHidden = document.getElementById("buy");
         let firstTabToBeShown = document.getElementById("levelUp");
         let secondTabToBeShown = document.getElementById("sell");
@@ -144,7 +145,7 @@ export default class Display{
 
     }
 
-    levelUpTab(){
+    levelUpTab() {
         let tabToBeHidden = document.getElementById("levelUp");
         let firstTabToBeShown = document.getElementById("buy");
         let secondTabToBeShown = document.getElementById("sell");
@@ -158,7 +159,7 @@ export default class Display{
         displayExperience();
     }
 
-    sellTab(){
+    sellTab() {
         let tabToBeHidden = document.getElementById("sell");
         let firstTabToBeShown = document.getElementById("levelUp");
         let secondTabToBeShown = document.getElementById("buy");
@@ -172,15 +173,15 @@ export default class Display{
         displayCurrency("currency2");
     }
 
-    allocateLevelUpPoint(string){
+    allocateLevelUpPoint(string) {
         mechanics.apply_Level_Up_Points(string);
         displayCharactersStats(getPlayerCharacterInformation(mechanics.getCharacter()));
         ifOutOfPoints_HideWindow();
     }
 
-    requestToBuyItem(string){
+    requestToBuyItem(string) {
         let item = itemController.getItem(string);
-        if (shop.canBuy(item)){
+        if (shop.canBuy(item)) {
             shop.buyItem(item);
             displayCurrency("currency1");
             itemController.addItemToBag(item);
@@ -191,7 +192,7 @@ export default class Display{
         }
     }
 
-    requestToSellItem(string){
+    requestToSellItem(string) {
         let item = itemController.getItem(string);
         shop.sellItem(item);
         displayCurrency("currency1");
@@ -200,44 +201,47 @@ export default class Display{
         this.closeItemDescriptionSellButton();
     }
 
-    showItemDescription(string){
+    showItemDescription(string) {
         displayItemDescription(string);
     }
 
-    showBagsItemDescription(string){
+    showBagsItemDescription(string) {
         displayBagsItemDescription(string);
     }
 
-    showItemDescriptionInHome(string){
+    showItemDescriptionInHome(string) {
         displayItemDescriptionInHome(string);
         document.getElementById("equippedItemsInHome").style.display = "none"
     }
 
-    closeDescription(){
+    showEquippedItemDescription(string) {
+        displayEquippedItemDescription(string)
+        closeBoughtenItemsDescription();
+    }
+
+    closeDescription() {
         document.getElementById("itemDescription").style.display = "none"
         document.getElementById("closeItemDescription").style.display = "none"
     }
 
-    closeDescriptionInHome(){
-        document.getElementById("itemDescriptionInHome").style.display = "none"
-        document.getElementById("closeItemDescriptionInHome").style.display = "none"
-        document.getElementById("equippedItemsInHome").style.display = "block"
+    closeDescriptionInHome() {
+        closeBoughtenItemsDescription();
     }
 
-    closeEquippedItemDescriptionInHome(){
+    closeEquippedItemDescriptionInHome() {
         document.getElementById("equippedItemDescriptionInHome").style.display = "none"
         document.getElementById("closeEquippedItemDescriptionInHome").style.display = "none"
         document.getElementById("equippedItemsInHome").style.display = "block"
     }
 
-    closeItemDescriptionSellButton(){
+    closeItemDescriptionSellButton() {
         document.getElementById("itemDescriptionSellButton").style.display = "none"
         document.getElementById("closeItemDescriptionSellButton").style.display = "none"
     }
 
-    equip(string){
+    equip(string) {
         let item = itemController.getItem(string);
-        if (mechanics.isEquippable(item)){
+        if (mechanics.isEquippable(item)) {
             mechanics.equip(item);
             itemController.removeItemFromBag(item);
             showCharacter(getPlayerCharacterInformation(mechanics.getCharacter()));
@@ -245,13 +249,14 @@ export default class Display{
             displayBagInHome();
             hideItemDescriptionInHome();
             displayEquippedGear();
+            closeBoughtenItemsDescription();
         } else {
             alert("Area already equipped");
         }
 
     }
 
-    unequip(string){
+    unequip(string) {
         let item = itemController.getItem(string);
         mechanics.unequip(item);
         itemController.addItemToBag(item);
@@ -263,38 +268,42 @@ export default class Display{
         displayEquippedGear();
     }
 
-    showEquippedItemDescription(string){
-        displayEquippedItemDescription(string)
-    }
+
 }
 
-function populateBuyableOptions(){
+function closeBoughtenItemsDescription() {
+    document.getElementById("itemDescriptionInHome").style.display = "none";
+    document.getElementById("closeItemDescriptionInHome").style.display = "none";
+    document.getElementById("equippedItemsInHome").style.display = "block";
+}
+
+function populateBuyableOptions() {
     let list = itemController.getAllCurrentlyBuyableOptions();
     let source = document.getElementById("displayItemInBag").innerHTML;
     let template = Handlebars.compile(source);
     let html
     html = template();
     document.getElementById("buyableOption").innerHTML = html;
-    for (let item in list){
+    for (let item in list) {
         let html = template(list[item]);
         document.getElementById("buyableOption").innerHTML += html;
     }
 }
 
-function displayBag(){
+function displayBag() {
     let list = itemController.getAllItemsInBag();
     let source = document.getElementById("displayItemInBag").innerHTML;
     let template = Handlebars.compile(source);
     let html
     html = template();
     document.getElementById("bagInShop").innerHTML = html;
-    for (let item in list){
+    for (let item in list) {
         let html = template(list[item]);
         document.getElementById("bagInShop").innerHTML += html;
     }
 }
 
-function displayEquippedGear(){
+function displayEquippedGear() {
     document.getElementById("equippedItemsInHome").style.display = "block"
     let source = document.getElementById("displayItemInBag").innerHTML;
     let template = Handlebars.compile(source);
@@ -303,18 +312,18 @@ function displayEquippedGear(){
     let html
     html = template();
     document.getElementById("equippedItemsInHome").innerHTML = html;
-    for(let item in list){
+    for (let item in list) {
         html = template(list[item]);
         document.getElementById("equippedItemsInHome").innerHTML += html;
     }
 }
 
-function displayEquippedItemDescription(string){
+function displayEquippedItemDescription(string) {
     let listOfGear = mechanics.getEquippedGear();
     let source = document.getElementById("displayEquippedItemDescription").innerHTML;
     let template = Handlebars.compile(source);
-    for (let itemInList in listOfGear){
-        if (string == listOfGear[itemInList].getName()){
+    for (let itemInList in listOfGear) {
+        if (string == listOfGear[itemInList].getName()) {
             let html = template(listOfGear[itemInList]);
             document.getElementById("equippedItemDescriptionInHome").innerHTML = html;
         }
@@ -324,7 +333,7 @@ function displayEquippedItemDescription(string){
     document.getElementById("closeEquippedItemDescriptionInHome").style.display = "block"
 }
 
-function displayItemDescription(string){
+function displayItemDescription(string) {
     let item = itemController.getItem(string);
     let source = document.getElementById("displayItemDescription").innerHTML;
     let template = Handlebars.compile(source);
@@ -337,7 +346,7 @@ function displayItemDescription(string){
 
 }
 
-function displayBagsItemDescription(string){
+function displayBagsItemDescription(string) {
     let item = itemController.getItem(string);
     let source = document.getElementById("displayBagsItemDescription").innerHTML;
     let template = Handlebars.compile(source);
@@ -348,7 +357,7 @@ function displayBagsItemDescription(string){
     document.getElementById("closeItemDescriptionSellButton").style.display = "block"
 }
 
-function displayItemDescriptionInHome(string){
+function displayItemDescriptionInHome(string) {
     let item = itemController.getItem(string);
     let source = document.getElementById("displayItemDescriptionInHome").innerHTML;
     let template = Handlebars.compile(source);
@@ -358,30 +367,30 @@ function displayItemDescriptionInHome(string){
     document.getElementById("closeItemDescriptionInHome").style.display = "block"
 }
 
-function hideItemDescriptionInHome(){
+function hideItemDescriptionInHome() {
     document.getElementById("equippedItemDescriptionInHome").style.display = "none"
     document.getElementById("closeEquippedItemDescriptionInHome").style.display = "none"
 }
 
-function hideLevelUpButton(){
-    document.getElementById("levelUpButton").style.display = "none"
+function hideLevelUpCharacterButton() {
+    document.getElementById("levelUpCharacter").style.display = "none"
 }
 
-function showLevelUpButton(){
-    document.getElementById("levelUpButton").style.display = "block"
+function showLevelUpCharacterButton() {
+    document.getElementById("levelUpCharacter").style.display = "block"
 }
 
 
 
-function displayBagInHome(){
+function displayBagInHome() {
     let items = itemController.getAllItemsInBag();
     let source = document.getElementById("displayItemInBag").innerHTML;
     let template = Handlebars.compile(source);
     let html;
     html = template();
     document.getElementById("possesedItems").innerHTML = html;
-    if(items.length > 0){
-        for(let item in items){
+    if (items.length > 0) {
+        for (let item in items) {
             html = template(items[item]);
             document.getElementById("possesedItems").innerHTML += html;
         }
@@ -392,43 +401,43 @@ function ifOutOfPoints_HideWindow() {
     if (mechanics.isNotAbleToSpendAnotherPoint()) {
         hideAttributeWindow();
         hideButtonDisplay();
-        showLevelUpButton();
+        showLevelUpCharacterButton();
     }
 }
 
-function showButtonDisplay(){
+function showButtonDisplay() {
     document.getElementById("buttonDisplay").style.display = "block";
 }
 
-function hideButtonDisplay(){
+function hideButtonDisplay() {
     document.getElementById("buttonDisplay").style.display = "none";
 }
 
-function showAttributeDisplay(){
+function showAttributeDisplay() {
     document.getElementById("attributeDisplay").style.display = "block";
     displayCharactersStats(getPlayerCharacterInformation(mechanics.getCharacter()));
 }
 
-function hideAttributeWindow(){
+function hideAttributeWindow() {
     document.getElementById("attributeDisplay").style.display = "none";
 }
 
-function giveErrorMessage(string){
-    if (string == "Insufficient Experiance Points"){
+function giveErrorMessage(string) {
+    if (string == "Insufficient Experiance Points") {
         alert("Insufficient Experiance Points");
     }
 }
 
 // Display Functions
 
-function displayNewCharacterRequiredMessage(){
+function displayNewCharacterRequiredMessage() {
     let source = document.getElementById("needNewCharacterMessage").innerHTML;
     let template = Handlebars.compile(source);
     let html = template();
     document.getElementById("displayCharacterDivForHome").innerHTML = html;
 }
 
-function displayTower(){
+function displayTower() {
     let towerInfo = tower.getTowerInfo();
     let source = document.getElementById("displayTowerTemplate").innerHTML;
     let template = Handlebars.compile(source);
@@ -441,7 +450,7 @@ function displayNewPage(pageToBeHidden, pageToBeShown) {
     pageToBeShown.style.display = "block";
 }
 
-function switchTab(tabToBeHidden, firstTabToHide, secondTabToHide){
+function switchTab(tabToBeHidden, firstTabToHide, secondTabToHide) {
     tabToBeHidden.style.display = "none";
     firstTabToHide.style.display = "block";
 }
@@ -452,13 +461,13 @@ function displayTheBattleReportForWhatHappenedToTheCharacterThisRound(characters
     putTheReportIntoTheTextBox(battleStatistics);
 }
 
-function displayTheBattleReportForWhatHappenedToTheEnemyThisRound(enemiesHpBeforeCombat, enemiesHpAfterCombat) { 
+function displayTheBattleReportForWhatHappenedToTheEnemyThisRound(enemiesHpBeforeCombat, enemiesHpAfterCombat) {
     let theDamage = enemiesHpBeforeCombat - enemiesHpAfterCombat;
     let battleStatistics = { nameOfAttacker: mechanics.getCharacter().get_Name(), nameOfDefender: mechanics.getEnemy().get_Name(), damage: theDamage };
     putTheReportIntoTheTextBox(battleStatistics);
 }
 
-function displayEndOfGameMessage(){
+function displayEndOfGameMessage() {
     let pageToBeHidden = document.getElementById("battleScreen");
     let pageToBeShown = document.getElementById("homePage");
     cleanAndResetBattlePage();
@@ -489,7 +498,7 @@ function givePlayerDefeatedMessage(character) {
 
 // Clean-Up Functions
 
-function clearTextArea(){
+function clearTextArea() {
     let source = document.getElementById("battleReportReset").innerHTML;
     let template = Handlebars.compile(source);
     let html = template();
@@ -510,7 +519,7 @@ function hideTheAscendButtonInTheBattleScreen() {
     ascendButton.style.display = "none";
 }
 
-function hideTheAscendButtonInTheHomePage(){
+function hideTheAscendButtonInTheHomePage() {
     let ascendButton = document.getElementById("goToNextRoundOfCombat");
     ascendButton.style.display = "none";
 }
@@ -531,7 +540,7 @@ function showTheAscendButton() {
     ascendButton.style.display = "block";
 }
 
-function showTheHomeScreenAscendButton(){
+function showTheHomeScreenAscendButton() {
     let ascendButton = document.getElementById("goToNextRoundOfCombat");
     ascendButton.style.display = "block";
 }
@@ -583,8 +592,9 @@ function getPlayerCharacterInformation(character) {
         willpower: character.get_All_Attributes().willpower,
         intimidation: character.get_All_Attributes().intimidation,
         experiance: character.get_Experience(),
-        levelUpPoints: character.get_Level_Up_Points()};
-        return playerCharactersStats;
+        levelUpPoints: character.get_Level_Up_Points()
+    };
+    return playerCharactersStats;
 }
 
 function isEnemyDead(enemy) {
@@ -595,31 +605,33 @@ function isPlayerDead() {
     return mechanics.getCharacter().get_All_Attributes().vitality <= 0;
 }
 
-function putTheReportIntoTheTextBox(battleStatistics){
+function putTheReportIntoTheTextBox(battleStatistics) {
     let source = document.getElementById("battleReportTemplate").innerHTML;
     let template = Handlebars.compile(source);
     let html = template(battleStatistics);
     document.getElementById("textField").innerHTML += html;
 }
 
-function displayExperience(){
+function displayExperience() {
     let source = document.getElementById("displayExperience").innerHTML;
     let template = Handlebars.compile(source);
-    let numberOfDrouges = {experience: mechanics.getCharacter().get_Experience(),
-        neededExperienceForNextLevel: mechanics.experienceNeededToLevelUp()};
+    let numberOfDrouges = {
+        experience: mechanics.getCharacter().get_Experience(),
+        neededExperienceForNextLevel: mechanics.experienceNeededToLevelUp()
+    };
     let html = template(numberOfDrouges);
     document.getElementById("experience").innerHTML = html;
 }
 
-function displayCurrency(string){
+function displayCurrency(string) {
     let source = document.getElementById("displayCurrency").innerHTML;
     let template = Handlebars.compile(source);
-    let numberOfDrouges = {drougets: shop.getDrougets()};
+    let numberOfDrouges = { drougets: shop.getDrougets() };
     let html = template(numberOfDrouges);
     document.getElementById(string).innerHTML = html;
-} 
+}
 
-function displayCharactersStats(character){
+function displayCharactersStats(character) {
     let source = document.getElementById("displayCharacterStatsTemplate").innerHTML;
     let template = Handlebars.compile(source);
     let html = template(character);

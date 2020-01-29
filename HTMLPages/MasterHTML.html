@@ -46,7 +46,7 @@
         <tr>
           <th>
             <div>
-              <input id="name" type="text" placeholder="What is your name"><br>
+              <input id="name" type="text" placeholder="What is your name" autocomplete="off"><br>
               <ul>
                 <select id="characterList">
                   <option>Select your character</option>
@@ -72,24 +72,20 @@
       <ul>
         <li class="sideMenu" id="createCharacter">Create Character</li>
         <li class="sideMenu" id="shop">Shop</li>
-        <!-- <li class="sideMenu" id="save">Save Game</li> NEEDS IMPLIMENTED -->
       </ul>
     </div>
-    <div class="displayCharacterDiv" id="displayCharacterDivForHome"></div>
-    <div id="bagInHomeMenu">
+    <div class="entityDisplayDiv" id="displayCharacterDivForHome"></div>
+    <div cla id="bagInHomeMenu">
       <p id="nameOfBag">Bag</p>
-      <div id="possesedItems"></div>
+      <div class="HomePageItemDescription" id="possesedItems"></div>
     </div>
-    <div id="itemDescriptionInHome" style="display: none" ></div>
-    <div id="closeItemDescriptionInHome" style="display: none;"></div>
-
-    <div id="equippedItemsInHome"></div>
-    <div id="equippedItemDescriptionInHome" style="display: none" ></div>
-    <div id="closeEquippedItemDescriptionInHome" style="display: none;"></div>
-
-    <div id="beginCombat">
-      <button id="goToNextRoundOfCombat">Ascend</button>
+    <div class="HomePageItemDescription" id="itemDescriptionInHome" style="display: none"></div>
+    <div class="HomePageCloseItemDescriptionSquare" id="closeItemDescriptionInHome" style="display: none;"></div>
+    <div class="HomePageItemDescription" id="equippedItemDescriptionInHome" style="display: none"></div>
+    <div class="HomePageCloseItemDescriptionSquare" id="closeEquippedItemDescriptionInHome" style="display: none;">
+    <div class="HomePageItemDescription" id="equippedItemsInHome"></div>
     </div>
+    <div id="beginCombat"><button id="goToNextRoundOfCombat">Ascend</button></div>
   </div>
 
   <div id="shopPage" style="display:none">
@@ -99,14 +95,13 @@
         <li class="sideMenu" id="homeP">Home</li>
       </ul>
     </div>
-    <div id="shapPageDiv">
-      <button id="buy">Buy</button>
-      <!-- <button id="sell">Sell</button> -->
-      <button id="levelUp" style="display: none;">Level Up</button>
+    <div id="shopPageDiv">
+      <button class="menu" id="buy">Buy Menu</button>
+      <button class="menu" id="levelUp" style="display: none;">Level Up Menu</button>
 
       <div id="levelUpMenu">
-        <button id="levelUpButton" type="levelUp">Level Up</button>
-        <div id="experience"></div>
+        <button id="levelUpCharacter" type="levelUp">Level Up</button>
+        <div class="currency" id="experience"></div>
         <div id="attributeDisplay" style="display: none;"></div>
         <div id="buttonDisplay" style="display: none;">
           <button class="levelUpPointButtons" value="vitality">Vitality +1</button>
@@ -118,31 +113,22 @@
           <button class="levelUpPointButtons" value="intimidation">intimidation +1</button>
         </div>
       </div>
+
       <div id="buyMenu" style="display: none;">
         <div class="currency" id="currency1"></div>
-        <div class="buyAndSellMenues" id="buyableOption"></div>
+        <div id="buyableOption"></div>
         <div class="shopBag" id="bagInShop"><p id="nameOfBag">Bag</p></div>
-        <div class="itemDescription" id="itemDescription" style="display: none;"></div>
-        <div class="itemDescription" id="itemDescriptionSellButton" style="display: none;"></div>
-        <div id="closeItemDescription" style="display: none;"></div>
+        <div class="ShopPageItemDescription" id="itemDescription" style="display: none;"></div>
+        <div class="ShopPageItemDescription" id="itemDescriptionSellButton" style="display: none;"></div>
+        <div class="closeItemDescription" id="closeItemDescription" style="display: none;"></div>
         <div class="closeItemDescription" id="closeItemDescriptionSellButton" style="display: none;"></div>
       </div>
-      <!-- <div id="sellMenu" style="display: none;">
-        <div class="currency" id="currency2"></div>
-        <div class="buyAndSellMenues" id="sellableOption">
-        </div>
-        <div class="shopBag" id="bagInShop">
-          <p id="nameOfBag">Bag</p>
-        </div>
-        <div id="itemDescriptionInSellMenu" style="display: none;"></div>
-        <div id="closeItemDescriptionInSellMenu" style="display: none;"></div>
-      </div> -->
     </div>
   </div>
 
   <div id="battleScreen" style="display: none">
-    <div class="displayCharacterDiv" id="displayCharacterDivForBattleScreen"></div>
-    <div class="displayEnemyDiv" id="displayEnemyDivForBattleScreen"></div>
+    <div class="entityDisplayDiv" id="displayCharacterDivForBattleScreen"></div>
+    <div class="entityDisplayDiv" id="displayEnemyDivForBattleScreen"></div>
     <div id="textField"></div>
     <div id="towerDisplay"></div>
     <button id="attackButton">Attack</button>
@@ -153,12 +139,14 @@
 
 
 
-  <!-- TEMPLATES -->
+  <!-------------- TEMPLATES -------------->
+
+  <!-- Display Stat -->
 
   <script id="displayCharacterTemplate" type="text/x-handlebars-template">
       <div>
-        <h1 id="displayCharacterTemplateCharacterName">{{name}}</h1>
-        <div id="displayCharacterTemplateBody">
+        <h1 class="templateName">{{name}}</h1>
+        <div class="templateBody">
           Level: {{level}}<br>
           Vitality: {{hp}}<br>
           Attack: {{attack}}<br>
@@ -189,8 +177,8 @@
 
   <script id="displayEnemyTemplate" type="text/x-handlebars-template">
       <div>
-        <h1 id="displayEnemyTemplateCharacterName">{{name}}</h1>
-        <div id="displayEnemyTemplateBody">
+        <h1 class="templateName">{{name}}</h1>
+        <div class="templateBody">
           Level: {{level}}<br>
           Vitality: {{hp}}<br>
           Experiance: {{experiance}}
@@ -198,100 +186,92 @@
       </div>
     </script>
 
+  <!-- Messages -->
+
   <script id="enemyWasDefeated" type="text/x-handlebars-template">
-      <div><h1 class="defeatedMessages" id="displayEnemyTemplateCharacterName">{{name}} is dead</h1></div>
-    </script>
+    <div><h1 class="defeatedMessages" id="displayEnemyTemplateCharacterName">{{name}} is dead</h1></div>
+  </script>
 
   <script id="playerWasDefeated" type="text/x-handlebars-template">
-      <div>
-        <h1 class="defeatedMessages" id="displayCharacterTemplateCharacterName">{{name}} is dead</h1>
-      </div>
-    </script>
+    <div><h1 class="defeatedMessages" id="displayCharacterTemplateCharacterName">{{name}} is dead</h1></div>
+  </script>
 
   <script id="needNewCharacterMessage" type="text/x-handlebars-template">
-      <div>
-        <h1 class="defeatedMessages" id="displayCharacterTemplateCharacterName">You'r character was killed.</h1>
-      </div>
-    </script>
+    <div><h1 class="defeatedMessages" id="displayCharacterTemplateCharacterName">You'r character was killed.</h1></div>
+  </script>
+
+  <!-- Text Box -->
 
   <script id="battleReportTemplate" type="text/x-handlebars-template">
-      <div>
-        <h1 id="displayBattleReport">{{nameOfAttacker}} attacked {{nameOfDefender}} and delt {{damage}} damage</h1>
-      </div>
-    </script>
+    <div><h1 id="displayBattleReport">{{nameOfAttacker}} attacked {{nameOfDefender}} and delt {{damage}} damage</h1></div>
+  </script>
 
   <script id="battleReportReset" type="text/x-handlebars-template">
-      <div>
-        <h1></h1>
-      </div>
-    </script>
+    <div><h1></h1></div>
+  </script>
+
+  <!-- Tower Counter -->
 
   <script id="displayTowerTemplate" type="text/x-handlebars-template">
-      <div>
-        <h1>Floor: {{floor}} Wave: {{wave}} </h1>
-      </div>
-    </script>
+    <div><h1> Floor: {{floor}} Wave: {{wave}} </h1></div>
+  </script>
+
+  <!-- Display the Courancies -->
 
   <script id="displayExperience" type="text/x-handlebars-template">
-      <div>
-        <p>Experience {{experience}} / {{neededExperienceForNextLevel}}</p>
-      </div>
-    </script>
+    <div><p>Experience {{experience}} / {{neededExperienceForNextLevel}}</p></div>
+  </script>
 
   <script id="displayCurrency" type="text/x-handlebars-template">
-      <div>
-        <p>Drougets: {{drougets}}</p>
-      </div>
-    </script>
+    <div><p>Drougets: {{drougets}}</p></div>
+  </script>
+
+  <!-- Display Items in the Bag -->
 
   <script id="displayItemInBag" type="text/x-handlebars-template">
-      <div>
-          <li>{{name}}</li>
-      </div>
-    </script>
+    <div><li>{{name}}</li></div>
+  </script>
+
+  <!-- Item Descriptions -->
 
   <script id="displayItemDescription" type="text/x-handlebars-template">
       <div>
         <h1 id="nameOfItem">{{name}}</h1>
-        <li id="area">Item Type: {{area}}</li>
-        <li class="description"> Description:</li>
-        <li class="description">&emsp; {{description}}</li>
+        <li id="area"> &nbsp; Item Type: &nbsp; {{area}}</li>
+        <li class="description"> &nbsp; Description: &ensp;{{description}}
         <li id="price"> Sell Price: {{price}}</li>
-      </div>
-      <button id="buyItem">buy</button>
-    </script>
-
-    <script id="displayBagsItemDescription" type="text/x-handlebars-template">
-      <div>
-        <h1 id="nameOfItem">{{name}}</h1>
-        <li id="area">Item Type: {{area}}</li>
-        <li class="description"> Description:</li>
-        <li class="description">&emsp; {{description}}</li>
-        <li id="price"> Sell Price: {{price}}</li>
-        <button class="buyItem" id="sellItem">Sell</button>
+        <button class="buySellButtons" id="buyItem">buy</button>
       </div>
     </script>
 
-    <script id="displayItemDescriptionInHome" type="text/x-handlebars-template">
+  <script id="displayBagsItemDescription" type="text/x-handlebars-template">
       <div>
         <h1 id="nameOfItem">{{name}}</h1>
-        <li id="area">Item Type: {{area}}</li>
-        <li class="description"> Description:</li>
-        <li class="description">&emsp; {{description}}</li>
+        <li id="area"> &nbsp; Item Type: &nbsp; {{area}}</li>
+        <li class="description"> &nbsp; Description: &ensp;{{description}}
         <li id="price"> Sell Price: {{price}}</li>
+        <button class="buySellButtons" id="sellItem">Sell</button>
       </div>
-      <button id="equip">Equip</button>
     </script>
 
-    <script id="displayEquippedItemDescription" type="text/x-handlebars-template">
+  <script id="displayItemDescriptionInHome" type="text/x-handlebars-template">
       <div>
         <h1 id="nameOfItem">{{name}}</h1>
-        <li id="area">Item Type: {{area}}</li>
-        <li class="description"> Description:</li>
-        <li class="description">&emsp; {{description}}</li>
+        <li id="area"> &nbsp; Item Type: &nbsp; {{area}}</li>
+        <li class="description"> &nbsp; Description: &ensp;{{description}}
         <li id="price"> Sell Price: {{price}}</li>
+        <button class="equipUnequipButtons" id="equip">Equip</button>
       </div>
-      <button id="unequip">UnEquip</button>
+    </script>
+
+  <script id="displayEquippedItemDescription" type="text/x-handlebars-template">
+      <div>
+        <h1 id="nameOfItem">{{name}}</h1>
+        <li id="area"> &nbsp; Item Type: &nbsp; {{area}}</li>
+        <li class="description"> &nbsp; Description: &ensp;{{description}}
+        <li id="price"> Sell Price: {{price}}</li>
+        <button class="equipUnequipButtons" id="unequip">UnEquip</button>
+      </div>
     </script>
 
 </body>
