@@ -6,38 +6,39 @@ let equipment = new Equipment;
 
 let assert = chai.assert;
 
-describe("Equipment Class", function(){
+describe("Equipment Class", function () {
 
-    it("Can equip a full set of gear", function(){
+    it("Can equip a full set of gear", function () {
         equipAllGearSlots();
         assertAllGearSlotsAreEquippedCorrectly();
-    })  
-    
-    it("Can un-equip a full set of gear", function(){
+    })
+
+    it("Can un-equip a full set of gear", function () {
         unequipAllGearSlots();
         assertAllGearSlotsAreEmpty();
     })
 
-    it("Get bonus Stats of equipped weapon", function(){
+    it("Get bonus Stats of equipped weapon", function () {
         equipAllGearSlots();
         let stats = equipment.getStats();
-        assert(stats.attack == 10);
+        console.log(stats)
+        assert(stats.attack == 20);
     })
 
-    it("Get bonus Stats of unequipped weapon", function(){
+    it("Get bonus Stats of unequipped weapon", function () {
         unequipAllGearSlots();
         let stats = equipment.getStats();
         assert(stats.attack == 0);
     })
 
-    it("Knows if an area is already equipped - Area equipped", function(){
+    it("Knows if an area is already equipped - Area equipped", function () {
         let item = catalog.getItem("Rayashk");
         equipAllGearSlots();
         assert(equipment.isEquippable(item) == false);
         unequipAllGearSlots();
         assert(equipment.isEquippable(item) == true);
     })
-    it("Knows if an area is already equipped - Area not equipped", function(){
+    it("Knows if an area is already equipped - Area not equipped", function () {
         let item = catalog.getItem("Rayashk");
         unequipAllGearSlots();
         assert(equipment.isEquippable(item) == true);

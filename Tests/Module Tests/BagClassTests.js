@@ -4,8 +4,8 @@ import ItemCatalog from "../../Modules/Item/ItemCatalogClass.js";
 let bag = new Bag;
 let catalog = new ItemCatalog
 
-describe("Bag Class", function(){
-    it("Can Remove requested Item", function(){
+describe("Bag Class", function () {
+    it("Can Remove requested Item", function () {
         let item1 = catalog.getItem("Rayashk");
         let item2 = catalog.getItem("Legendary Fire head");
         let item3 = catalog.getItem("Rayashk");
