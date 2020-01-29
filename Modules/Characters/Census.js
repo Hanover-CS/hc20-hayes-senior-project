@@ -1,5 +1,3 @@
-
-import FatZombie from "./Non-Playable Characters/Bosses/Floor10Bosses/FatZombie.js";
 import Skeleton from "./Non-Playable Characters/Skeleton.js";
 import Zombie from "./Non-Playable Characters/Zombie.js";
 import Elemental from "./Playable Characters/Elementals.js";
@@ -7,7 +5,6 @@ import Elemental from "./Playable Characters/Elementals.js";
 let elemental = new Elemental;
 let skeleton = new Skeleton;
 let zombie = new Zombie;
-let fatZombie = new FatZombie;
 
 export default class Census {
     constructor() { }
@@ -29,9 +26,6 @@ let census = {
 
     // Skeleton Class
     "Skeleton": skeleton.getSkeleton(),
-
-    // Floor 10 Bosses
-    "Fat Zombie": fatZombie.getFatZombie("Fat Zombie")
 }
 
 let levelUp_Guides = {

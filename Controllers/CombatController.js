@@ -78,7 +78,7 @@ export default class Mechanics{
     }
 
     createEnemy(towerFloor, towerWave){
-        let enemiesName = basicCombat.generateEnemy(towerFloor, towerWave);
+        let enemiesName = basicCombat.generateEnemy();
         let enemy = new Character(enemiesName, enemiesName)
         basicCombat.scaleEnemy(enemy, towerFloor, towerWave);
         listOfEnemies.push(enemy);

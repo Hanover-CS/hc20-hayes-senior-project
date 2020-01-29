@@ -37,94 +37,12 @@ export default class BasicCombat extends Combat {
         enemy.add_Experience(num);
     }
 
-    generateEnemy(floor, wave) {
+    generateEnemy() {
         let randomNumber = Math.random();
-
-        if (floor % 10 == 0 && wave == 3) {
-            //return the appropreate boss
-        }
-        if (floor > 0 && floor <= 10) {
-            if (randomNumber <= .5) {
-                return "Rotting Zombie";
-            }
-            else {
-                return "Skeleton";
-            }
-        }
-        else if (floor > 10 && floor <= 20) {
-            if (randomNumber <= .5) {
-                return "Rotting Zombie";
-            }
-            else {
-                return "Skeleton";
-            }
-        }
-        else if (floor > 20 && floor <= 30) {
-            if (randomNumber <= .5) {
-                return "Rotting Zombie";
-            }
-            else {
-                return "Skeleton";
-            }
-        }
-        else if (floor > 30 && floor <= 40) {
-            if (randomNumber <= .5) {
-                return "Rotting Zombie";
-            }
-            else {
-                return "Skeleton";
-            }
-        }
-        else if (floor > 40 && floor <= 50) {
-            if (randomNumber <= .5) {
-                return "Rotting Zombie";
-            }
-            else {
-                return "Skeleton";
-            }
-        }
-        else if (floor > 50 && floor <= 60) {
-            if (randomNumber <= .5) {
-                return "Rotting Zombie";
-            }
-            else {
-                return "Skeleton";
-            }
-        }
-        else if (floor > 60 && floor <= 70) {
-            if (randomNumber <= .5) {
-                return "Rotting Zombie";
-            }
-            else {
-                return "Skeleton";
-            }
-        }
-        else if (floor > 70 && floor <= 80) {
-            if (randomNumber <= .5) {
-                return "Rotting Zombie";
-            }
-            else {
-                return "Skeleton";
-            }
-        }
-        else if (floor > 80 && floor <= 90) {
-            if (randomNumber <= .5) {
-                return "Rotting Zombie";
-            }
-            else {
-                return "Skeleton";
-            }
-        }
-        else if (floor > 90 && floor <= 100) {
-            if (randomNumber <= .5) {
-                return "Rotting Zombie";
-            }
-            else {
-                return "Skeleton";
-            }
-        }
+        if (randomNumber <= .5) return "Rotting Zombie";
+        return "Skeleton";
     }
-
+}
 
 function generateExperience(floor, wave) {
     let counter = 0;
@@ -136,4 +54,3 @@ function generateExperience(floor, wave) {
     counter += 100;
     return counter;
 }
-
