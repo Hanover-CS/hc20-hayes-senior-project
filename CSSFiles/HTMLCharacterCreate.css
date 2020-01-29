@@ -4,6 +4,7 @@
     font-family: fantasy;
     font-size: xx-large;
   }
+  /* Side Bar */
   .sidebar{
     position: fixed;
     width: 200px;
@@ -30,7 +31,7 @@
   }
  
   .sidebar .sideMenu:hover{
-    color: rgb(138, 16, 16);
+    color: rgb(90, 6, 6);
     cursor: pointer;
   }
 
@@ -38,7 +39,6 @@
     padding: 20px 5px;
     border-bottom: 1px solid rgba(100, 100, 100, 0.3);
   }
-
   
   .sidebar .toggle-btn {
     position: absolute;
@@ -57,20 +57,21 @@
     margin: 3px 0px;
   }
   .sidebar .toggle-btn span:hover {
-    background: rgb(138, 16, 16);
+    background: rgb(90, 6, 6);
     cursor: pointer;
   }
 
+  /* Game Background */
   body {
-    background-image: url('../th.jpg');
-    background-attachment: fixed;
+    background-image: url('../Capture2.PNG');
+    background-size: cover;
   }
 
   * {
     box-sizing: border-box;
   }
 
-/* ------------------------------------------------- */
+/* Select Character */
   
 #mainTable{
   color: #0f0f0f;
@@ -80,36 +81,45 @@
 
 #characterList{
   background: #0f0f0f;
+  border-style: groove;
+    border-color: rgb(90, 6, 6);
   color: gray;
   margin: 10px;
 }
+
 #characterList:hover{
-  color: rgb(138, 16, 16);
+  color: rgb(90, 6, 6); 
   cursor: pointer;
 }
 
+/* ------------------------ */
+
 #name{
-  color:  gray;
+  color: gray;
   background-color: #0f0f0f;
   border: solid gray 1px;
+  border-style: groove;
+  border-color: rgb(90, 6, 6);
 }
 #name:hover{
-  color:  rgb(138, 16, 16);
+  color:  rgb(90, 6, 6);
   cursor: pointer;
 }
+
+/* ------------------------ */
 #submitButton{
   color: gray;
   background-color: #0f0f0f;
   border: solid gray 1px;
+  border-style: groove;
+  border-color: rgb(90, 6, 6);
 }
 #submitButton:hover{
-  color: rgb(138, 16, 16);
+  color: rgb(90, 6, 6);
   cursor: pointer;
 }
 
 #submitButton:active{
   transform: translateY(4px);
 }
-
-/* --------------------------------------------------- */
   

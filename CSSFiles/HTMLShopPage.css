@@ -1,4 +1,4 @@
-#shapPageDiv {
+#shopPageDiv {
     height: 550px;
     width: 950px;
     background-color:#151719;
@@ -6,10 +6,12 @@
     left: 300px;
     top: 100px;
     border-style: groove;
-    border-color: gray;
+    border-color: rgb(90, 6, 6);
   }
 
-#levelUpButton {
+/* Level-Up character Button */
+
+#levelUpCharacter {
     padding: 5px;
     border: 5px;
     background-color: #151719;
@@ -18,25 +20,17 @@
     color: gray;
 }
 
-#levelUpButton:hover {
-  color: rgb(138, 16, 16);
+#levelUpCharacter:hover {
+  color: rgb(90, 6, 6);
   cursor: pointer;
 }
 
-#levelUpButton:active{
+#levelUpCharacter:active{
   transform: translateY(4px);
 }
-/* --------------------------------------------- */
+
+/* Currency Displays */
 .currency {
-  padding: 5px;
-    border: 5px;
-    background-color: #151719;
-    position: fixed;
-    top: 110px;
-    left: 320px;
-    color: gray;
-}
-#experience {
   padding: 5px;
   border: 5px;
   background-color: #151719;
@@ -46,36 +40,26 @@
   color: gray;
 }
 
-#levelUp {
+/* Shop Menu Tabs */
+
+.menu{
   padding: 5px;
   border: 5px;
   background: none;
   position: fixed;
-  top: 40px;
-  left: 727px;
   color: gray;
 }
-
-#sell {
-  padding: 5px;
-  border: 5px;
-  background: none;
-  position: fixed;
-  top: 520px;
-  left: 670px;
-  color: gray;
+#levelUp {
+  top: 40px;
+  left: 727px;
 }
 
 #buy {
-  padding: 5px;
-  border: 5px;
-  background: none;
-  position: fixed;
   top: 40px;
   left: 870px;
-  color: gray;
 }
 
+/* Level-Up application menu */
 #attributeDisplay{
   height: 380px;
   width: 350px;
@@ -84,7 +68,7 @@
   left: 50px;
   top: 60px;
   border-style: groove;
-  border-color: gray;
+  border-color: rgb(90, 6, 6);
 }
 
 #displayCharacterStatsBody{
@@ -107,30 +91,32 @@
   left: 50px;
   top: 5px;
   border-style: groove;
-  border-color: gray;
+  border-color: rgb(90, 6, 6);
 }
+
+/* Buttons Used for spending level-up points */
 
 .levelUpPointButtons {
   padding: 5px;
   border: 5px;
   border-style: groove;
-  border-color: gray;
+  border-color: rgb(90, 6, 6);
   background-color: #151719;
   position: relative;
   left: 5px;
   color: gray;
   font-size: large;
   list-style-type: none;
-  
 }
 
 .levelUpPointButtons:hover {
-  color: rgb(138, 16, 16);
+  color: rgb(90, 6, 6);
   cursor: pointer;
 }
-/* -------------------------------- */
 
-.buyAndSellMenues{
+/* Shops Buyable Options */
+
+#buyableOption{
   height: 450px;
   width: 350px;
   background-color:#151719;
@@ -138,24 +124,29 @@
   left: 50px;
   top: 60px;
   border-style: groove;
-  border-color: gray;
+  border-color: rgb(90, 6, 6);
   overflow-y: scroll;
 }
 
-.buyAndSellMenues :hover{
-  color: rgb(138, 16, 16);
+#buyableOption :hover{
+  color: rgb(90, 6, 6);
   cursor: pointer;
 }
 
-.buyAndSellMenues li{
+#buyableOption li{
   list-style-type: none;
   color: gray;
   text-align: center;
 }
 
-/* ---------------------- */
+/* Players Item Bag In The Store */
 
-#bagInShop{
+#nameOfBag{
+  color: gray;
+  text-align: center;
+}
+
+.shopBag{
   height: 450px;
   width: 350px;
   background-color:#151719;
@@ -163,11 +154,8 @@
   left: 850px;
   top: 165px;
   border-style: groove;
-  border-color: gray;
-}
-
-#nameOfBag{
-  color: gray;
+  border-color: rgb(90, 6, 6);
+  overflow-y: scroll;
   text-align: center;
 }
 
@@ -176,19 +164,15 @@
   color: gray;
   font-size: xx-large;
 }
-.shopBag{
-  overflow-y: scroll;
-  text-align: center;
-}
 
 .shopBag li:hover{
-  color: rgb(138, 16, 16);
+  color: rgb(90, 6, 6);
   cursor: pointer;
 }
 
-/* --------------------------------- */
+/* Description of item selected in the store */
 
-.itemDescription{
+.ShopPageItemDescription{
   height: 450px;
   width: 350px;
   background-color:#151719;
@@ -196,21 +180,13 @@
   left: 850px;
   top: 165px;
   border-style: groove;
-  border-color: gray;
+  border-color: rgb(90, 6, 6);
   list-style-type: none;
   color: gray;
 }
 
-/* ---------------- */
-#closeItemDescription{
-  height: 20px;
-  width: 20px;
-  bottom: 370px;
-  left: 860px;
-  background-color:gray;
-  position: relative;
-  font-size: medium;
-}
+/* Squre to press to close item description */
+
 .closeItemDescription{
   height: 20px;
   width: 20px;
@@ -220,6 +196,8 @@
   position: relative;
   font-size: medium;
 }
+
+/* Item Description Formatting */
 
 .description{
   font-size: large;
@@ -231,11 +209,22 @@
 
 #nameOfItem{
   text-align: center;
-  color: rgb(138, 16, 16);
+  color: rgb(90, 6, 6);
 }
 
 #area{
   font-size: large;
 }
 
-/* ---------------- */
+/* The Buy & Sell Buttons */
+
+.buySellButtons{
+  height: fit-content;
+  width: fit-content;
+  left: 750px;
+  bottom: 150px;
+  background-color:gray;
+  position: fixed;
+  font-size: xx-large;
+  color: aqua;
+}

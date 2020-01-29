@@ -1,10 +1,11 @@
+/* Decend Button & Related */
 #decendButton{
     width: fit-content;
     position: fixed;
     left: 900px;
     top: 550px;
     padding: 3px;
-
+    border-color: rgb(90, 6, 6);
     background-color: #151719;
     color: gray;
     border-style: groove;
@@ -12,14 +13,17 @@
 
 #decendButton:hover{
     cursor: pointer;
-    color: rgb(138, 16, 16);
+    color: rgb(90, 6, 6);
 }
+
+/* Text Field & Related */
 #textField{
     position: fixed;
     width: 500px;
     height: 200px;
     top: 300px;
     left: 525px;
+    border-color: rgb(90, 6, 6);
     background-color: #151719;
     color: gray;
     border-style: groove;
@@ -30,6 +34,8 @@
     font-family: 'Times New Roman', Times, serif;
 }
 
+/* Ascend Button & Related */
+
 #ascendFromBattleScreen{
     position: fixed;
     width: fit-content;
@@ -39,12 +45,15 @@
     background-color: #151719;
     color: gray;
     border-style: groove;
+    border-color: rgb(90, 6, 6);
 }
 
 #ascendFromBattleScreen:hover{
     cursor: pointer;
-    color: rgb(138, 16, 16);
+    color: rgb(90, 6, 6);
 }
+
+/* Attack Button & Related */
 
 #attackButton{
     position: fixed;
@@ -54,13 +63,15 @@
     background-color: #151719;
     color: gray;
     border-style: groove;
+    border-color: rgb(90, 6, 6);
 }
 
 #attackButton:hover{
     cursor: pointer;
-    color: rgb(138, 16, 16);
+    color: rgb(90, 6, 6);
 }
 
+/* Floor Counter */
 #towerDisplay{
     position: fixed;
     left: 700px;
@@ -69,9 +80,14 @@
     height: fit-content;
     padding: 3px;
     border-style: groove;
+    border-color: rgb(90, 6, 6);
     background-color: #151719;
     color: gray;
-    ;
 }
 
+/* X was Defeated Message */
 
+.defeatedMessages{
+    color: rgb(110, 183, 185);
+    text-align: center;
+}

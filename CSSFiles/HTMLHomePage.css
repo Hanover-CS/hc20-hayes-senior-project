@@ -1,4 +1,5 @@
-.displayCharacterDiv {
+/* Display Div Structure */
+.entityDisplayDiv {
   height: 550px;
   width: 350px;
   background-color:#151719;
@@ -6,31 +7,25 @@
   left: 1100px;
   top: 100px;
   border-style: groove;
-  border-color: gray;
+  border-color: rgb(90, 6, 6);
 }
 
-.displayEnemyDiv {
-  height: 550px;
-  width: 350px;
-  background-color:#151719;
+#displayEnemyDivForBattleScreen {
   position: fixed;
   left: 90px;
   top: 100px;
-  border-style: groove;
-  border-color: gray;
 }
 
-/* -------------------------------------------------------------- */
+/* Display Divs Formatting */
 
-/* Character Template Formatting */
-#displayCharacterTemplateBody{
+.templateBody{
   color: gray;
   position: relative;
   left: 10px;
 }
 
-#displayCharacterTemplateCharacterName{
-  color: red;
+.templateName{
+  color: rgb(90, 6, 6);
   font-weight: bold;
   font-style: italic;
   font-family: cursive;
@@ -38,22 +33,7 @@
   text-align: center;
 }
 
-/* Enemy Template Formatting */
-#displayEnemyTemplateBody{
-  color: gray;
-  position: relative;
-  left: 10px;
-}
-
-#displayEnemyTemplateCharacterName{
-  color: red;
-  font-weight: bold;
-  font-style: italic;
-  font-family: cursive;
-  font-size: 50px;
-  text-align: center;
-}
-
+/* Ascend Button */
 #goToNextRoundOfCombat{
   background-color: #151719;
   color: gray;
@@ -62,37 +42,24 @@
   top: 50px;
   padding: 3px;
   border-style: groove;
+  border-color: rgb(90, 6, 6)
 
 }
 #goToNextRoundOfCombat:hover{
-  color:rgb(138, 16, 16);
+  color:rgb(90, 6, 6);
   cursor: pointer;
 }
 
-/* ------------------------ */
+/* Bag Structure */
 #bagInHomeMenu{
   height: 550px;
   width: 750px;
   background-color: #151719;
   border-style: groove;
-  border-color: rgb(138, 16, 16);
+  border-color: rgb(90, 6, 6);
   position: fixed;
   bottom: 70px;
   left: 220px;
-}
-
-#possesedItems{
-  height: 450px;
-  width: 350px;
-  background-color: #151719;
-  border-style: groove;
-  border-color: rgb(138, 16, 16);
-  position: relative;
-  top: 10px;
-  left: 10px;
-  color: gray;
-  outline: rgb(138, 16, 16);
-  overflow-y: scroll;
 }
 
 #possesedItems li{
@@ -103,112 +70,51 @@
 
 /* -------------------------- */
 
-#itemDescriptionInHome{
+.HomePageItemDescription {
   height: 450px;
   width: 350px;
   background-color:#151719;
   position: fixed;
+  top: 153px;
   left: 608px;
-  top: 137px;
   border-style: groove;
-  border-color: gray;
+  border-color: rgb(90, 6, 6);
   list-style-type: none;
   color: gray;
+  outline: rgb(90, 6, 6);
 }
 
-#closeItemDescriptionInHome{
+/* The little Square you click on to close the items description */
+.HomePageCloseItemDescriptionSquare{
   height: 20px;
   width: 20px;
   bottom: 370px;
   left: 923px;
-  bottom: 398px;
+  bottom: 382px;
   background-color:gray;
   position: relative;
   font-size: medium;
 }
 
-#equippedItemDescriptionInHome{
-  height: 450px;
-  width: 350px;
-  background-color:#151719;
-  position: fixed;
-  left: 608px;
-  top: 137px;
-  border-style: groove;
-  border-color: green;
-  list-style-type: none;
-  color: gray;
-}
-
-#closeEquippedItemDescriptionInHome{
-  height: 20px;
-  width: 20px;
-  bottom: 370px;
-  left: 923px;
-  bottom: 398px;
-  background-color:gray;
-  position: relative;
-  font-size: medium;
-}
-
-/* ----------------------------- */
-
-#equip{
-  height: fit-content;
-  width: fit-content;
-  bottom: 370px;
-  left: 750px;
-  bottom: 150px;
-  background-color:gray;
-  position: fixed;
-  font-size: xx-large;
-  color: aqua;
-}
-
-#unequip{
-  height: fit-content;
-  width: fit-content;
-  left: 750px;
-  bottom: 150px;
-  background-color:gray;
-  position: fixed;
-  font-size: xx-large;
-  color: aqua;
-}
-#buyItem{
-  height: fit-content;
-  width: fit-content;
-  left: 750px;
-  bottom: 150px;
-  background-color:gray;
-  position: fixed;
-  font-size: xx-large;
-  color: aqua;
-}
-
-.buyItem{
-  height: fit-content;
-  width: fit-content;
-  left: 750px;
-  bottom: 150px;
-  background-color:gray;
-  position: fixed;
-  font-size: xx-large;
-  color: aqua;
-}
-
-/* ----------------------- */
+/* Item name alignment */
 
 #equippedItemsInHome{
-  height: 450px;
-  width: 350px;
-  background-color:#151719;
-  position: fixed;
-  left: 607px;
-  top: 137px;
-  border-style: groove;
-  border-color: rgb(138, 16, 16);
-  list-style-type: none;
-  color: gray;
   text-align: center;
+}
+
+#possesedItems{
+  left: 232px;
+  overflow-y: scroll;
+}
+/* Equip and Unequip Buttons */
+
+.equipUnequipButtons{
+  height: fit-content;
+  width: fit-content;
+  left: 750px;
+  bottom: 150px;
+  background-color:gray;
+  position: fixed;
+  font-size: xx-large;
+  color: aqua;
 }
