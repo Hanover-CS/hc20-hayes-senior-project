@@ -121,7 +121,7 @@ export default class Display {
             showCharacter(getPlayerCharacterInformation(mechanics.getCharacter()));
             showTheAscendButton();
             hideTheAttackButton();
-            shop.addDrougets(400);
+            shop.addDrougets(4000);
         } else { AIAttacks(); }
 
         if (isPlayerDead()) {
@@ -327,6 +327,7 @@ function displayEquippedItemDescription(string) {
             document.getElementById("equippedItemDescriptionInHome").innerHTML = html;
         }
     }
+    console.log("yes")
     document.getElementById("equippedItemsInHome").style.display = "none"
     document.getElementById("equippedItemDescriptionInHome").style.display = "block"
     document.getElementById("closeEquippedItemDescriptionInHome").style.display = "block"
