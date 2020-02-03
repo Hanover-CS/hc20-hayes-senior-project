@@ -18,7 +18,7 @@ export default class Character{
 		this.unalteredFortitude 	= this.attributes.fortitude;
 		this.unalteredAgility 		= this.attributes.agility;
 	}
-
+z
 	// Accessors
 	get_Name(){return this.name;}
 

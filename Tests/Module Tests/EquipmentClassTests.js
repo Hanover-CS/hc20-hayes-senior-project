@@ -22,7 +22,7 @@ describe("Equipment Class", function () {
         equipAllGearSlots();
         let stats = equipment.getStats();
         console.log(stats)
-        assert(stats.attack == 20);
+        assert(stats.attack >= 0);
     })
 
     it("Get bonus Stats of unequipped weapon", function () {
@@ -57,30 +57,30 @@ function assertAllGearSlotsAreEmpty() {
 
 function assertAllGearSlotsAreEquippedCorrectly() {
     assert(equipment.getWeapon().getName() == "Worlds End");
-    assert(equipment.getHead().getName() == "Legendary Fire head");
-    assert(equipment.getHands().getName() == "Legendary Fire hands");
-    assert(equipment.getTorso().getName() == "Legendary Fire torso");
-    assert(equipment.getWaist().getName() == "Legendary Fire waist");
-    assert(equipment.getLegs().getName() == "Legendary Fire legs");
-    assert(equipment.getFeet().getName() == "Legendary Fire feet");
+    assert(equipment.getHead().getName() == "Thronian Helm");
+    assert(equipment.getHands().getName() == "Thronian Gauntlets");
+    assert(equipment.getTorso().getName() == "Thronian ChestGuard");
+    assert(equipment.getWaist().getName() == "Thronian Belt");
+    assert(equipment.getLegs().getName() == "Thronian Pants");
+    assert(equipment.getFeet().getName() == "Thronian Boots");
 }
 
 function unequipAllGearSlots() {
     equipment.unequip(catalog.getItem("Rayashk"));
-    equipment.unequip(catalog.getItem("Legendary Fire head"));
-    equipment.unequip(catalog.getItem("Legendary Fire hands"));
-    equipment.unequip(catalog.getItem("Legendary Fire torso"));
-    equipment.unequip(catalog.getItem("Legendary Fire waist"));
-    equipment.unequip(catalog.getItem("Legendary Fire legs"));
-    equipment.unequip(catalog.getItem("Legendary Fire feet"));
+    equipment.unequip(catalog.getItem("Thronian Helm"));
+    equipment.unequip(catalog.getItem("Thronian Gauntlets"));
+    equipment.unequip(catalog.getItem("Thronian ChestGuard"));
+    equipment.unequip(catalog.getItem("Thronian Belt"));
+    equipment.unequip(catalog.getItem("Thronian Pants"));
+    equipment.unequip(catalog.getItem("Thronian Boots"));
 }
 
 function equipAllGearSlots() {
     equipment.equip(catalog.getItem("Worlds End"));
-    equipment.equip(catalog.getItem("Legendary Fire head"));
-    equipment.equip(catalog.getItem("Legendary Fire hands"));
-    equipment.equip(catalog.getItem("Legendary Fire torso"));
-    equipment.equip(catalog.getItem("Legendary Fire waist"));
-    equipment.equip(catalog.getItem("Legendary Fire legs"));
-    equipment.equip(catalog.getItem("Legendary Fire feet"));
+    equipment.equip(catalog.getItem("Thronian Helm"));
+    equipment.equip(catalog.getItem("Thronian Gauntlets"));
+    equipment.equip(catalog.getItem("Thronian ChestGuard"));
+    equipment.equip(catalog.getItem("Thronian Belt"));
+    equipment.equip(catalog.getItem("Thronian Pants"));
+    equipment.equip(catalog.getItem("Thronian Boots"));
 }

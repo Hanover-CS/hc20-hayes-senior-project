@@ -265,7 +265,6 @@ export default class Display {
         displayBagInHome();
         hideItemDescriptionInHome();
         displayEquippedGear();
-        displayEquippedGear();
     }
 
 
@@ -305,10 +304,10 @@ function displayBag() {
 
 function displayEquippedGear() {
     document.getElementById("equippedItemsInHome").style.display = "block"
+    console.log("here")
     let source = document.getElementById("displayItemInBag").innerHTML;
     let template = Handlebars.compile(source);
     let list = mechanics.getEquippedGear();
-    console.log(list)
     let html
     html = template();
     document.getElementById("equippedItemsInHome").innerHTML = html;

@@ -7,9 +7,9 @@ let catalog = new ItemCatalog
 describe("Bag Class", function () {
     it("Can Remove requested Item", function () {
         let item1 = catalog.getItem("Rayashk");
-        let item2 = catalog.getItem("Legendary Fire head");
+        let item2 = catalog.getItem("Thronian Helm");
         let item3 = catalog.getItem("Rayashk");
-        let item4 = catalog.getItem("Legendary Fire head");
+        let item4 = catalog.getItem("Thronian Helm");
         bag.addItem(item1);
         bag.addItem(item2);
         bag.addItem(item3);
