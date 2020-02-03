@@ -89,7 +89,7 @@ export default class Display {
             showButtonDisplay();
             showCharacter(getPlayerCharacterInformation(mechanics.getCharacter()));
         } else {
-            giveErrorMessage("Insufficient Experiance Points");
+            giveErrorMessage("Insufficient Experience Points");
         }
     }
 
@@ -121,7 +121,7 @@ export default class Display {
             showCharacter(getPlayerCharacterInformation(mechanics.getCharacter()));
             showTheAscendButton();
             hideTheAttackButton();
-            shop.addDrougets(40000);
+            shop.addDrougets(400);
         } else { AIAttacks(); }
 
         if (isPlayerDead()) {
@@ -423,8 +423,8 @@ function hideAttributeWindow() {
 }
 
 function giveErrorMessage(string) {
-    if (string == "Insufficient Experiance Points") {
-        alert("Insufficient Experiance Points");
+    if (string == "Insufficient Experience Points") {
+        alert("Insufficient Experience Points");
     }
 }
 
@@ -591,7 +591,7 @@ function getPlayerCharacterInformation(character) {
         intelligence: character.get_All_Attributes().intelligence,
         willpower: character.get_All_Attributes().willpower,
         intimidation: character.get_All_Attributes().intimidation,
-        experiance: character.get_Experience(),
+        experience: character.get_Experience(),
         levelUpPoints: character.get_Level_Up_Points()
     };
     return playerCharactersStats;
