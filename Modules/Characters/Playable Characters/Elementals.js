@@ -48,13 +48,13 @@ class Salamander extends Elemental{
 
 	allocation_Guide(){ 
 		let allocation_Guide = {
-			attack:10, 
+			attack:5, 
 			vitality:10, 
-			intelligence:10,
-			willpower:10, 
+			intelligence:1,
+			willpower:5, 
 			agility:10, 
-			fortitude:10, 
-			intimidation:10};
+			fortitude:2, 
+			intimidation:5};
 		return allocation_Guide;
 	}
 }

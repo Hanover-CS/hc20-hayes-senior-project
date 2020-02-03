@@ -21,12 +21,12 @@ export default class Skeleton {
 
 	levelUpGuide() {
 		let levelUp_Guide = {
-			attack: 10,
-			vitality: 10,
+			attack: 30,
+			vitality: 40,
 			intelligence: 0,
 			willpower: 0,
 			agility: 0,
-			fortitude: 0,
+			fortitude: 10,
 			intimidation: 0
 		};
 		return levelUp_Guide;
